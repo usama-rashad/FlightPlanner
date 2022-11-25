@@ -4,17 +4,27 @@
   background-color: #439a86;
   border-bottom: 2px solid #19493e;
   border-top: 2px solid #19493e;
-
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: row;
   align-items: center;
   justify-content: space-between;
-
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+
+  .navbarButtons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    .navbarIcons {
+      color: white;
+      font-size: 30px;
+      padding: 10px;
+    }
+  }
 
   .title {
     font-family: "Pacifico", cursive;
-    margin-right: 10px;
+    margin-left: 10px;
     padding: 0px 10px;
     border-radius: 12px;
     font-size: 24px;
