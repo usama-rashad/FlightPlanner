@@ -1,10 +1,18 @@
 import "./AdvertCard.scss";
 import React from "react";
 
-function AdvertCard() {
+export interface IAdvertCard {
+	desc: string;
+	img: string;
+}
+
+function AdvertCard({desc, img}: IAdvertCard) {
 	return (
-		<div className="advertcard">
-			<h4>Advert</h4>
+		<div className="advertcardContainer">
+			<div className="textBackground">
+				<span className="description">{desc}</span>
+			</div>
+			<img src={img} alt="" className="image" />
 		</div>
 	);
 }
