@@ -1,0 +1,9 @@
+.backdrop {
+	display: flex;
+	flex-direction: column;
+	height: calc(100vh - 60px); // Minus the height of the navbar
+	img {
+		height: 100%;
+		object-fit: cover;
+	}
+}

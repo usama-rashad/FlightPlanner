@@ -8,16 +8,16 @@ import MenuClosedIcon from "@mui/icons-material/Menu";
 import Button from "@mui/material/Button";
 
 function Navbar() {
-  return (
-    <div className="navbar">
-      <div className="navbarButtons">
-        <MenuClosedIcon className="navbarIcons" />
-        <Button variant="contained">Help</Button>
-      </div>
+	return (
+		<div className="navbar">
+			<span className="title">Trip Planner</span>
 
-      <span className="title">Trip Planner</span>
-    </div>
-  );
+			<div className="navbarButtons">
+				<Button variant="contained">Login</Button>
+				<Button variant="contained">Help</Button>
+			</div>
+		</div>
+	);
 }
 
 export default Navbar;
