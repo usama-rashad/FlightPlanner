@@ -1,8 +1,8 @@
 import {IAdvertCard} from "../src/components/AdvertCard/AdvertCard";
 
-import IslamabadImage from "../src/assets/holiday1.jpg";
-import BaliImage from "../src/assets/holiday2.jpg";
-import IstanbulImage from "../src/assets/holiday3.jpg";
+import IslamabadImage from "../src/assets/holiday1_cropped.png";
+import BaliImage from "../src/assets/holiday2_cropped.png";
+import IstanbulImage from "../src/assets/holiday3_cropped.png";
 
 export const holidayDestiationData: IAdvertCard[] = [
 	{
@@ -10,7 +10,7 @@ export const holidayDestiationData: IAdvertCard[] = [
 		img: IslamabadImage,
 	},
 	{
-		desc: "See Bali's breathtaking scenery and tasteful cuisine",
+		desc: "See Bali's breathtaking scenery and enjoy it's tasteful cuisine",
 		img: BaliImage,
 	},
 	{

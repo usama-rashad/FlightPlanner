@@ -26,10 +26,34 @@
 		align-items: center;
 		gap: 5px;
 		margin-right: 10px;
-		.navbarIcons {
+		position: relative;
+
+		.openButton {
+			width: 50px;
+			height: 30px;
 			color: white;
-			font-size: 30px;
-			padding: 10px;
+			background-color: rgba(67, 154, 134, 1);
+			border-bottom: 0xp 2px 2px 2px solid #0dc3a9;
+			border-left: 2px solid #0dc3a9;
+			border-right: 2px solid #0dc3a9;
+			border-radius: 6px;
+			position: relative;
+			top: 46px;
+			right: 60px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+
+			.menuOpenIcon {
+				font-size: 28px;
+			}
+		}
+
+		.openButton::before {
+			content: "";
+			width: 20px;
+			height: 30px;
+			background-color: #0dc3a9;
 		}
 	}
 

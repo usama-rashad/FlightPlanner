@@ -8,11 +8,13 @@ export interface IAdvertCard {
 
 function AdvertCard({desc, img}: IAdvertCard) {
 	return (
-		<div className="advertcardContainer">
-			<div className="textBackground">
-				<span className="description">{desc}</span>
+		<div className="advertcard">
+			<div className="advertCardContainer">
+				<div className="textBackground">
+					<span className="description">{desc}</span>
+				</div>
+				<img src={img} alt="" className="image" />
 			</div>
-			<img src={img} alt="" className="image" />
 		</div>
 	);
 }
