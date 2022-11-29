@@ -1,6 +1,6 @@
 import {Entity, PrimaryGeneratedColumn, Column} from "typeorm";
 
-@Entity("userauth")
+@Entity()
 export class userauth {
 	@PrimaryGeneratedColumn({type: "int"})
 	id: number;
@@ -17,5 +17,3 @@ export class userauth {
 	@Column({type: "varchar", width: 200})
 	password: string;
 }
-
-

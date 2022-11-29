@@ -11,7 +11,7 @@
 	justify-content: center;
 
 	&:hover {
-		background-color: rgba(41, 139, 231, 1);
+		animation: cardHover 0.1s linear forwards;
 	}
 
 	.advertCardContainer {
@@ -38,5 +38,14 @@
 			width: auto;
 			object-fit: cover;
 		}
+	}
+}
+
+@keyframes cardHover {
+	0% {
+		background-color: rgba(41, 139, 231, 0.623);
+	}
+	100% {
+		background-color: rgba(41, 139, 231, 1);
 	}
 }
