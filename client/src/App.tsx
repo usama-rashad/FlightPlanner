@@ -4,6 +4,7 @@ import AdvertCard from "./components/AdvertCard/AdvertCard";
 // Custom components
 import Backdrop from "./components/BackDrop/Backdrop";
 import Navbar from "./components/Navbar/Navbar";
+import Searchbar from "./components/Searchbar/Searchbar";
 
 // Data sources
 import {holidayDestiationData} from "../src/data";
@@ -13,6 +14,7 @@ function App() {
 		<div className="app">
 			<Navbar />
 			<Backdrop />
+			<Searchbar />
 			<div className="advertContainer">
 				<div className="advertisements">
 					<AdvertCard

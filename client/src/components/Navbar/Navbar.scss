@@ -28,43 +28,6 @@
 		margin-right: 10px;
 		position: relative;
 
-		.openButton {
-			width: 50px;
-			height: 30px;
-			color: white;
-			background-color: rgba(67, 154, 134, 1);
-			border: 2px solid #0dc3a9;
-			border-radius: 0px 0px 8px 8px;
-			position: relative;
-			top: 46px;
-			right: 60px;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-
-			.openButton::before {
-				position: absolute;
-				content: "";
-				width: 20px;
-				height: 20px;
-				left: -20px;
-				background-color: red;
-			}
-
-			.openButton::after {
-				position: absolute;
-				content: "";
-				left: 20px;
-				width: 20px;
-				height: 20px;
-				background-color: blue;
-			}
-
-			.menuOpenIcon {
-				font-size: 28px;
-			}
-		}
-
 		.openButton::before {
 			content: "";
 			width: 30px;

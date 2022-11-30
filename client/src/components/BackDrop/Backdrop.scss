@@ -6,6 +6,7 @@
 	); // Minus the height of the navbar and its top and bottom borders
 	img {
 		height: 100%;
+		width: 100vw;
 		object-fit: cover;
 	}
 }
