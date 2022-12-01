@@ -18,8 +18,8 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 function Searchbar() {
   const [departureDate, setDepartureDate] = useState<Dayjs | null>(null);
   const [returnDate, setReturnDate] = useState<Dayjs | null>(null);
-
-  return (
+  //codesandbox.io/s/custom-color-date-input-mui-using-sx-prop-forked-incoy6?file=/demo.tsx
+  https: return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <div className="searchbar">
         <div className="searchOptions">

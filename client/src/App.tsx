@@ -1,4 +1,5 @@
 import "./App.scss";
+
 import AdvertCard from "./components/AdvertCard/AdvertCard";
 
 // Custom components
