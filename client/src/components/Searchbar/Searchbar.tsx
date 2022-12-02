@@ -14,12 +14,28 @@ import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
 import { MobileDatePicker } from "@mui/x-date-pickers/MobileDatePicker";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { Checkbox } from "@mui/material";
 
 function Searchbar() {
   const [departureDate, setDepartureDate] = useState<Dayjs | null>(null);
   const [returnDate, setReturnDate] = useState<Dayjs | null>(null);
-  //codesandbox.io/s/custom-color-date-input-mui-using-sx-prop-forked-incoy6?file=/demo.tsx
-  https: return (
+  const [searchEnabled, setSearchEnabled] = useState<boolean>(false);
+
+  const setDepartureDateAction = (value: Dayjs | null) => {
+    if (value) setDepartureDate(value);
+    else {
+    }
+    console.log(value);
+  };
+
+  const setReturnDateAction = (value: Dayjs | null) => {
+    if (value) setReturnDate(value);
+    else {
+    }
+    console.log(value);
+  };
+
+  return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <div className="searchbar">
         <div className="searchOptions">
@@ -38,17 +54,21 @@ function Searchbar() {
               className="date"
               label="Departure"
               inputFormat="MM/DD/YYYY"
-              onChange={(newDate) => setDepartureDate(newDate)}
+              onChange={(newDate) => setDepartureDateAction(newDate)}
               value={departureDate}
-              renderInput={(params: any) => <TextField {...params} />}
+              renderInput={(params: any) => (
+                <TextField size="small" variant="outlined" {...params} />
+              )}
             />
             <DesktopDatePicker
-              label="Return"
               className="date"
+              label="Return"
               inputFormat="MM/DD/YYYY"
-              onChange={(newDate) => setReturnDate(newDate)}
+              onChange={(newDate) => setReturnDateAction(newDate)}
               value={returnDate}
-              renderInput={(params: any) => <TextField {...params} />}
+              renderInput={(params: any) => (
+                <TextField size="small" variant="outlined" {...params} />
+              )}
             />
           </div>
         </div>
@@ -57,7 +77,7 @@ function Searchbar() {
             <label>
               Include Star <StarAlliance className="icon" /> Alliance airlines
             </label>
-            <input type="checkbox" />
+            <Checkbox color="error" />
           </div>
           <Button variant="contained" size="small" className="searchButton">
             Search

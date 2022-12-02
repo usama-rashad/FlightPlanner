@@ -1,7 +1,8 @@
 .searchbar {
-  height: 80%;
+  height: 100%;
   width: 60%;
   background-color: rgb(37, 88, 129);
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 13px 16px;
   border-radius: 5px;
   display: flex;
   flex-direction: column;
@@ -46,13 +47,14 @@
       flex-direction: row;
       justify-content: space-between;
       gap: 5px;
+      margin-top: 10px;
 
       .city {
         flex: 3;
       }
 
       .date {
-        flex: 1;
+        flex: 2;
         height: 30px;
       }
     }
@@ -62,6 +64,8 @@
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
+    align-items: center;
+    margin-top: 5px;
 
     .searchOptions {
       display: flex;
@@ -69,7 +73,7 @@
       align-items: center;
 
       label {
-        font-size: small;
+        font-size: medium;
         font-weight: 100;
 
         .icon {
