@@ -1,4 +1,8 @@
+$clipHeight: 60%;
+$notchHeight: calc($clipHeight + 0%);
+
 .backdrop {
+	background-color: #c4d4e4;
 	display: flex;
 	flex-direction: column;
 	height: calc(
@@ -8,5 +12,14 @@
 		height: 100%;
 		width: 100vw;
 		object-fit: cover;
+		clip-path: polygon(
+			0 0,
+			100% 0%,
+			100% $clipHeight,
+			54% $clipHeight,
+			50% $notchHeight,
+			45.7% $clipHeight,
+			0% $clipHeight
+		);
 	}
 }

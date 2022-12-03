@@ -1,5 +1,18 @@
 import {DataSource} from "typeorm";
-import {userauth} from "./Entities/User";
+import {userauth} from "./entities/User";
+
+// Express
+import Express from "express";
+const App = Express();
+
+// Express routes
+import {searchRouter} from "./routes/Search";
+
+App.use("/", searchRouter);
+
+App.listen(3001, () => {
+	console.log("Listening on port 3001...");
+});
 
 export const mySqlDb = new DataSource({
 	type: "mysql",
