@@ -1,7 +1,7 @@
 .searchbar {
   height: 100%;
-  width: 60%;
-  background-color: rgb(37, 88, 129);
+  width: 80%;
+  background-color: rgb(132, 176, 203);
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 13px 16px;
   border-radius: 5px;
   display: flex;
@@ -9,76 +9,94 @@
   justify-content: space-between;
   padding: 10px;
 
-  .searchOptions {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
+  .searchBarContainer {
+    background-color: rgb(64, 125, 163);
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px,
+      rgba(0, 0, 0, 0.23) 0px 13px 16px;
 
-    input {
-      color: white;
+    height: 90%;
+    height: 90%;
+    padding: 8px;
+    border-radius: 5px;
+
+    .searchBarTone {
+      position: absolute;
+      background-color: rgb(57, 97, 140);
+      height: 100%;
+      width: 80%;
+      z-index: 0;
     }
 
-    label {
-      color: white;
-      font-weight: 500;
-    }
-  }
+    .searchOptions {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      gap: 10px;
 
-  .searchParameters {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+      input {
+        color: white;
+      }
 
-    input {
-      height: 42px;
-      border-radius: 5px;
-      border: none;
-      font-weight: 400;
-      font-size: 14px;
-      padding-left: 10px;
-      color: black;
+      label {
+        color: white;
+        font-weight: 500;
+      }
     }
 
-    .searchData {
+    .searchParameters {
       width: 100%;
       display: flex;
       flex-direction: row;
       justify-content: space-between;
-      gap: 5px;
-      margin-top: 10px;
 
-      .city {
-        flex: 3;
+      input {
+        height: 42px;
+        border-radius: 5px;
+        border: none;
+        font-weight: 400;
+        font-size: 14px;
+        padding-left: 10px;
+        color: black;
       }
 
-      .date {
-        flex: 2;
-        height: 30px;
+      .searchData {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 5px;
+        margin-top: 10px;
+
+        .city {
+          flex: 3;
+        }
+
+        .date {
+          flex: 2;
+        }
       }
     }
-  }
 
-  .searchSection {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    align-items: center;
-    margin-top: 5px;
-
-    .searchOptions {
+    .searchSection {
       display: flex;
       flex-direction: row;
+      justify-content: flex-end;
       align-items: center;
+      margin-top: 10px;
 
-      label {
-        font-size: medium;
-        font-weight: 100;
+      .searchOptions {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
 
-        .icon {
-          font-size: 16px;
-          color: goldenrod;
+        label {
+          font-size: medium;
+          font-weight: 100;
+
+          .icon {
+            font-size: 16px;
+            color: goldenrod;
+          }
         }
       }
     }

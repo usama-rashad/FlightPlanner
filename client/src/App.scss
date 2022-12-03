@@ -1,3 +1,5 @@
+@import "./../src/components/AdvertCard/AdvertCard.scss";
+
 * {
   font-family: "Roboto", sans-serif;
 }
@@ -43,8 +45,7 @@ body {
       grid-column-end: 10px;
       column-gap: 15px;
       position: absolute;
-      top: 70%;
-      height: 30%;
+      top: calc(100% - $cardHeight - 10px);
     }
   }
 }
