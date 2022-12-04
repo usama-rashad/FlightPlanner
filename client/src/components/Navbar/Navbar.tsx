@@ -1,5 +1,8 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import "./Navbar.scss";
+
+// Packages
+import {Link} from "react-router-dom";
 
 // Icons
 import MenuOpenIcon from "@mui/icons-material/KeyboardArrowDown";
@@ -8,16 +11,25 @@ import MenuOpenIcon from "@mui/icons-material/KeyboardArrowDown";
 import Button from "@mui/material/Button";
 
 function Navbar() {
-  const [open, setOpen] = useState(false);
-  return (
-    <div className="navbar">
-      <span className="title">Trip Planner</span>
-      <div className="navbarButtons">
-        <Button variant="contained">Login</Button>
-        <Button variant="contained">Help</Button>
-      </div>
-    </div>
-  );
+	const [open, setOpen] = useState(false);
+
+	const loginAction = () => {
+		console.log("Login action triggered.");
+	};
+
+	return (
+		<div className="navbar">
+			<span className="title">Trip Planner</span>
+			<div className="navbarButtons">
+				<Link to="/login" className="link">
+					<Button variant="contained" onClick={loginAction}>
+						Login
+					</Button>
+				</Link>
+				<Button variant="contained">Help</Button>
+			</div>
+		</div>
+	);
 }
 
 export default Navbar;

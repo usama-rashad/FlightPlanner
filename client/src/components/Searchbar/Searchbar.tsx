@@ -38,20 +38,6 @@ function Searchbar() {
 	};
 
 	const searchRequest = () => {
-		const searchRequestOptions = {
-			url: "http://localhost:3000/search/",
-			method: "get",
-			headers: {
-				Accept: "application/json",
-				"Content-Type": "application/json;charset=UTF-8",
-			},
-			data: {
-				request: "search",
-				dep: "Lahore",
-				arr: "Islamabad",
-			},
-		};
-
 		axios
 			.get("http://localhost:3001/search")
 			.then((res) => {
