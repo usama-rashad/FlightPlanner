@@ -1,0 +1,84 @@
+@import "../../../src//components//Navbar/Navbar.scss";
+
+.register {
+  background-color: #45718c;
+  height: calc(100vh - $navbarHeight - 4px);
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  .leftSide {
+    width: 600px;
+    height: 600px;
+    background-color: #594302;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px,
+      rgba(0, 0, 0, 0.23) 0px 13px 16px;
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  .verticalSeperator {
+    height: 50%;
+    width: 2px;
+    background-color: lightgray;
+    display: none;
+  }
+
+  .rightSide {
+    width: 400px;
+    height: 600px;
+    background-color: #fdeedb;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px,
+      rgba(0, 0, 0, 0.23) 0px 13px 16px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    border-radius: 10px;
+
+    .title {
+      color: rgb(6, 12, 52);
+    }
+
+    .optionsContainer {
+      height: 150px;
+      width: 90%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-end;
+
+      .link {
+        .loginTitle {
+          text-decoration: none;
+          font-size: 16px;
+        }
+      }
+    }
+
+    .rememberMe {
+      .rememberTitle {
+        font-size: 14px;
+        font-weight: 400;
+      }
+    }
+
+    .title {
+      font-size: 24px;
+      font-weight: 800;
+    }
+
+    .input {
+      width: 80%;
+    }
+  }
+}

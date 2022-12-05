@@ -1,0 +1,51 @@
+@import "./../../components/AdvertCard/AdvertCard.scss";
+
+* {
+  font-family: "Roboto", sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.home {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  .flightSearch {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 150px;
+    width: 100%;
+    top: 20vh;
+
+    left: 0px;
+    right: 0px;
+    margin: auto;
+  }
+
+  .advertContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .advertisements {
+      width: 90%;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-column-end: 10px;
+      column-gap: 15px;
+      position: absolute;
+      top: calc(100% - $cardHeight - 10px);
+    }
+  }
+}
