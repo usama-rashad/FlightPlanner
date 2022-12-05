@@ -21,6 +21,9 @@ import red from "@mui/material/colors/red";
 function Searchbar() {
 	const [departureDate, setDepartureDate] = useState<Dayjs | null>(null);
 	const [returnDate, setReturnDate] = useState<Dayjs | null>(null);
+	const [departureCity, setDepartureCity] = useState<string>("");
+	const [arrivalCity, setArrivalCity] = useState<string>("");
+
 	const [searchEnabled, setSearchEnabled] = useState<boolean>(false);
 
 	const setDepartureDateAction = (value: Dayjs | null) => {
@@ -64,8 +67,26 @@ function Searchbar() {
 					</div>
 					<div className="searchParameters">
 						<div className="searchData">
-							<input type="text" placeholder="Departure" className="city" />
-							<input type="text" placeholder="Arrival" className="city" />
+							<TextField
+								className="departureCityInput"
+								size="small"
+								type="outlined"
+								label="Departure"
+								value={departureCity}
+								onChange={(e) => {
+									setDepartureCity(e.target.value);
+								}}
+							/>
+							<TextField
+								className="arrivalCityInput"
+								size="small"
+								type="outlined"
+								label="Arrival"
+								value={arrivalCity}
+								onChange={(e) => {
+									setArrivalCity(e.target.value);
+								}}
+							/>{" "}
 							<DesktopDatePicker
 								className="date"
 								label="Departure"

@@ -1,88 +1,92 @@
 @import "../../components//Navbar/Navbar.scss";
 
+$size: 80%;
+
 .login {
-  background-color: #def6f9;
-  height: calc(100vh - $navbarHeight - 4px);
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
+	background-color: #def6f9;
+	height: calc(100vh - $navbarHeight - 4px);
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+	padding: 20px;
 
-  .leftSide {
-    width: 600px;
-    height: 600px;
-    background-color: #6ed5d7;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px,
-      rgba(0, 0, 0, 0.23) 0px 13px 16px;
+	.leftSide {
+		width: $size;
+		height: $size;
+		background-color: #6ed5d7;
+		border-radius: 10px;
+		overflow: hidden;
+		box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px,
+			rgba(0, 0, 0, 0.23) 0px 13px 16px;
 
-    img {
-      object-fit: cover;
-      height: 100%;
-      width: auto;
-    }
-  }
+		img {
+			object-fit: cover;
+			height: 100%;
+			width: auto;
+		}
+	}
 
-  .verticalSeperator {
-    height: 50%;
-    width: 2px;
-    background-color: lightgray;
-    display: none;
-  }
+	.verticalSeperator {
+		height: 50%;
+		width: 2px;
+		background-color: lightgray;
+		display: none;
+	}
 
-  .rightSide {
-    width: 600px;
-    height: 600px;
-    background-color: #d7eef1;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px,
-      rgba(0, 0, 0, 0.23) 0px 13px 16px;
+	.rightSide {
+		width: $size;
+		height: $size;
+		background-color: #d7eef1;
+		box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px,
+			rgba(0, 0, 0, 0.23) 0px 13px 16px;
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    border-radius: 10px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 10px;
+		border-radius: 10px;
 
-    .optionsContainer {
-      padding-top: 20px;
-      height: 180px;
-      width: 90%;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      justify-content: flex-end;
+		.optionsContainer {
+			padding-top: 20px;
+			height: 180px;
+			width: 90%;
+			display: flex;
+			flex-direction: column;
+			align-items: flex-start;
+			justify-content: flex-end;
 
-      .link {
-        .registerTitle {
-          text-decoration: none;
-          font-size: 16px;
-        }
-      }
-    }
+			.link {
+				.registerTitle {
+					text-decoration: none;
+					font-size: 16px;
+				}
+			}
+		}
 
-    .rememberMe {
-      .rememberTitle {
-        font-size: 14px;
-        font-weight: 400;
-      }
-    }
+		.rememberMe {
+			.rememberTitle {
+				font-size: 14px;
+				font-weight: 400;
+			}
+		}
 
-    .loginError {
-      color: red;
-      font-size: 14px;
-      font-weight: 500;
-    }
+		.loginError {
+			color: red;
+			font-size: 14px;
+			font-weight: 500;
+		}
 
-    .title {
-      font-size: 24px;
-      font-weight: 800;
-    }
+		.title {
+			padding-top: 20px;
+			font-size: 24px;
+			font-weight: 800;
+		}
 
-    input {
-      width: 80%;
-    }
-  }
+		input {
+			width: 80%;
+		}
+	}
 }
