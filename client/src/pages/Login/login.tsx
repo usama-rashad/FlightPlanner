@@ -10,7 +10,7 @@ import CheckBox from "@mui/material/Checkbox";
 import TextField from "@mui/material/TextField";
 
 // Images
-import LoginBackground from "../../assets/Login Background.jpg";
+import LoginBackground from "../../assets/Backgrounds/Login Background.jpg";
 import { Link } from "react-router-dom";
 
 function login() {
