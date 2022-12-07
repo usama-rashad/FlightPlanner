@@ -1,87 +1,94 @@
 .searchResultsCard {
-  width: 80%;
-  height: 220px;
-  border: 1px solid lightgrey;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-  border-radius: 8px;
+	width: 80%;
+	height: 220px;
+	border: 1px solid lightgrey;
+	box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+	border-radius: 8px;
 
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  align-items: center;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	align-items: center;
 
-  .airlineSummary {
-    flex: 1;
-    padding-left: 20px;
-    .airlineLogos {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 20px;
-      .outboundAirline,
-      .inboundAirline {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        .title {
-          padding: 0;
-          padding-top: 5px;
-          font-size: 0.8rem;
-          font-weight: 500;
-          white-space: nowrap;
-        }
-        img {
-          height: 50px;
-          width: auto;
-        }
-      }
-    }
-  }
+	.airlineSummary {
+		flex: 1;
+		padding-left: 20px;
+		.airlineLogos {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			gap: 20px;
+			.title {
+				padding: 0;
+				padding-top: 5px;
+				font-size: 0.8rem;
+				font-weight: 500;
+				white-space: nowrap;
+			}
+			.outboundAirline,
+			.inboundAirline {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				.title {
+					padding: 0;
+					padding-top: 5px;
+					font-size: 0.8rem;
+					font-weight: 500;
+					white-space: nowrap;
+				}
+				img {
+					height: 50px;
+					width: auto;
+				}
+			}
+		}
+	}
 
-  .container {
-    flex: 8;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+	.container {
+		flex: 8;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
 
-    .outboundTravel,
-    .inboundTravel {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      width: 60%;
-      height: 100px;
-    }
-  }
+		.outboundTravel,
+		.inboundTravel {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			width: 60%;
+			height: 100px;
+		}
+	}
 
-  .divider {
-    height: 100%;
-    width: 2px;
-    background-color: rgb(62, 59, 59);
-  }
+	.divider {
+		height: 100%;
+		width: 2px;
+		background-color: rgb(62, 59, 59);
+	}
 
-  .price {
-    flex: 3;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 50px;
+	.price {
+		flex: 3;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 50px;
 
-    .priceGroup {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      .unitPrice,
-      .totalPrice {
-        font-size: 1.8rem;
-        color: rgb(62, 62, 62);
-        .currencyIcon {
-          font-size: 20px;
-        }
-      }
-    }
-  }
+		.priceGroup {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			.unitPrice,
+			.totalPrice {
+				font-size: 1.8rem;
+				color: rgb(62, 62, 62);
+				.currencyIcon {
+					font-size: 20px;
+				}
+			}
+		}
+	}
 }
