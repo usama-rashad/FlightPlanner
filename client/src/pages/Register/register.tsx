@@ -12,7 +12,7 @@ import TextField from "@mui/material/TextField";
 import blue from "@mui/material/colors/blue";
 
 // Images
-import RegisterBackground from "../../assets/Register Background.jpg";
+import RegisterBackground from "../../assets/Backgrounds/Register Background.jpg";
 import { Link } from "react-router-dom";
 
 function register() {

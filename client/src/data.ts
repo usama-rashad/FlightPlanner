@@ -6,7 +6,7 @@ import BaliImage from "../src/assets/Backgrounds/holiday2_cropped.png";
 import IstanbulImage from "../src/assets/Backgrounds/holiday3_cropped.png";
 
 // Sample flight data
-import { ISearchResultCard } from "./components/FlightSearchResultCard/FlightSearchResultCard";
+import { ITravelData } from "./components/FlightSearchResultCard/Datatypes";
 import {
   TurkishAirlineIcon,
   EmiratesAirlineIcon,
@@ -27,30 +27,39 @@ export const holidayDestiationData: IAdvertCard[] = [
   },
 ];
 
-export const sampleFlightResult: ISearchResultCard = {
-  flightData: [
-    {
-      flightId: 1,
-      airlineImage: TurkishAirlineIcon,
-      airlineName: "Turkish Airlines",
-      departureAirportCode: "",
-      departureTime: "",
-      arrivalAirportCode: "",
-      arrivalTime: "",
-      timeOfFlight: "",
-    },
-    {
-      flightId: 2,
-      airlineImage: EmiratesAirlineIcon,
-      airlineName: "Emirates Airlines",
-      departureAirportCode: "",
-      departureTime: "",
-      arrivalAirportCode: "",
-      arrivalTime: "",
-      timeOfFlight: "",
-    },
-  ],
-  numberOfStops: 0,
-  unitFare: 0,
-  totalFare: 0,
+export const sampleFlightResult: ITravelData = {
+  outboundFlight: {
+    flightData: [
+      {
+        flightId: 1,
+        airlineImage: TurkishAirlineIcon,
+        airlineName: "TurkishAirlines",
+        departureAirportCode: "DUS",
+        departureTime: "13:00",
+        arrivalAirportCode: "LHR",
+        arrivalTime: "18:00",
+        timeOfFlight: "5h 00m",
+      },
+    ],
+    numberOfStops: 1,
+    unitFare: 1200,
+    totalFare: 2400,
+  },
+  inboundFlight: {
+    flightData: [
+      {
+        flightId: 1,
+        airlineImage: EmiratesAirlineIcon,
+        airlineName: "Emirates Airlines",
+        departureAirportCode: "LHR",
+        departureTime: "12:00",
+        arrivalAirportCode: "DUS",
+        arrivalTime: "19:00",
+        timeOfFlight: "7h 00m",
+      },
+    ],
+    numberOfStops: 1,
+    unitFare: 1200,
+    totalFare: 2400,
+  },
 };
