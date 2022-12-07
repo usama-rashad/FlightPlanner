@@ -2,6 +2,7 @@ import React from "react";
 import "./InboundCard.scss";
 
 import { IFlightData } from "./Datatypes";
+import { StopOverIcon } from "./StopOverIcon";
 
 function InboundCard(props?: IFlightData) {
   return (
@@ -25,17 +26,20 @@ function InboundCard(props?: IFlightData) {
           <div className="travel">
             <div className="travelLine"></div>
             <div className="stopPointGroup">
-              <div className="stopPoint" />
-              <div className="stopPoint" />
-              <div className="stopPoint" />
-              <div className="stopPoint" />
+              {[...Array(props?.numberOfStops)].map((e) => (
+                <StopOverIcon />
+              ))}
             </div>
           </div>
           <div className="stopOvers">
             <div className="stopOverInfo">
-              <span className="stopCount">1 stop</span>
+              {props?.numberOfStops === 1 ? (
+                <span className="stopCount">{props?.numberOfStops} stop</span>
+              ) : (
+                <span className="stopCount">{props?.numberOfStops} stops</span>
+              )}
               <span className="slash">/</span>
-              <span className="airportCodes">LCV</span>
+              <span className="airportCodes">DUH</span>
             </div>
           </div>
         </div>

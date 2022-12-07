@@ -1,5 +1,5 @@
 .searchResultsCard {
-  width: 60%;
+  width: 80%;
   height: 220px;
   border: 1px solid lightgrey;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
@@ -19,9 +19,23 @@
       flex-direction: column;
       align-items: center;
       gap: 20px;
-      img {
-        height: 50px;
-        width: auto;
+      .outboundAirline,
+      .inboundAirline {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        .title {
+          padding: 0;
+          padding-top: 5px;
+          font-size: 0.8rem;
+          font-weight: 500;
+          white-space: nowrap;
+        }
+        img {
+          height: 50px;
+          width: auto;
+        }
       }
     }
   }
@@ -46,7 +60,7 @@
   .divider {
     height: 100%;
     width: 2px;
-    background-color: grey;
+    background-color: rgb(62, 59, 59);
   }
 
   .price {
@@ -60,14 +74,13 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      .unitPrice {
+      .unitPrice,
+      .totalPrice {
         font-size: 1.8rem;
         color: rgb(62, 62, 62);
-      }
-
-      .totalPrice {
-        font-size: 0.8rem;
-        color: rgb(62, 62, 62);
+        .currencyIcon {
+          font-size: 20px;
+        }
       }
     }
   }

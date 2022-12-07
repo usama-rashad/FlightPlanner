@@ -13,14 +13,25 @@ import {
   EmiratesAirlineIcon,
   TurkishAirlineIcon,
 } from "./../../assets/AirlineIcons/AirlineIcons";
+import EuroSymbolIcon from "@mui/icons-material/EuroSymbol";
 
 function SearchResultsCard(props: ITravelData) {
   return (
     <div className="searchResultsCard">
       <div className="airlineSummary">
         <div className="airlineLogos">
-          <img src={props.inboundFlight.flightData[0].airlineImage} alt="" />
-          <img src={props.outboundFlight.flightData[0].airlineImage} alt="" />
+          <div className="outboundAirline">
+            <img src={props.outboundFlight.flightData[0].airlineImage} alt="" />
+            <span className="title">
+              {props.outboundFlight.flightData[0].airlineName}
+            </span>
+          </div>
+          <div className="inboundAirline">
+            <img src={props.inboundFlight.flightData[0].airlineImage} alt="" />
+            <span className="title">
+              {props.inboundFlight.flightData[0].airlineName}
+            </span>
+          </div>
         </div>
       </div>
       <div className="container">
@@ -45,9 +56,11 @@ function SearchResultsCard(props: ITravelData) {
       <div className="price">
         <div className="priceGroup">
           <span className="unitPrice">
+            <EuroSymbolIcon className="currencyIcon" />
             {props.inboundFlight.unitFare + props.outboundFlight.unitFare}
           </span>
           <span className="totalPrice">
+            <EuroSymbolIcon className="currencyIcon" />
             {props.inboundFlight.totalFare + props.outboundFlight.totalFare}
           </span>
         </div>

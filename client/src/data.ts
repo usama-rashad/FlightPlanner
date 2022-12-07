@@ -33,7 +33,7 @@ export const sampleFlightResult: ITravelData = {
       {
         flightId: 1,
         airlineImage: TurkishAirlineIcon,
-        airlineName: "TurkishAirlines",
+        airlineName: "Turkish Airlines",
         departureAirportCode: "DUS",
         departureTime: "13:00",
         arrivalAirportCode: "LHR",
@@ -41,7 +41,7 @@ export const sampleFlightResult: ITravelData = {
         timeOfFlight: "5h 00m",
       },
     ],
-    numberOfStops: 1,
+    numberOfStops: 5,
     unitFare: 1200,
     totalFare: 2400,
   },
