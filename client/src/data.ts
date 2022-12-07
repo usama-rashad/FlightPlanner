@@ -10,6 +10,8 @@ import {ITravelData} from "./components/FlightSearchResultCard/Datatypes";
 import {
 	TurkishAirlineIcon,
 	EmiratesAirlineIcon,
+	BritishAirwaysIcon,
+	SingaporeAirlineIcon,
 } from "./assets/AirlineIcons/AirlineIcons";
 
 export const holidayDestiationData: IAdvertCard[] = [
@@ -36,12 +38,22 @@ export const sampleFlightResult: ITravelData = {
 				airlineName: "Turkish Airlines",
 				departureAirportCode: "DUS",
 				departureTime: "13:00",
-				arrivalAirportCode: "LHR",
+				arrivalAirportCode: "LON",
 				arrivalTime: "18:00",
 				timeOfFlight: "5h 00m",
 			},
+			{
+				flightId: 2,
+				airlineImage: BritishAirwaysIcon,
+				airlineName: "British Airways",
+				departureAirportCode: "LON",
+				departureTime: "19:00",
+				arrivalAirportCode: "LHR",
+				arrivalTime: "22:00",
+				timeOfFlight: "3h 00m",
+			},
 		],
-		numberOfStops: 5,
+		numberOfStops: 0,
 		unitFare: 1200,
 		totalFare: 2400,
 	},

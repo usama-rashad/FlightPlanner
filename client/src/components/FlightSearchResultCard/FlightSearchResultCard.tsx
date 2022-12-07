@@ -20,18 +20,22 @@ function SearchResultsCard(props: ITravelData) {
 		<div className="searchResultsCard">
 			<div className="airlineSummary">
 				<div className="airlineLogos">
-					{props.outboundFlight.numberOfStops > 0 ? <div></div> : <div></div>}
-					{/* Outbound airline display if more than one airlines */}
-					{props.outboundFlight.flightData.map((legInfo) => (
-						<span className="title">{legInfo.airlineName}</span>
-					))}
-					{/* Outbound airline display if there is only one airline */}
-					<div className="outboundAirline">
-						<img src={props.outboundFlight.flightData[0].airlineImage} alt="" />
-						<span className="title">
-							{props.outboundFlight.flightData[0].airlineName}
-						</span>
-					</div>
+					{props.outboundFlight.numberOfStops > 0 ? (
+						props.outboundFlight.flightData.map((legInfo) => (
+							<span className="title">{legInfo.airlineName}</span>
+						))
+					) : (
+						<div className="outboundAirline">
+							<img
+								src={props.outboundFlight.flightData[0].airlineImage}
+								alt=""
+							/>
+							<span className="title">
+								{props.outboundFlight.flightData[0].airlineName}
+							</span>
+						</div>
+					)}
+
 					{/* Inbound airline display if there is only one airline */}
 					<div className="inboundAirline">
 						<img src={props.inboundFlight.flightData[0].airlineImage} alt="" />
