@@ -15,6 +15,7 @@ import Login from "./pages/Login/login";
 import Home from "./pages/Home/home";
 import Register from "./pages/Register/register";
 import SearchResults from "./pages/SearchResults/searchResults";
+import Checkout from "./pages/Checkout/Checkout";
 
 // Components
 import Navbar from "./components/Navbar/Navbar";
@@ -57,6 +58,15 @@ const appRouter = createBrowserRouter([
       <>
         <Navbar />
         <SearchResults />
+      </>
+    ),
+  },
+  {
+    path: "/checkout",
+    element: (
+      <>
+        <Navbar />
+        <Checkout />
       </>
     ),
   },

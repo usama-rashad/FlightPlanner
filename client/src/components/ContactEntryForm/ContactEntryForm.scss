@@ -1,0 +1,43 @@
+.contactEntryForm {
+  background-color: #def6f9;
+  border-radius: 8px;
+  width: 100%;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+
+  .title {
+    font-size: 2rem;
+    font-weight: 500;
+    padding: 0.5rem;
+  }
+
+  .fields {
+    margin-block-end: 10px 10px;
+    width: 40%;
+    border-radius: 8px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+
+    .option {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      .optionMessage {
+        font-size: 0.8rem;
+        font-weight: 500;
+      }
+    }
+  }
+}
