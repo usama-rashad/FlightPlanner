@@ -14,8 +14,22 @@ function CheckoutSummary() {
           Click the outbound or inbound flight to see more details
         </span>
         <div className="summaryDropDowns">
-          <FlightSummaryDropDown />
-          <FlightSummaryDropDown />
+          <div className="outbound">
+            <div className="details">
+              <span className="intro">
+                Travel date : 22nd June, Monday 2022
+              </span>
+            </div>
+            <FlightSummaryDropDown />
+          </div>
+          <div className="inbound">
+            <div className="details">
+              <span className="intro">
+                Travel date : 22nd June, Monday 2022
+              </span>
+            </div>
+            <FlightSummaryDropDown />
+          </div>
         </div>
       </div>
     </div>

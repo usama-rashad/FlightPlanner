@@ -1,0 +1,53 @@
+"filename", "language", "TypeScript", "JSON", "HTML", "SCSS", "JSON with Comments", "TypeScript React", "CSS", "comment", "blank", "total"
+"f:\Web-Dev\FlightPlanner\client\index.html", "HTML", 0, 0, 17, 0, 0, 0, 0, 0, 1, 18
+"f:\Web-Dev\FlightPlanner\client\package-lock.json", "JSON", 0, 4248, 0, 0, 0, 0, 0, 0, 1, 4249
+"f:\Web-Dev\FlightPlanner\client\package.json", "JSON", 0, 35, 0, 0, 0, 0, 0, 0, 1, 36
+"f:\Web-Dev\FlightPlanner\client\src\App.scss", "SCSS", 0, 0, 0, 0, 0, 0, 0, 0, 1, 1
+"f:\Web-Dev\FlightPlanner\client\src\App.tsx", "TypeScript React", 0, 0, 0, 0, 0, 10, 0, 1, 4, 15
+"f:\Web-Dev\FlightPlanner\client\src\assets\AirlineIcons\AirlineIcons.tsx", "TypeScript React", 0, 0, 0, 0, 0, 10, 0, 0, 2, 12
+"f:\Web-Dev\FlightPlanner\client\src\components\AdvertCard\AdvertCard.scss", "SCSS", 0, 0, 0, 46, 0, 0, 0, 0, 8, 54
+"f:\Web-Dev\FlightPlanner\client\src\components\AdvertCard\AdvertCard.tsx", "TypeScript React", 0, 0, 0, 0, 0, 19, 0, 0, 4, 23
+"f:\Web-Dev\FlightPlanner\client\src\components\BackDrop\Backdrop.scss", "SCSS", 0, 0, 0, 24, 0, 0, 0, 0, 2, 26
+"f:\Web-Dev\FlightPlanner\client\src\components\BackDrop\Backdrop.tsx", "TypeScript React", 0, 0, 0, 0, 0, 11, 0, 1, 4, 16
+"f:\Web-Dev\FlightPlanner\client\src\components\CheckoutSummary\CheckoutSummary.scss", "SCSS", 0, 0, 0, 40, 0, 0, 0, 0, 5, 45
+"f:\Web-Dev\FlightPlanner\client\src\components\CheckoutSummary\CheckoutSummary.tsx", "TypeScript React", 0, 0, 0, 0, 0, 22, 0, 0, 4, 26
+"f:\Web-Dev\FlightPlanner\client\src\components\ContactEntryForm\ContactEntryForm.scss", "SCSS", 0, 0, 0, 52, 0, 0, 0, 0, 4, 56
+"f:\Web-Dev\FlightPlanner\client\src\components\ContactEntryForm\ContactEntryForm.tsx", "TypeScript React", 0, 0, 0, 0, 0, 30, 0, 1, 6, 37
+"f:\Web-Dev\FlightPlanner\client\src\components\FlightSearchResultCard\Datatypes.ts", "TypeScript", 20, 0, 0, 0, 0, 0, 0, 0, 3, 23
+"f:\Web-Dev\FlightPlanner\client\src\components\FlightSearchResultCard\FlightSearchResultCard.scss", "SCSS", 0, 0, 0, 118, 0, 0, 0, 1, 11, 130
+"f:\Web-Dev\FlightPlanner\client\src\components\FlightSearchResultCard\FlightSearchResultCard.tsx", "TypeScript React", 0, 0, 0, 0, 0, 105, 0, 4, 6, 115
+"f:\Web-Dev\FlightPlanner\client\src\components\FlightSearchResultCard\InboundCard.scss", "SCSS", 0, 0, 0, 99, 0, 0, 0, 0, 7, 106
+"f:\Web-Dev\FlightPlanner\client\src\components\FlightSearchResultCard\InboundCard.tsx", "TypeScript React", 0, 0, 0, 0, 0, 53, 0, 5, 6, 64
+"f:\Web-Dev\FlightPlanner\client\src\components\FlightSearchResultCard\OutboundCard.scss", "SCSS", 0, 0, 0, 99, 0, 0, 0, 0, 6, 105
+"f:\Web-Dev\FlightPlanner\client\src\components\FlightSearchResultCard\OutboundCard.tsx", "TypeScript React", 0, 0, 0, 0, 0, 53, 0, 5, 5, 63
+"f:\Web-Dev\FlightPlanner\client\src\components\FlightSearchResultCard\StopOverIcon.tsx", "TypeScript React", 0, 0, 0, 0, 0, 3, 0, 0, 1, 4
+"f:\Web-Dev\FlightPlanner\client\src\components\FlightSummaryDropDown\FlightSummaryDropDown.scss", "SCSS", 0, 0, 0, 7, 0, 0, 0, 0, 1, 8
+"f:\Web-Dev\FlightPlanner\client\src\components\FlightSummaryDropDown\FlightSummaryDropDown.tsx", "TypeScript React", 0, 0, 0, 0, 0, 11, 0, 0, 5, 16
+"f:\Web-Dev\FlightPlanner\client\src\components\FlightSummary\FlightSummary.scss", "SCSS", 0, 0, 0, 49, 0, 0, 0, 0, 5, 54
+"f:\Web-Dev\FlightPlanner\client\src\components\FlightSummary\FlightSummary.tsx", "TypeScript React", 0, 0, 0, 0, 0, 31, 0, 1, 5, 37
+"f:\Web-Dev\FlightPlanner\client\src\components\Navbar\Navbar.scss", "SCSS", 0, 0, 0, 54, 0, 0, 0, 0, 10, 64
+"f:\Web-Dev\FlightPlanner\client\src\components\Navbar\Navbar.tsx", "TypeScript React", 0, 0, 0, 0, 0, 27, 0, 3, 9, 39
+"f:\Web-Dev\FlightPlanner\client\src\components\Searchbar\Searchbar.scss", "SCSS", 0, 0, 0, 89, 0, 0, 0, 0, 16, 105
+"f:\Web-Dev\FlightPlanner\client\src\components\Searchbar\Searchbar.tsx", "TypeScript React", 0, 0, 0, 0, 0, 121, 0, 2, 12, 135
+"f:\Web-Dev\FlightPlanner\client\src\components\VerticalSearchBar\VerticalSearchBar.scss", "SCSS", 0, 0, 0, 57, 0, 0, 0, 0, 9, 66
+"f:\Web-Dev\FlightPlanner\client\src\components\VerticalSearchBar\VerticalSearchBar.tsx", "TypeScript React", 0, 0, 0, 0, 0, 72, 0, 2, 8, 82
+"f:\Web-Dev\FlightPlanner\client\src\data.ts", "TypeScript", 81, 0, 0, 0, 0, 0, 0, 2, 5, 88
+"f:\Web-Dev\FlightPlanner\client\src\index.css", "CSS", 0, 0, 0, 0, 0, 0, 0, 0, 1, 1
+"f:\Web-Dev\FlightPlanner\client\src\main.tsx", "TypeScript React", 0, 0, 0, 0, 0, 71, 0, 4, 7, 82
+"f:\Web-Dev\FlightPlanner\client\src\pages\Checkout\Checkout.scss", "SCSS", 0, 0, 0, 12, 0, 0, 0, 0, 2, 14
+"f:\Web-Dev\FlightPlanner\client\src\pages\Checkout\Checkout.tsx", "TypeScript React", 0, 0, 0, 0, 0, 13, 0, 1, 5, 19
+"f:\Web-Dev\FlightPlanner\client\src\pages\Home\home.scss", "SCSS", 0, 0, 0, 45, 0, 0, 0, 0, 7, 52
+"f:\Web-Dev\FlightPlanner\client\src\pages\Home\home.tsx", "TypeScript React", 0, 0, 0, 0, 0, 33, 0, 1, 4, 38
+"f:\Web-Dev\FlightPlanner\client\src\pages\Login\login.scss", "SCSS", 0, 0, 0, 79, 0, 0, 0, 0, 14, 93
+"f:\Web-Dev\FlightPlanner\client\src\pages\Login\login.tsx", "TypeScript React", 0, 0, 0, 0, 0, 76, 0, 4, 11, 91
+"f:\Web-Dev\FlightPlanner\client\src\pages\Register\register.scss", "SCSS", 0, 0, 0, 76, 0, 0, 0, 0, 15, 91
+"f:\Web-Dev\FlightPlanner\client\src\pages\Register\register.tsx", "TypeScript React", 0, 0, 0, 0, 0, 104, 0, 7, 15, 126
+"f:\Web-Dev\FlightPlanner\client\src\pages\SearchResults\searchResults.scss", "SCSS", 0, 0, 0, 33, 0, 0, 0, 1, 5, 39
+"f:\Web-Dev\FlightPlanner\client\src\pages\SearchResults\searchResults.tsx", "TypeScript React", 0, 0, 0, 0, 0, 27, 0, 2, 6, 35
+"f:\Web-Dev\FlightPlanner\client\src\styles\ScrollBarStyles.scss", "SCSS", 0, 0, 0, 11, 0, 0, 0, 3, 3, 17
+"f:\Web-Dev\FlightPlanner\client\src\themes.ts", "TypeScript", 11, 0, 0, 0, 0, 0, 0, 0, 2, 13
+"f:\Web-Dev\FlightPlanner\client\src\vite-env.d.ts", "TypeScript", 0, 0, 0, 0, 0, 0, 0, 1, 1, 2
+"f:\Web-Dev\FlightPlanner\client\tsconfig.json", "JSON with Comments", 0, 0, 0, 0, 21, 0, 0, 0, 1, 22
+"f:\Web-Dev\FlightPlanner\client\tsconfig.node.json", "JSON", 0, 9, 0, 0, 0, 0, 0, 0, 1, 10
+"f:\Web-Dev\FlightPlanner\client\vite.config.ts", "TypeScript", 8, 0, 0, 0, 0, 0, 0, 1, 2, 11
+"Total", "-", 120, 4292, 17, 990, 21, 902, 0, 53, 279, 6674

@@ -32,13 +32,27 @@
     }
 
     .summaryDropDowns {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: space-around;
-      gap: 10px;
       width: 100%;
-      padding: 15px;
+
+      .outbound,
+      .inbound {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        gap: 5px;
+        width: 100%;
+        padding: 15px;
+        .details {
+          width: 100%;
+          .intro {
+            padding: 0px;
+            font-size: 0.8rem;
+            font-weight: 500;
+          }
+        }
+      }
     }
   }
 }
