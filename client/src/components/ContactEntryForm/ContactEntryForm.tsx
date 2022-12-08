@@ -10,37 +10,24 @@ import Button from "@mui/material/Button";
 function ContactEntryForm() {
   return (
     <div className="contactEntryForm">
-      <span className="title">Enter your contact details.</span>
       <div className="fields">
-        <TextField
-          placeholder="First Name"
-          label="First name"
-          variant="outlined"
-          size="small"
-        />
-        <TextField
-          placeholder="Last Name"
-          label="Last name"
-          variant="outlined"
-          size="small"
-        />
-        <TextField
-          placeholder="E-mail"
-          label="E-mail"
-          variant="outlined"
-          size="small"
-        />
-        <TextField
-          placeholder="Phone"
-          label="Phone"
-          variant="outlined"
-          size="small"
-        />
-        <div className="option">
-          <span className="optionMessage">Recieve confirmation SMS</span>
-          <CheckBox />
+        <span className="title">Enter your contact details.</span>
+
+        <TextField label="First name" variant="outlined" size="small" />
+        <TextField label="Last name" variant="outlined" size="small" />
+        <TextField label="E-mail" variant="outlined" size="small" />
+        <TextField label="Phone" variant="outlined" size="small" />
+        <div className="optionsGroup">
+          <div className="option">
+            <span className="optionMessage">Recieve confirmation SMS</span>
+            <CheckBox className="box" />
+          </div>
+          <div className="option">
+            <span className="optionMessage">Recieve confirmation e-mail</span>
+            <CheckBox className="box" />
+          </div>
+          <Button variant="contained">BUY</Button>
         </div>
-        <Button variant="contained">BUY</Button>
       </div>
     </div>
   );

@@ -9,6 +9,8 @@
   justify-content: center;
   margin-top: 50px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 
   .title {
     font-size: 2rem;
@@ -25,18 +27,28 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 5px;
+    gap: 10px;
     background-color: white;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 
-    .option {
+    .optionsGroup {
       display: flex;
-      flex-direction: row;
-      align-items: center;
+      flex-direction: column;
+      align-self: center;
       justify-content: center;
-      .optionMessage {
-        font-size: 0.8rem;
-        font-weight: 500;
+      .option {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        .optionMessage {
+          flex: 10;
+          font-size: 0.8rem;
+          font-weight: 500;
+        }
+        .box {
+          flex: 1;
+        }
       }
     }
   }
