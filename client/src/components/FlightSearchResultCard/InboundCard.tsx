@@ -3,10 +3,14 @@ import "./InboundCard.scss";
 
 import { IFlightData } from "./Datatypes";
 import { StopOverIcon } from "./StopOverIcon";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 function InboundCard(props?: IFlightData) {
   return (
     <div className="inboundCard">
+      <div className="flightArrow">
+        <ArrowBackIcon className="arrow" />
+      </div>
       <div className="container">
         {/* Departure details */}
         <div className="departureDetails">

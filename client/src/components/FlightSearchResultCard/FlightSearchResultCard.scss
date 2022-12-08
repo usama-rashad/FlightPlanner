@@ -1,94 +1,129 @@
 .searchResultsCard {
-	width: 80%;
-	height: 220px;
-	border: 1px solid lightgrey;
-	box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-	border-radius: 8px;
+  width: 80%;
+  height: 220px;
+  border: 1px solid lightgrey;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  border-radius: 8px;
 
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	justify-content: center;
-	align-items: center;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  align-items: center;
 
-	.airlineSummary {
-		flex: 1;
-		padding-left: 20px;
-		.airlineLogos {
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			gap: 20px;
-			.title {
-				padding: 0;
-				padding-top: 5px;
-				font-size: 0.8rem;
-				font-weight: 500;
-				white-space: nowrap;
-			}
-			.outboundAirline,
-			.inboundAirline {
-				display: flex;
-				flex-direction: column;
-				align-items: center;
-				justify-content: center;
-				.title {
-					padding: 0;
-					padding-top: 5px;
-					font-size: 0.8rem;
-					font-weight: 500;
-					white-space: nowrap;
-				}
-				img {
-					height: 50px;
-					width: auto;
-				}
-			}
-		}
-	}
+  .airlineSummary {
+    flex: 1.5;
+    padding-left: 20px;
+    .airlineLogos {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      // For airline logos when indirect flight with more than one airline
+      .group1,
+      .group2 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        .title {
+          width: 100%;
+          padding: 0;
+          padding-top: 5px;
+          font-size: 0.8rem;
+          font-weight: 500;
+          white-space: nowrap;
+          text-align: center;
+        }
+      }
 
-	.container {
-		flex: 8;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
+      .outboundAirline,
+      .inboundAirline {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        .title {
+          padding: 0;
+          padding-top: 5px;
+          font-size: 0.8rem;
+          font-weight: 500;
+          white-space: nowrap;
+        }
+        img {
+          height: 50px;
+          width: auto;
+        }
+      }
+    }
+  }
 
-		.outboundTravel,
-		.inboundTravel {
-			display: flex;
-			flex-direction: column;
-			justify-content: center;
-			width: 60%;
-			height: 100px;
-		}
-	}
+  .container {
+    flex: 5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 
-	.divider {
-		height: 100%;
-		width: 2px;
-		background-color: rgb(62, 59, 59);
-	}
+    .outboundTravel,
+    .inboundTravel {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 90%;
+      height: 100px;
+    }
+  }
 
-	.price {
-		flex: 3;
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		gap: 50px;
+  .divider {
+    height: 100%;
+    width: 2px;
+    background-color: rgb(62, 59, 59);
+  }
 
-		.priceGroup {
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			.unitPrice,
-			.totalPrice {
-				font-size: 1.8rem;
-				color: rgb(62, 62, 62);
-				.currencyIcon {
-					font-size: 20px;
-				}
-			}
-		}
-	}
+  .right {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+
+    .priceGroup {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+
+      .unitPrice,
+      .totalPrice {
+        .group {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          .label {
+            font-size: 0.8rem;
+            color: black;
+            font-weight: 500;
+          }
+          .price {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            .priceTag {
+              font-size: 1.8rem;
+              color: black;
+              font-weight: 500;
+            }
+          }
+        }
+
+        .currencyIcon {
+          font-size: 18px;
+        }
+      }
+    }
+  }
 }

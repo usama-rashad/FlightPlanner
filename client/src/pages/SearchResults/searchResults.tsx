@@ -20,6 +20,9 @@ function searchResults() {
         <span className="title">Search results</span>
         <FlightSearchResultCard {...sampleFlightResult} />
         <FlightSearchResultCard {...sampleFlightResult} />
+        <FlightSearchResultCard {...sampleFlightResult} />
+        <FlightSearchResultCard {...sampleFlightResult} />
+        <FlightSearchResultCard {...sampleFlightResult} />
       </div>
       <div className="flightSummary">
         <FlightSummary />

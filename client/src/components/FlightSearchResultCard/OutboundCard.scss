@@ -1,5 +1,21 @@
 .outboundCard {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  .flightArrow {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    .arrow {
+      font-size: 50px;
+    }
+  }
   .container {
+    flex: 9;
     display: flex;
     flex-direction: row;
     align-items: center;
