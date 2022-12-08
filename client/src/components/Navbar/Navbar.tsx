@@ -25,11 +25,13 @@ function Navbar() {
 
       <div className="navbarButtons">
         <Link to="/login" className="link">
-          <Button variant="contained" onClick={loginAction}>
+          <Button variant="contained" size="large" onClick={loginAction}>
             Login
           </Button>
         </Link>
-        <Button variant="contained">Help</Button>
+        <Button variant="contained" size="large">
+          Help
+        </Button>
       </div>
     </div>
   );

@@ -26,7 +26,9 @@ function ContactEntryForm() {
             <span className="optionMessage">Recieve confirmation e-mail</span>
             <CheckBox className="box" />
           </div>
-          <Button variant="contained">BUY</Button>
+          <Button className="button" variant="contained">
+            BUY
+          </Button>
         </div>
       </div>
     </div>

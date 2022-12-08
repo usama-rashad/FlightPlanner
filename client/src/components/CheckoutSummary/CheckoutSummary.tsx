@@ -20,7 +20,7 @@ function CheckoutSummary() {
                 Travel date : 22nd June, Monday 2022
               </span>
             </div>
-            <FlightSummaryDropDown />
+            <FlightSummaryDropDown isOutbound={true} />
           </div>
           <div className="inbound">
             <div className="details">
@@ -28,7 +28,7 @@ function CheckoutSummary() {
                 Travel date : 22nd June, Monday 2022
               </span>
             </div>
-            <FlightSummaryDropDown />
+            <FlightSummaryDropDown isOutbound={false} />
           </div>
         </div>
       </div>
