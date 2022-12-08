@@ -5,9 +5,26 @@ import { IFlightData } from "./Datatypes";
 import { StopOverIcon } from "./StopOverIcon";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
-function InboundCard(props?: IFlightData) {
+function InboundCard(props: IFlightData) {
   return (
     <div className="inboundCard">
+      <div className="airlineSummary">
+        <div className="airlineLogos">
+          {/* Inbound airline display if there is only one airline */}
+          <div className="group2">
+            {props.numberOfStops > 0 ? (
+              props.flightData.map((legInfo) => (
+                <span className="title">{legInfo.airlineName}</span>
+              ))
+            ) : (
+              <div className="inboundAirline">
+                <img src={props.flightData[0].airlineImage} alt="" />
+                <span className="title">{props.flightData[0].airlineName}</span>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
       <div className="flightArrow">
         <ArrowBackIcon className="arrow" />
       </div>

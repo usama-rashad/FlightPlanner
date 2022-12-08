@@ -18,46 +18,6 @@ import EuroSymbolIcon from "@mui/icons-material/EuroSymbol";
 function SearchResultsCard(props: ITravelData) {
   return (
     <div className="searchResultsCard">
-      <div className="airlineSummary">
-        <div className="airlineLogos">
-          <div className="group1">
-            {props.outboundFlight.numberOfStops > 0 ? (
-              props.outboundFlight.flightData.map((legInfo) => (
-                <span className="title">{legInfo.airlineName}</span>
-              ))
-            ) : (
-              <div className="outboundAirline">
-                <img
-                  src={props.outboundFlight.flightData[0].airlineImage}
-                  alt=""
-                />
-                <span className="title">
-                  {props.outboundFlight.flightData[0].airlineName}
-                </span>
-              </div>
-            )}
-          </div>
-          {/* Inbound airline display if there is only one airline */}
-          <div className="group2">
-            {props.inboundFlight.numberOfStops > 0 ? (
-              props.inboundFlight.flightData.map((legInfo) => (
-                <span className="title">{legInfo.airlineName}</span>
-              ))
-            ) : (
-              <div className="inboundAirline">
-                <img
-                  src={props.inboundFlight.flightData[0].airlineImage}
-                  alt=""
-                />
-                <span className="title">
-                  {props.inboundFlight.flightData[0].airlineName}
-                </span>
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
-
       <div className="container">
         <div className="outboundTravel">
           <OutboundCard
