@@ -15,8 +15,10 @@ export interface ILegData {
   airlineImage: string;
   airlineName: string;
   departureAirportCode: string;
+  departureAirportName: string;
   departureTime: string;
   arrivalAirportCode: string;
+  arrivalAirportName: string;
   arrivalTime: string;
   timeOfFlight: string;
 }

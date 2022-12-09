@@ -1,0 +1,124 @@
+.flightDetailsCard {
+  background-color: white;
+  border-top: 1px solid lightgray;
+  padding: 5px;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  .flightConnections {
+    width: 80%;
+    height: 50px;
+    background-color: rgba(211, 211, 211, 0.509);
+    border-radius: 5px;
+    align-self: center;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    .left {
+      flex: 2;
+      width: 100%;
+      text-align: center;
+      .time {
+        font-size: 1rem;
+        font-weight: 500;
+        padding-left: 10px;
+      }
+    }
+    .right {
+      flex: 6;
+      .message {
+        width: 100%;
+        font-size: 1rem;
+        font-weight: 500;
+        padding-left: 10px;
+        color: red;
+      }
+    }
+  }
+
+  .legSegment {
+    padding: 10px 10px;
+    .airlineAndFlight {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+      padding-left: 20px;
+
+      img {
+        height: 35px;
+        width: auto;
+        object-fit: cover;
+      }
+
+      .airlineAndFlightTitle {
+        font-size: 0.8rem;
+        font-weight: 500;
+        padding-left: 10px;
+      }
+    }
+    .legDisplay {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      .left {
+        flex: 2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .duration {
+          .durationTitle {
+            width: 100%;
+            font-size: 0.8rem;
+            font-weight: 500;
+          }
+        }
+      }
+      .right {
+        flex: 8;
+        .legDeparture,
+        .legArrival {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: center;
+          .circle {
+            height: 8px;
+            width: 8px;
+            background-color: white;
+            border: 2px solid grey;
+            border-radius: 50%;
+          }
+          .departureTime {
+            flex: 2;
+            .time {
+              padding-left: 10px;
+              font-size: 0.8rem;
+              font-weight: 500;
+            }
+          }
+          .departureAirportCode {
+            flex: 2;
+            .airportCode {
+              font-size: 0.8rem;
+              font-weight: 500;
+            }
+          }
+          .departureAirport {
+            flex: 2;
+            .airportName {
+              font-size: 0.8rem;
+              font-weight: 500;
+            }
+          }
+        }
+      }
+    }
+  }
+}

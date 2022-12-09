@@ -1,3 +1,7 @@
+// Always show the vertical scroll bar
+body {
+  overflow-y: scroll;
+}
 .checkout {
   padding-left: 40px;
   padding-right: 40px;

@@ -1,32 +1,44 @@
 .flightSummaryDropDown {
   width: 100%;
-  height: 100px;
+  height: fit-content;
   border: 1px solid lightgrey;
   background-color: white;
   border-radius: 4px;
+  overflow: hidden;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
-  .card {
-    flex: 8;
+
+  .summary {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    .card {
+      flex: 8;
+    }
+    .navArrow {
+      flex: 1;
+
+      .icon {
+        font-size: 50px;
+        border: 1px solid black;
+        cursor: pointer;
+      }
+
+      .icon.dropDown {
+        transform: rotate(90deg);
+        transition: transform 0.25s ease-in;
+      }
+      .icon.pullUp {
+        transform: rotate(0deg);
+        transition: transform 0.25s ease-in-out;
+      }
+    }
   }
-  .navArrow {
-    flex: 1;
-
-    .icon {
-      font-size: 50px;
-      border: 1px solid black;
-      cursor: pointer;
-    }
-
-    .icon.dropDown {
-      transform: rotate(0deg);
-      transition: transform 0.25s ease-in;
-    }
-    .icon.pullUp {
-      transform: rotate(90deg);
-      transition: transform 0.25s ease-in-out;
-    }
+  .details {
+    height: fit-content;
   }
 }
 
