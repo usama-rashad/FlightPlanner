@@ -1,5 +1,5 @@
 import React from "react";
-import "./FlightSummary.scss";
+import "./SelectionSummary.scss";
 
 // Components
 import Button from "@mui/material/Button";

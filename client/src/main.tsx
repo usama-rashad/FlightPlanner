@@ -18,7 +18,7 @@ import SearchResults from "./pages/SearchResults/searchResults";
 import Checkout from "./pages/Checkout/Checkout";
 
 // Components
-import Navbar from "./components/Navbar/Navbar";
+import Navbar from "./components/Common/Navbar/Navbar";
 
 const appRouter = createBrowserRouter([
   {

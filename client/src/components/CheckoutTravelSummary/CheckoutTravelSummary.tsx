@@ -1,9 +1,10 @@
-import "./CheckoutSummary.scss";
+import "./CheckoutTravelSummary.scss";
 
 import React from "react";
 import FlightSummaryDropDown from "../FlightSummaryDropDown/FlightSummaryDropDown";
+import { ITravelData } from "../FlightSearchResultCard/Datatypes";
 
-function CheckoutSummary() {
+function CheckoutTravelSummary(props: ITravelData) {
   return (
     <div className="checkoutSummary">
       <div className="top">
@@ -16,19 +17,15 @@ function CheckoutSummary() {
         <div className="summaryDropDowns">
           <div className="outbound">
             <div className="details">
-              <span className="intro">
-                Travel date : 22nd June, Monday 2022
-              </span>
+              <span className="intro">{props.outboundFlight.travelDate}</span>
             </div>
-            <FlightSummaryDropDown isOutbound={true} />
+            <FlightSummaryDropDown isOutbound={true} travelData={props} />
           </div>
           <div className="inbound">
             <div className="details">
-              <span className="intro">
-                Travel date : 22nd June, Monday 2022
-              </span>
+              <span className="intro">{props.inboundFlight.travelDate}</span>
             </div>
-            <FlightSummaryDropDown isOutbound={false} />
+            <FlightSummaryDropDown isOutbound={false} travelData={props} />
           </div>
         </div>
       </div>
@@ -36,4 +33,4 @@ function CheckoutSummary() {
   );
 }
 
-export default CheckoutSummary;
+export default CheckoutTravelSummary;

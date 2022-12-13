@@ -1,4 +1,4 @@
-import { IAdvertCard } from "../src/components/AdvertCard/AdvertCard";
+import { IAdvertCard } from "./components/Common/AdvertCard/AdvertCard";
 
 // Sample flight result data
 import IslamabadImage from "../src/assets/Backgrounds/holiday1_cropped.png";
@@ -34,6 +34,7 @@ export const sampleFlightResult: ITravelData = {
     flightData: [
       {
         flightId: 1,
+        flightCode: "TA444",
         airlineImage: TurkishAirlineIcon,
         airlineName: "Turkish Airlines",
         departureAirportCode: "DUS",
@@ -43,9 +44,15 @@ export const sampleFlightResult: ITravelData = {
         arrivalAirportName: "London",
         arrivalTime: "18:00",
         timeOfFlight: "5h 00m",
+        legData: {
+          isFinalLeg: false,
+          legChangeMessage: "Long wait at airport",
+          legLayoverDuration: "2h 00m",
+        },
       },
       {
         flightId: 2,
+        flightCode: "BA768",
         airlineImage: BritishAirwaysIcon,
         airlineName: "British Airways",
         departureAirportCode: "LON",
@@ -55,9 +62,15 @@ export const sampleFlightResult: ITravelData = {
         arrivalAirportName: "Lahore",
         arrivalTime: "22:00",
         timeOfFlight: "3h 00m",
+        legData: {
+          isFinalLeg: true,
+          legChangeMessage: "No layover",
+          legLayoverDuration: "0h 00m",
+        },
       },
     ],
-    numberOfStops: 0,
+    travelDate: "Travel date : 22nd June, Monday 2022",
+    numberOfStops: 1,
     unitFare: 1200,
     totalFare: 2400,
   },
@@ -65,6 +78,7 @@ export const sampleFlightResult: ITravelData = {
     flightData: [
       {
         flightId: 1,
+        flightCode: "EK612",
         airlineImage: EmiratesAirlineIcon,
         airlineName: "Emirates Airlines",
         departureAirportCode: "LHR",
@@ -74,9 +88,15 @@ export const sampleFlightResult: ITravelData = {
         arrivalAirportName: "Dusseldorf",
         arrivalTime: "19:00",
         timeOfFlight: "7h 00m",
+        legData: {
+          isFinalLeg: false,
+          legChangeMessage: "Long wait at airport",
+          legLayoverDuration: "2h 00m",
+        },
       },
       {
         flightId: 2,
+        flightCode: "SA123",
         airlineImage: SingaporeAirlineIcon,
         airlineName: "Singapore Airlines",
         departureAirportCode: "LHR",
@@ -86,8 +106,14 @@ export const sampleFlightResult: ITravelData = {
         arrivalAirportName: "Dusseldorf",
         arrivalTime: "19:00",
         timeOfFlight: "7h 00m",
+        legData: {
+          isFinalLeg: true,
+          legChangeMessage: "No layover",
+          legLayoverDuration: "0h 00m",
+        },
       },
     ],
+    travelDate: "Travel date : 22nd August, Monday 2022",
     numberOfStops: 0,
     unitFare: 1200,
     totalFare: 2400,

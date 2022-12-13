@@ -4,12 +4,14 @@ import React from "react";
 
 // Components
 import ContactEntryForm from "../../components/ContactEntryForm/ContactEntryForm";
-import CheckoutSummary from "../../components/CheckoutSummary/CheckoutSummary";
+import CheckoutTravelSummary from "../../components/CheckoutTravelSummary/CheckoutTravelSummary";
+
+import { sampleFlightResult } from "../../data";
 
 function Checkout() {
   return (
     <div className="checkout">
-      <CheckoutSummary />
+      <CheckoutTravelSummary {...sampleFlightResult} />
       <ContactEntryForm />
     </div>
   );

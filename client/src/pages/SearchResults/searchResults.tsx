@@ -3,8 +3,8 @@ import "../SearchResults/searchResults.scss";
 
 // Components
 import FlightSearchResultCard from "../../components/FlightSearchResultCard/FlightSearchResultCard";
-import VerticalSearchBar from "../../components/VerticalSearchBar/VerticalSearchBar";
-import FlightSummary from "../../components/FlightSummary/FlightSummary";
+import VerticalSearchBar from "../../components/Common/VerticalSearchBar/VerticalSearchBar";
+import SelectionSummary from "../../components/SelectionSummary/SelectionSummary";
 
 // Import sample flight result
 import { sampleFlightResult } from "../../data";
@@ -25,7 +25,7 @@ function searchResults() {
         <FlightSearchResultCard {...sampleFlightResult} />
       </div>
       <div className="flightSummary">
-        <FlightSummary />
+        <SelectionSummary />
       </div>
     </div>
   );

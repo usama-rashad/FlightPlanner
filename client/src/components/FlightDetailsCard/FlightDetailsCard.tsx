@@ -5,12 +5,20 @@ import {
   EmiratesAirlineIcon,
   TurkishAirlineIcon,
 } from "../../assets/AirlineIcons/AirlineIcons";
+import { IFlightSummaryProps } from "../FlightSummaryDropDown/FlightSummaryDropDown";
+import { IFlightData } from "../FlightSearchResultCard/Datatypes";
 
 interface IFlightCardDetails {
   expand: boolean;
+  isOutbound: boolean;
+  flightData: IFlightSummaryProps;
 }
 
 function FlightDetailsCard(props: IFlightCardDetails) {
+  let flight: IFlightData = props.isOutbound
+    ? props.flightData.travelData.outboundFlight
+    : props.flightData.travelData.inboundFlight;
+
   return (
     <div className="flightDetailsCard">
       <div className="legSegment">
@@ -54,7 +62,7 @@ function FlightDetailsCard(props: IFlightCardDetails) {
       </div>
       <div className="flightConnections">
         <div className="left">
-          <span className="time">2h 00m</span>
+          <span className="time">2h 30m</span>
         </div>
         <div className="right">
           <span className="message">Long wait at airport.</span>

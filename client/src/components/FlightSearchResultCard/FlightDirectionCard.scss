@@ -1,0 +1,152 @@
+.flightDirectionCard {
+  width: 100%;
+  .flightDirection {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    .airlineSummary {
+      flex: 2;
+      padding-left: 20px;
+      .airlineLogos {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        // For airline logos when indirect flight with more than one airline
+        .airlineList {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          .title {
+            width: 100%;
+            padding: 0;
+            padding-top: 5px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            white-space: nowrap;
+            text-align: center;
+          }
+
+          .singleAirline {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            .title {
+              padding: 0;
+              padding-top: 5px;
+              font-size: 0.8rem;
+              font-weight: 500;
+              white-space: nowrap;
+            }
+            img {
+              height: 50px;
+              width: auto;
+            }
+          }
+        }
+      }
+    }
+    .flightArrow {
+      flex: 1;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      .arrow {
+        font-size: 50px;
+      }
+    }
+    .container {
+      flex: 9;
+
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      .departureDetails,
+      .arrivalDetails {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        .time {
+          font-size: 2rem;
+          font-weight: 500;
+          color: rgb(62, 62, 62);
+        }
+        .cityTitle {
+          color: black;
+          font-size: 1rem;
+          font-weight: 500;
+          padding: 5px;
+        }
+      }
+
+      .transitDetails {
+        width: 60%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        .flightDuration {
+          font-size: 0.9rem;
+          font-weight: 500;
+          color: darkblue;
+        }
+        .travel {
+          width: 90%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          position: relative;
+
+          .travelLine {
+            width: 100%;
+            height: 3px;
+            border-radius: 2px;
+            background-color: rgb(84, 84, 84);
+          }
+          .stopPointGroup {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
+            margin: auto;
+
+            .stopPoint {
+              height: 8px;
+              width: 8px;
+              background-color: red;
+              border-radius: 50%;
+            }
+          }
+        }
+        .stopOvers {
+          .stopOverInfo {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 10px;
+
+            .stopCount,
+            .airportCodes,
+            .slash {
+              font-weight: 500;
+              font-size: 0.8rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}

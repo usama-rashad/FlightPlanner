@@ -1,8 +1,8 @@
 import React from "react";
 import "./../Home/home.scss";
-import AdvertCard from "../../components/AdvertCard/AdvertCard";
-import Backdrop from "../../components/BackDrop/Backdrop";
-import Searchbar from "../../components/Searchbar/Searchbar";
+import AdvertCard from "../../components/Common/AdvertCard/AdvertCard";
+import Backdrop from "../../components/Common/BackDrop/Backdrop";
+import Searchbar from "../../components/Common/Searchbar/Searchbar";
 
 // Data sources
 import { holidayDestiationData } from "../../data";

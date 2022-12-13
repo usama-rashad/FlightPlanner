@@ -2,7 +2,7 @@ import React from "react";
 import "./Backdrop.scss";
 
 // Images
-import BackdropImage from "../../assets/Backgrounds/backdrop.jpg";
+import BackdropImage from "../../../assets/Backgrounds/backdrop.jpg";
 
 function Backdrop() {
   return (

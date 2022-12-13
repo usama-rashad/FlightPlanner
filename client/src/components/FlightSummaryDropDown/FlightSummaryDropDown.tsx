@@ -8,14 +8,15 @@ import { ITravelData } from "../../components/FlightSearchResultCard/Datatypes";
 // Components
 import InboundCard from "../FlightSearchResultCard/InboundCard";
 import OutboundCard from "../FlightSearchResultCard/OutboundCard";
+import FlightDirectionCard from "../FlightSearchResultCard/FlightDirectionCard";
 import FlightDetailsCard from "../FlightDetailsCard/FlightDetailsCard";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
 // Test data
-import { sampleFlightResult } from "../../data";
 
 export interface IFlightSummaryProps {
   isOutbound: boolean;
+  travelData: ITravelData;
 }
 
 function FlightSummaryDropDown(props: IFlightSummaryProps) {
@@ -35,28 +36,21 @@ function FlightSummaryDropDown(props: IFlightSummaryProps) {
     <div className="flightSummaryDropDown">
       <div className="summary">
         <div className="card">
-          {props.isOutbound ? (
-            <OutboundCard
-              flightData={sampleFlightResult.outboundFlight.flightData}
-              numberOfStops={sampleFlightResult.outboundFlight.numberOfStops}
-              unitFare={sampleFlightResult.outboundFlight.unitFare}
-              totalFare={sampleFlightResult.outboundFlight.totalFare}
-            />
-          ) : (
-            <InboundCard
-              flightData={sampleFlightResult.inboundFlight.flightData}
-              numberOfStops={sampleFlightResult.inboundFlight.numberOfStops}
-              unitFare={sampleFlightResult.inboundFlight.unitFare}
-              totalFare={sampleFlightResult.inboundFlight.totalFare}
-            />
-          )}
+          <FlightDirectionCard
+            travelData={props.travelData}
+            isOutbound={props.isOutbound}
+          />
         </div>
         <div className="navArrow" onClick={clickAction}>
           <ArrowForwardIosIcon className={animation} />
         </div>
       </div>
       <div className="details">
-        <FlightDetailsCard expand={expand} />
+        <FlightDetailsCard
+          expand={expand}
+          flightData={props}
+          isOutbound={props.isOutbound}
+        />
       </div>
     </div>
   );

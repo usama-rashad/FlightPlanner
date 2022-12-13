@@ -4,14 +4,22 @@ export interface ITravelData {
 }
 
 export interface IFlightData {
+  travelDate: string;
   flightData: ILegData[];
   numberOfStops: number;
   unitFare: number;
   totalFare: number;
 }
 
+export interface ILegSwitchData {
+  isFinalLeg: boolean;
+  legChangeMessage?: string;
+  legLayoverDuration?: string;
+}
+
 export interface ILegData {
   flightId: number;
+  flightCode: string;
   airlineImage: string;
   airlineName: string;
   departureAirportCode: string;
@@ -21,4 +29,5 @@ export interface ILegData {
   arrivalAirportName: string;
   arrivalTime: string;
   timeOfFlight: string;
+  legData: ILegSwitchData;
 }
