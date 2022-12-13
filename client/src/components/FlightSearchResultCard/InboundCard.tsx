@@ -6,6 +6,16 @@ import { StopOverIcon } from "./StopOverIcon";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 function InboundCard(props: IFlightData) {
+  // Get list of airport codes for layover airports
+  let listOfStopoverAirportCodes: string[] = [];
+  listOfStopoverAirportCodes = props.flightData.map((airport) => {
+    if (!airport.legData.isFinalLeg) {
+      return airport.arrivalAirportCode;
+    } else {
+      return "";
+    }
+  });
+
   return (
     <div className="inboundCard">
       <div className="airlineSummary">
@@ -40,9 +50,7 @@ function InboundCard(props: IFlightData) {
         </div>
 
         <div className="transitDetails">
-          <span className="flightDuration">
-            {props?.flightData[0].timeOfFlight}
-          </span>
+          <span className="flightDuration">{props?.totalTravelTime}</span>
 
           <div className="travel">
             <div className="travelLine"></div>
@@ -60,13 +68,22 @@ function InboundCard(props: IFlightData) {
                 <span className="stopCount">{props?.numberOfStops} stops</span>
               )}
               <span className="slash">/</span>
-              <span className="airportCodes">DUH</span>
+              <span className="airportCodes">
+                {listOfStopoverAirportCodes.map((airportCode, index) => {
+                  return (
+                    airportCode +
+                    (index + 2 < listOfStopoverAirportCodes.length ? "," : "") // !! NEEDS IMPROVEMENT
+                  );
+                })}
+              </span>
             </div>
           </div>
         </div>
         <div className="arrivalDetails">
           {/* Arrival time */}
-          <span className="time">{props?.flightData[0].arrivalTime}</span>
+          <span className="time">
+            {props?.flightData[props?.flightData.length - 1].arrivalTime}
+          </span>
           {/* Arrival city name. This will be last flight in the array */}
           <span className="cityTitle">
             {props?.flightData[props?.flightData.length - 1].arrivalAirportCode}

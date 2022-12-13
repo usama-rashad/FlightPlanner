@@ -12,6 +12,7 @@ import {
 } from "../../assets/AirlineIcons/AirlineIcons";
 import { IFlightSummaryProps } from "../FlightSummaryDropDown/FlightSummaryDropDown";
 import { IFlightData } from "../FlightSearchResultCard/Datatypes";
+import { Tooltip } from "@mui/material";
 
 interface IFlightCardDetails {
   expand: boolean;
@@ -86,10 +87,43 @@ function FlightDetailsCard(props: IFlightCardDetails) {
                 <div className="left">
                   <span className="time">{leg.legData.legLayoverDuration}</span>
                 </div>
-                <div className="right">
+                <div className="middle">
                   <span className="message">
                     {leg.legData.legChangeMessage}
                   </span>
+                </div>
+                <div className="right">
+                  {/* Duty free available */}
+                  {leg.legData.airportFeatures?.isDutyFree ? (
+                    <Tooltip title="Duty Free">
+                      <ShoppingCartIcon className="icon" />
+                    </Tooltip>
+                  ) : (
+                    <></>
+                  )}
+                  {/* Duty free available */}
+                  {leg.legData.airportFeatures?.isHotel ? (
+                    <Tooltip title="Hotels">
+                      <HotelIcon className="icon" />
+                    </Tooltip>
+                  ) : (
+                    <></>
+                  )}
+                  {/* Duty free available */}
+                  {leg.legData.airportFeatures?.isRestaurant ? (
+                    <Tooltip title="Restaurants">
+                      <LocalDiningIcon className="icon" />
+                    </Tooltip>
+                  ) : (
+                    <></>
+                  )}
+                  {leg.legData.airportFeatures?.isVisaOnArrival ? (
+                    <Tooltip title="Visa on Arrival">
+                      <ExitToAppIcon className="icon" />
+                    </Tooltip>
+                  ) : (
+                    <></>
+                  )}
                 </div>
               </div>
             )}

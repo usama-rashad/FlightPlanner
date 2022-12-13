@@ -32,7 +32,7 @@
           padding-left: 10px;
         }
       }
-      .right {
+      .middle {
         flex: 6;
         .message {
           width: 100%;
@@ -40,6 +40,18 @@
           font-weight: 500;
           padding-left: 10px;
           color: red;
+        }
+      }
+
+      .right {
+        flex: 5;
+        gap: 10px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        .icon {
+          color: darkblue;
         }
       }
     }
