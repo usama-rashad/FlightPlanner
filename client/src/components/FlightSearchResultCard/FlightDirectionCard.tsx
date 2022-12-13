@@ -13,8 +13,11 @@ export interface IFlightDirectionCard {
 }
 
 function FlightDirectionCard(props: IFlightDirectionCard) {
+  // Get outbound or inbound flight data
   let singleDirectionData: IFlightData = {
     flightData: [],
+    travelDate: "",
+    totalTravelTime: "",
     numberOfStops: 0,
     totalFare: 0,
     unitFare: 0,
@@ -23,6 +26,16 @@ function FlightDirectionCard(props: IFlightDirectionCard) {
   singleDirectionData = props.isOutbound
     ? props.travelData.outboundFlight
     : props.travelData.inboundFlight;
+
+  // Get list of airport codes for layover airports
+  let listOfStopoverAirportCodes: string[] = [];
+  listOfStopoverAirportCodes = singleDirectionData.flightData.map((airport) => {
+    if (!airport.legData.isFinalLeg) {
+      return airport.arrivalAirportCode;
+    } else {
+      return "";
+    }
+  });
 
   return (
     <div className="flightDirectionCard">
@@ -70,7 +83,7 @@ function FlightDirectionCard(props: IFlightDirectionCard) {
 
           <div className="transitDetails">
             <span className="flightDuration">
-              {singleDirectionData?.flightData[0].timeOfFlight}
+              {singleDirectionData?.totalTravelTime}
             </span>
 
             <div className="travel">
@@ -95,14 +108,25 @@ function FlightDirectionCard(props: IFlightDirectionCard) {
                   </span>
                 )}
                 <span className="slash">/</span>
-                <span className="airportCodes">DUH</span>
+                <span className="airportCodes">
+                  {listOfStopoverAirportCodes.map((airportCode, index) => {
+                    return (
+                      airportCode +
+                      (index + 2 < listOfStopoverAirportCodes.length ? "," : "") // !! NEEDS IMPROVEMENT
+                    );
+                  })}
+                </span>
               </div>
             </div>
           </div>
           <div className="arrivalDetails">
             {/* Arrival time */}
             <span className="time">
-              {singleDirectionData?.flightData[0].arrivalTime}
+              {
+                singleDirectionData?.flightData[
+                  singleDirectionData?.flightData.length - 1
+                ].arrivalTime
+              }
             </span>
             {/* Arrival city name. This will be last flight in the array */}
             <span className="cityTitle">

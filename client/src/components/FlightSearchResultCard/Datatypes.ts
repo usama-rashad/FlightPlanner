@@ -5,16 +5,25 @@ export interface ITravelData {
 
 export interface IFlightData {
   travelDate: string;
+  totalTravelTime: string;
   flightData: ILegData[];
   numberOfStops: number;
   unitFare: number;
   totalFare: number;
 }
 
+export interface IAirportFeatures {
+  isHotel?: boolean;
+  isDutyFree?: boolean;
+  isRestaurant?: boolean;
+  isVisaOnArrival?: boolean;
+}
+
 export interface ILegSwitchData {
   isFinalLeg: boolean;
   legChangeMessage?: string;
   legLayoverDuration?: string;
+  airportFeatures?: IAirportFeatures;
 }
 
 export interface ILegData {
