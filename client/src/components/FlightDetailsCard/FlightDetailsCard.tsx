@@ -26,8 +26,12 @@ function FlightDetailsCard(props: IFlightCardDetails) {
     ? props.flightData.travelData.outboundFlight
     : props.flightData.travelData.inboundFlight;
 
+  let mainClassName: string = props.expand
+    ? "completeJourney expanded"
+    : "completeJourney collapsed";
+
   return (
-    <div className="completeJourney">
+    <div className={mainClassName}>
       {flight.flightData.map((leg) => (
         <div key={leg.flightId}>
           <div className="flightDetailsCard">
@@ -41,7 +45,9 @@ function FlightDetailsCard(props: IFlightCardDetails) {
               <div className="legDisplay">
                 <div className="left">
                   <div className="duration">
-                    <span className="durationTitle">{leg.timeOfFlight}</span>
+                    <span className="durationTitle">
+                      Duration {leg.timeOfFlight}
+                    </span>
                   </div>
                 </div>
                 <div className="right">

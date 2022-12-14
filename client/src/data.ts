@@ -52,7 +52,7 @@ export const sampleFlightResult: ITravelData = {
             isHotel: true,
             isDutyFree: true,
             isVisaOnArrival: true,
-            isRestaurant: true,
+            isRestaurant: false,
           },
         },
       },
