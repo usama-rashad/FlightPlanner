@@ -10,6 +10,17 @@
   align-items: center;
   justify-content: center;
   align-items: center;
+  background-color: #def6f9;
+
+  &.selected {
+    background-color: #def6f9;
+    border: 1px solid #1976d2;
+  }
+
+  &.unselected {
+    background-color: white;
+    border: 1px solid lightgrey;
+  }
 
   .container {
     flex: 5;

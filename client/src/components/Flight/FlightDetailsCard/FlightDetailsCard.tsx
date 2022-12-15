@@ -9,7 +9,7 @@ import React from "react";
 import {
   EmiratesAirlineIcon,
   TurkishAirlineIcon,
-} from "../../assets/AirlineIcons/AirlineIcons";
+} from "../../../assets/AirlineIcons/AirlineIcons";
 import { IFlightSummaryProps } from "../FlightSummaryDropDown/FlightSummaryDropDown";
 import { IFlightData } from "../FlightSearchResultCard/Datatypes";
 import { Tooltip } from "@mui/material";

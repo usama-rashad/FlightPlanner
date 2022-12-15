@@ -1,0 +1,61 @@
+.travelSummary {
+  .departureTitle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .title {
+      font-size: 01rem;
+      font-weight: 500;
+      padding-bottom: 10px;
+    }
+    .departureSection {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      column-gap: 15px;
+
+      .left {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .line {
+          width: 2px;
+          height: 30px;
+          background-color: transparent;
+        }
+      }
+
+      .right {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: left;
+        .main {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          .line {
+            width: 2px;
+            height: 30px;
+            background-color: black;
+          }
+        }
+        .sub {
+          width: 100px;
+          height: 30px;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
+          .line {
+            width: 2px;
+            height: 30px;
+            background-color: black;
+          }
+          .gap {
+            width: 40px;
+          }
+        }
+      }
+    }
+  }
+}

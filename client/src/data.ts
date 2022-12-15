@@ -6,7 +6,7 @@ import BaliImage from "../src/assets/Backgrounds/holiday2_cropped.png";
 import IstanbulImage from "../src/assets/Backgrounds/holiday3_cropped.png";
 
 // Sample flight data
-import { ITravelData } from "./components/FlightSearchResultCard/Datatypes";
+import { ITravelData } from "./components/Flight/FlightSearchResultCard/Datatypes";
 import {
   TurkishAirlineIcon,
   EmiratesAirlineIcon,
@@ -108,7 +108,7 @@ export const sampleFlightResult: ITravelData = {
     travelDate: "Travel date : 22nd March, Monday 2022",
     totalTravelTime: "16h 37m",
     numberOfStops: 2,
-    unitFare: 1200,
+    unitFare: 1212,
     totalFare: 2400,
   },
   inboundFlight: {
@@ -165,7 +165,7 @@ export const sampleFlightResult: ITravelData = {
     travelDate: "Travel date : 22nd August, Monday 2022",
     totalTravelTime: "15h 00m",
     numberOfStops: 1,
-    unitFare: 1200,
+    unitFare: 1209,
     totalFare: 2400,
   },
 };

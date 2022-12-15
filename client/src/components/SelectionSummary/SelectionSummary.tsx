@@ -1,33 +1,51 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./SelectionSummary.scss";
 
 // Components
 import Button from "@mui/material/Button";
+import { ITravelData } from "../Flight/FlightSearchResultCard/Datatypes";
+import TravelSummary from "../Flight/TravelSummary/TravelSummary";
 
-function FlightSummary() {
-  const checkoutAction = () => {
-    console.log("Check out action pressed");
-  };
+interface IFlightSummary {
+  checkOutEnable: boolean;
+  data: ITravelData;
+}
+
+function FlightSummary(props: IFlightSummary) {
+  const [flightData, setFlightData] = useState<ITravelData>();
+  const [checkOutDisabled, setCheckoutDisabled] = useState<boolean>(false);
+
+  const checkoutAction = () => {};
+
+  // Update the flight data
+  useEffect(() => {
+    setFlightData(props.data);
+  }, [props.data]);
+
+  // Enable the "Checkout" button
+  useEffect(() => {
+    setCheckoutDisabled(!props.checkOutEnable);
+  }, [props.checkOutEnable]);
 
   return (
-    <div className="flightSummaryBar">
+    <div className="FlightSummary">
       <div className="flightSummaryContainer">
-        <div className="top">
-          <span className="title">Travel summary</span>
+        <span className="title">Travel Summary</span>
+        <div className="departureSummary">
+          <TravelSummary data={props.data.outboundFlight} title={"Departure"} />
         </div>
-        <div className="departureDetails">
-          <span>Departure details</span>
+        <div className="returnSummary">
+          <TravelSummary data={props.data.inboundFlight} title={"Return"} />
         </div>
-        <div className="returnDetails">
-          <span>Return Details</span>
-        </div>
-        <div className="bottom">
-          <div className="checkOutButton">
-            <Button variant="contained" onClick={checkoutAction}>
-              Checkout
-            </Button>
-          </div>
-        </div>
+        <Button
+          variant="contained"
+          size="small"
+          className="checkoutButton"
+          disabled={checkOutDisabled}
+          onClick={checkoutAction}
+        >
+          Checkout
+        </Button>
       </div>
     </div>
   );

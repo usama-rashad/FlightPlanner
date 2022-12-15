@@ -1,8 +1,8 @@
 import "./CheckoutTravelSummary.scss";
 
 import React from "react";
-import FlightSummaryDropDown from "../FlightSummaryDropDown/FlightSummaryDropDown";
-import { ITravelData } from "../FlightSearchResultCard/Datatypes";
+import FlightSummaryDropDown from "../Flight/FlightSummaryDropDown/FlightSummaryDropDown";
+import { ITravelData } from "../Flight/FlightSearchResultCard/Datatypes";
 
 function CheckoutTravelSummary(props: ITravelData) {
   return (

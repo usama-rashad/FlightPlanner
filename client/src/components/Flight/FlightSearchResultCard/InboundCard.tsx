@@ -1,11 +1,11 @@
 import React from "react";
-import "./OutboundCard.scss";
+import "./InboundCard.scss";
 
 import { IFlightData } from "./Datatypes";
 import { StopOverIcon } from "./StopOverIcon";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
-function OutboundCard(props: IFlightData) {
+function InboundCard(props: IFlightData) {
   // Get list of airport codes for layover airports
   let listOfStopoverAirportCodes: string[] = [];
   listOfStopoverAirportCodes = props.flightData.map((airport) => {
@@ -15,17 +15,21 @@ function OutboundCard(props: IFlightData) {
       return "";
     }
   });
+
   return (
-    <div className="outboundCard">
+    <div className="inboundCard">
       <div className="airlineSummary">
         <div className="airlineLogos">
-          <div className="group1">
+          {/* Inbound airline display if there is only one airline */}
+          <div className="group2">
             {props.numberOfStops > 0 ? (
-              props.flightData.map((legInfo) => (
-                <span className="title">{legInfo.airlineName}</span>
+              props.flightData.map((legInfo, index) => (
+                <span className="title" key={index}>
+                  {legInfo.airlineName}
+                </span>
               ))
             ) : (
-              <div className="outboundAirline">
+              <div className="inboundAirline">
                 <img src={props.flightData[0].airlineImage} alt="" />
                 <span className="title">{props.flightData[0].airlineName}</span>
               </div>
@@ -34,7 +38,7 @@ function OutboundCard(props: IFlightData) {
         </div>
       </div>
       <div className="flightArrow">
-        <ArrowForwardIcon className="arrow" />
+        <ArrowBackIcon className="arrow" />
       </div>
       <div className="container">
         {/* Departure details */}
@@ -46,14 +50,14 @@ function OutboundCard(props: IFlightData) {
             {props?.flightData[0].departureAirportCode}
           </span>
         </div>
+
         <div className="transitDetails">
           <span className="flightDuration">{props?.totalTravelTime}</span>
-
           <div className="travel">
             <div className="travelLine"></div>
             <div className="stopPointGroup">
-              {[...Array(props?.numberOfStops)].map((e) => (
-                <StopOverIcon />
+              {[...Array(props?.numberOfStops)].map((e, index) => (
+                <StopOverIcon key={index} />
               ))}
             </div>
           </div>
@@ -78,7 +82,9 @@ function OutboundCard(props: IFlightData) {
         </div>
         <div className="arrivalDetails">
           {/* Arrival time */}
-          <span className="time">{props?.flightData[0].arrivalTime}</span>
+          <span className="time">
+            {props?.flightData[props?.flightData.length - 1].arrivalTime}
+          </span>
           {/* Arrival city name. This will be last flight in the array */}
           <span className="cityTitle">
             {props?.flightData[props?.flightData.length - 1].arrivalAirportCode}
@@ -89,4 +95,4 @@ function OutboundCard(props: IFlightData) {
   );
 }
 
-export default OutboundCard;
+export default InboundCard;
