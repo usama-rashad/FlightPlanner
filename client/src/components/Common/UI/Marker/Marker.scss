@@ -37,8 +37,16 @@
         color: black;
       }
 
+      &.boldtext {
+        font-weight: 500;
+      }
+
       &.lighttext {
         color: white;
+      }
+
+      &.center {
+        text-align: center;
       }
     }
   }

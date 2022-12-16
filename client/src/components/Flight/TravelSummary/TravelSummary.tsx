@@ -17,10 +17,13 @@ function TravelSummary(props: ITravelSummary) {
         <span className="title">{props.title}</span>
         <div className="departureSection">
           <div className="left">
-            {props.data.flightData.map((leg) => {
+            {props.data.flightData.map((leg, index) => {
               return (
                 <React.Fragment>
-                  <Marker text={leg.departureTime} variant="clear darktext" />
+                  <Marker
+                    text={leg.departureTime}
+                    variant="clear darktext boldtext"
+                  />
                   <div className="line" />
                 </React.Fragment>
               );
@@ -30,30 +33,39 @@ function TravelSummary(props: ITravelSummary) {
                 props.data.flightData[props.data.flightData.length - 1]
                   .arrivalTime
               }
-              variant="clear darktext"
+              variant="clear darktext boldtext"
             />
           </div>
           <div className="right">
             <div className="main">
-              <Marker text={"DUS"} variant="filled lighttext start" />
-              <div className="sub">
-                <div className="gap" />
-                <div className="line" />
-                <Marker text={"7h00m"} variant="clear darktext" />
-              </div>
-              <Marker text={"DUS"} variant="filled lighttext" />
-              <div className="sub">
-                <div className="gap" />
-                <div className="line" />
-                <Marker text={"7h00m"} variant="clear darktext" />
-              </div>
-              <Marker text={"DUS"} variant="filled lighttext" />
-              <div className="sub">
-                <div className="gap" />
-                <div className="line" />
-                <Marker text={"7h00m"} variant="clear darktext" />
-              </div>
-              <Marker text={"DUS"} variant="filled lighttext end" />
+              {props.data.flightData.map((leg, index) => {
+                return (
+                  <React.Fragment>
+                    <Marker
+                      text={leg.departureAirportCode}
+                      variant={`filled lighttext boldtext ${
+                        index === 0 ? "start" : ""
+                      }`}
+                    />
+                    <div className="sub">
+                      <div className="gap" />
+                      <div className="line" />
+                      <Marker
+                        text={leg.timeOfFlight}
+                        variant="clear darktext boldtext center"
+                      />
+                    </div>
+                  </React.Fragment>
+                );
+              })}
+
+              <Marker
+                text={
+                  props.data.flightData[props.data.flightData.length - 1]
+                    .arrivalAirportCode
+                }
+                variant="filled lighttext end"
+              />
             </div>
           </div>
         </div>

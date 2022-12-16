@@ -80,7 +80,9 @@ function OutboundCard(props: IFlightData) {
         </div>
         <div className="arrivalDetails">
           {/* Arrival time */}
-          <span className="time">{props?.flightData[0].arrivalTime}</span>
+          <span className="time">
+            {props?.flightData[props?.flightData.length - 1].arrivalTime}
+          </span>
           {/* Arrival city name. This will be last flight in the array */}
           <span className="cityTitle">
             {props?.flightData[props?.flightData.length - 1].arrivalAirportCode}
