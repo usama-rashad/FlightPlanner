@@ -1,11 +1,13 @@
 @import "../../components/Common/Navbar/Navbar.scss";
 
+$width: 99%;
+
 .adminPage {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  row-gap: 20px;
+  row-gap: 10px;
   width: 100%;
   height: calc(100vh - $navbarHeight - 4px);
   background-color: rgb(248, 247, 247);
@@ -29,14 +31,36 @@
 
   .center {
     flex: 15;
-    z-index: -1;
-    width: 100%;
-    background-color: lightcyan;
+    width: $width;
+    margin-left: 20px;
+    margin-right: 20px;
+    border-radius: 4px;
+    background-color: rgb(231, 229, 229);
+    border: 1px solid lightgray;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .text {
+      color: rgb(204, 204, 204);
+      font-size: 4rem;
+      user-select: none;
+    }
+
+    .subtext {
+      color: rgb(204, 204, 204);
+      font-size: 2rem;
+      user-select: none;
+    }
   }
 
   .bottom {
     flex: 1;
-    width: 100%;
-    background-color: lightgrey;
+    width: $width;
+    background-color: rgb(231, 229, 229);
+    border: 1px solid lightgray;
+    margin-top: -5px;
+    margin-bottom: 3px;
   }
 }

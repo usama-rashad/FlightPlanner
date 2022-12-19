@@ -10,19 +10,49 @@ import AirportIcon from "@mui/icons-material/FlightTakeoff";
 import AirlinesIcon from "@mui/icons-material/Airlines";
 import Aircraft from "@mui/icons-material/AirplanemodeActive";
 
-function AdminNavigation() {
+// Interfaces
+interface INavigationButtonAction {
+  selectAirlines(): void;
+  selectAircraft(): void;
+  selectAirports(): void;
+}
+
+function AdminNavigation(props: INavigationButtonAction) {
   // Button actions
-  const handleClick = () => {};
+  const airlineClickAction = () => {
+    props.selectAirlines();
+  };
+  const airportClickAction = () => {
+    props.selectAirports();
+  };
+  const aircraftClickAction = () => {
+    props.selectAircraft();
+  };
 
   return (
     <div className="adminNavigation">
-      <Button variant="contained" size="medium" endIcon={<AirlinesIcon />}>
+      <Button
+        variant="contained"
+        size="medium"
+        endIcon={<AirlinesIcon />}
+        onClick={airlineClickAction}
+      >
         Airlines
       </Button>
-      <Button variant="contained" size="medium" endIcon={<AirportIcon />}>
+      <Button
+        variant="contained"
+        size="medium"
+        endIcon={<AirportIcon />}
+        onClick={aircraftClickAction}
+      >
         Aircraft
       </Button>
-      <Button variant="contained" size="medium" endIcon={<Aircraft />}>
+      <Button
+        variant="contained"
+        size="medium"
+        endIcon={<Aircraft />}
+        onClick={airportClickAction}
+      >
         Airports
       </Button>
     </div>

@@ -6,7 +6,8 @@ import { Link } from "react-router-dom";
 
 // Icons
 import MenuOpenIcon from "@mui/icons-material/KeyboardArrowDown";
-
+import LoginIcon from "@mui/icons-material/Login";
+import HelpIcon from "@mui/icons-material/Help";
 // Buttons
 import Button from "@mui/material/Button";
 
@@ -42,11 +43,16 @@ function Navbar(props: INavbar) {
       <div className="right">
         <div className="navbarButtons">
           <Link to="/login" className="link">
-            <Button variant="contained" size="large" onClick={loginAction}>
+            <Button
+              variant="contained"
+              size="large"
+              onClick={loginAction}
+              endIcon={<LoginIcon />}
+            >
               Login
             </Button>
           </Link>
-          <Button variant="contained" size="large">
+          <Button variant="contained" size="large" endIcon={<HelpIcon />}>
             Help
           </Button>
         </div>
