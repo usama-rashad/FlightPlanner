@@ -1,0 +1,42 @@
+@import "../../components/Common/Navbar/Navbar.scss";
+
+.adminPage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: 20px;
+  width: 100%;
+  height: calc(100vh - $navbarHeight - 4px);
+  background-color: rgb(248, 247, 247);
+
+  .top {
+    flex: 1;
+    align-self: flex-start;
+    margin-left: 10px;
+    margin-top: 10px;
+    width: fit-content;
+    padding: 2px 5px 2px 5px;
+    border-radius: 4px;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid lightgray;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 2px 4px, rgba(0, 0, 0, 0.23) 0px 1px 2px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .center {
+    flex: 15;
+    z-index: -1;
+    width: 100%;
+    background-color: lightcyan;
+  }
+
+  .bottom {
+    flex: 1;
+    width: 100%;
+    background-color: lightgrey;
+  }
+}

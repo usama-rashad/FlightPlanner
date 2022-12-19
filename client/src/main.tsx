@@ -16,6 +16,7 @@ import Home from "./pages/Home/home";
 import Register from "./pages/Register/register";
 import SearchResults from "./pages/SearchResults/searchResults";
 import Checkout from "./pages/Checkout/Checkout";
+import AdminPage from "./pages/Admin/AdminPage";
 
 // Components
 import Navbar from "./components/Common/Navbar/Navbar";
@@ -33,6 +34,15 @@ const appRouter = createBrowserRouter([
   {
     path: "/test",
     element: <div>Hello world</div>,
+  },
+  {
+    path: "/admin",
+    element: (
+      <>
+        <Navbar isAdmin={true} />
+        <AdminPage />
+      </>
+    ),
   },
   {
     path: "/login",
