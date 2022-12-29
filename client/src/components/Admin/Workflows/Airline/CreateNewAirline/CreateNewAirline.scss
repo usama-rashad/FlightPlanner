@@ -1,58 +1,69 @@
 .createNewAirline {
-  flex: 3;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  .title {
-    margin: 10px;
-    font-size: 2rem;
-    font-weight: 500;
-  }
+	flex: 3;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	.title {
+		margin: 10px;
+		font-size: 2rem;
+		font-weight: 500;
+	}
 
-  .dataFields {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: space-around;
-    .field {
-      padding-left: 20px;
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      margin: 5px;
-      .label {
-        width: 100px;
-      }
-    }
-  }
+	.container {
+		width: 98%;
+		height: 95%;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		justify-content: space-around;
+		.newAirlineForm {
+			flex: 1;
+			align-self: flex-start;
+			width: 100%;
+			box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px,
+				rgba(0, 0, 0, 0.23) 0px 3px 6px;
+			border: 1px solid lightgray;
+			border-radius: 4px;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
 
-  .container {
-    width: 98%;
-    height: 95%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: space-around;
-    .newAirlineForm {
-      flex: 1;
-      align-self: flex-start;
-      width: 100%;
-      box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px,
-        rgba(0, 0, 0, 0.23) 0px 3px 6px;
-      border: 1px solid lightgray;
-      border-radius: 4px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+			.dataFields {
+				display: flex;
+				flex-direction: column;
+				align-items: flex-start;
+				justify-content: center;
+				gap: 5px;
+				.field {
+					display: flex;
+					flex-direction: row;
+					align-items: center;
+					justify-content: flex-start;
+					gap: 10px;
+					.label {
+						flex: 2;
+						justify-self: right;
+					}
+					.input {
+						flex: 3;
+					}
+					.button {
+						flex: 1;
+					}
+				}
+			}
 
-      .createButton {
-        align-self: center;
-      }
-    }
-  }
+			.hiddenFileInput {
+				display: none;
+			}
+
+			.createButton {
+				align-self: center;
+				margin-bottom: 5px;
+			}
+		}
+	}
 }
