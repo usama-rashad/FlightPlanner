@@ -9,6 +9,8 @@ $width: 99%;
   align-items: center;
   row-gap: 10px;
   width: 100%;
+  height: 100%;
+
   height: calc(100vh - $navbarHeight - 4px);
   background-color: rgb(248, 247, 247);
 
@@ -38,29 +40,56 @@ $width: 99%;
     background-color: rgb(231, 229, 229);
     border: 1px solid lightgray;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
 
-    .text {
-      color: rgb(204, 204, 204);
-      font-size: 4rem;
-      user-select: none;
+    .centerBox {
+      height: 95%;
+      width: 98%;
+      background-color: rgb(248, 247, 247);
+      border: 1px solid lightgray;
+      border-radius: 4px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
 
-    .subtext {
-      color: rgb(204, 204, 204);
-      font-size: 2rem;
-      user-select: none;
-    }
-  }
+    .centerLeft {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
 
-  .bottom {
-    flex: 1;
-    width: $width;
-    background-color: rgb(231, 229, 229);
-    border: 1px solid lightgray;
-    margin-top: -5px;
-    margin-bottom: 3px;
+      .text {
+        color: rgb(204, 204, 204);
+        font-size: 4rem;
+        user-select: none;
+      }
+
+      .subtext {
+        color: rgb(204, 204, 204);
+        font-size: 2rem;
+        user-select: none;
+      }
+    }
+
+    .centerRight {
+      img {
+        width: 100px;
+        height: auto;
+        filter: opacity(0.2);
+      }
+    }
+
+    .bottom {
+      flex: 1;
+      width: $width;
+      background-color: rgb(231, 229, 229);
+      border: 1px solid lightgray;
+      margin-top: -5px;
+      margin-bottom: 5px;
+    }
   }
 }
