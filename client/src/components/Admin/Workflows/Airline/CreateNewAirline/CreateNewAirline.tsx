@@ -117,6 +117,7 @@ function CreateNewAirline() {
 						className="hiddenFileInput"
 						ref={iconSelectorRef}
 						onChange={iconFileSelectedAction}
+						accept=".ico,.jpg,.png"
 					/>
 					<Box sx={{m: 1, position: "relative"}}>
 						<Button

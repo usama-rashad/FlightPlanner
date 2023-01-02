@@ -1,4 +1,4 @@
-import multer, {diskStorage} from "multer";
+import multer, {diskStorage, ErrorCode} from "multer";
 
 export const multerStorage = diskStorage({
 	destination(req, file, callback) {
@@ -6,6 +6,7 @@ export const multerStorage = diskStorage({
 	},
 	filename(req, file, callback) {
 		callback(null, file.originalname);
+		console.log("File recieved. Name : " + file.originalname);
 	},
 });
 
