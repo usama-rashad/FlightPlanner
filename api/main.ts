@@ -16,9 +16,10 @@ app.use(cors());
 
 // Express routes
 import createAirlineRoute from "./routes/createAirlineRoute";
+import {env} from "process";
 
 app.use("/api/v1", createAirlineRoute);
 
-app.listen(3001, () => {
-	console.log("Listening on port 3001...");
+app.listen(process.env.API_PORT, () => {
+	console.log("Listening on port " + process.env.API_PORT + "...");
 });

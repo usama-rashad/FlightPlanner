@@ -48,7 +48,7 @@ function CreateNewAirline() {
 			// Post via axios
 			axios({
 				method: "POST",
-				url: "http://127.0.0.1:3001/api/v1/createAirline",
+				url: "http://127.0.0.1:5000/api/v1/createAirline",
 				data: formData,
 			})
 				.catch((err) => {
