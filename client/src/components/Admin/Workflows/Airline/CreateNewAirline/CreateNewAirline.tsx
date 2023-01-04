@@ -1,7 +1,8 @@
 import "./CreateNewAirline.scss";
-
+import UploadAnimation from "./../../../../../assets/Animations/UploadAnimation.json";
 import React, {useRef, useState} from "react";
 import axios from "axios";
+import Lottie from "lottie-react";
 
 // Icons
 import CircularProgress from "@mui/material/CircularProgress";
@@ -44,7 +45,6 @@ function CreateNewAirline() {
 			formData.append("airlineName", airlineName);
 			formData.append("airlineHub", airlineHub);
 			formData.append("airlineIcon", iconSelectorRef.current.files[0]);
-			console.log(...formData);
 			// Post via axios
 			axios({
 				method: "POST",
@@ -140,6 +140,11 @@ function CreateNewAirline() {
 							/>
 						)}
 					</Box>
+					<Lottie
+						className="uploadAnimation"
+						animationData={UploadAnimation}
+						loop={true}
+					/>
 				</div>
 			</div>
 		</div>
