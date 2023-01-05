@@ -1,8 +1,15 @@
 import "./CreateNewAirline.scss";
 import UploadAnimation from "./../../../../../assets/Animations/UploadAnimation.json";
-import React, {useRef, useState} from "react";
-import axios from "axios";
+import React, {useReducer, useRef, useState} from "react";
 import Lottie from "lottie-react";
+
+// Reducers
+import {
+	createNewAirlineReducer,
+	createAirlineReducerInitialState,
+	I_CreateNewAirlineReducerActions,
+	E_CreateNewAirlineReducerActionTypes,
+} from "./../../../../../reducers/airline/createNewAirlineReducer";
 
 // Icons
 import CircularProgress from "@mui/material/CircularProgress";
@@ -11,6 +18,11 @@ import CircularProgress from "@mui/material/CircularProgress";
 import {Box, Button, FormLabel, Input} from "@mui/material";
 
 function CreateNewAirline() {
+	// Create airline reducer
+	const [state, dispatch] = useReducer(
+		createNewAirlineReducer,
+		createAirlineReducerInitialState
+	);
 	//File ref
 	const iconSelectorRef =
 		useRef<HTMLInputElement>() as React.MutableRefObject<HTMLInputElement>;
@@ -45,20 +57,10 @@ function CreateNewAirline() {
 			formData.append("airlineName", airlineName);
 			formData.append("airlineHub", airlineHub);
 			formData.append("airlineIcon", iconSelectorRef.current.files[0]);
-			// Post via axios
-			axios({
-				method: "POST",
-				url: "http://127.0.0.1:5000/api/v1/createAirline",
-				data: formData,
-			})
-				.catch((err) => {
-					setUploadFlag(false);
-					console.log("Airline create error.");
-				})
-				.then((res) => {
-					setUploadFlag(false);
-					console.log("Airline create success.");
-				});
+			dispatch({
+				action: E_CreateNewAirlineReducerActionTypes.AddAirline,
+				payload: formData,
+			});
 		}
 	};
 
@@ -145,6 +147,9 @@ function CreateNewAirline() {
 						animationData={UploadAnimation}
 						loop={true}
 					/>
+					<span>{`Current state : ${JSON.stringify(
+						state.successResponse
+					)}`}</span>
 				</div>
 			</div>
 		</div>

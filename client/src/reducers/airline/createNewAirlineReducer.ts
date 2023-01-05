@@ -1,11 +1,16 @@
 import {useReducer} from "react";
 import axios, {AxiosError, AxiosResponse} from "axios";
 
-enum E_CreateNewAirlineReducerActions {
+export enum E_CreateNewAirlineReducerActionTypes {
 	Wait,
 	AddAirline,
 	AddFail,
 	AddSuccess,
+}
+
+export interface I_CreateNewAirlineReducerActions {
+	action: E_CreateNewAirlineReducerActionTypes;
+	payload: FormData;
 }
 
 interface I_CreateNewAirlineReducer {
@@ -14,38 +19,45 @@ interface I_CreateNewAirlineReducer {
 	isFailed: boolean;
 	successResponse: AxiosResponse;
 	failError: AxiosError;
+	successCount: number;
+	failCount: number;
 }
-
 let cleanResponse: AxiosResponse | null = null;
 
-const createNewAirlineReducer = (
+export const createAirlineReducerInitialState: I_CreateNewAirlineReducer = {
+	failCount: 0,
+	successCount: 0,
+	failError: new AxiosError(),
+	successResponse: cleanResponse as unknown as AxiosResponse,
+	isFailed: false,
+	isUploaded: false,
+	isUploading: false,
+};
+
+export const createNewAirlineReducer = (
 	state: I_CreateNewAirlineReducer,
-	actions: E_CreateNewAirlineReducerActions
+	actions: I_CreateNewAirlineReducerActions
 ) => {
-	switch (actions) {
-		case E_CreateNewAirlineReducerActions.Wait:
+	switch (actions.action) {
+		case E_CreateNewAirlineReducerActionTypes.Wait:
 			return {
 				...state,
-				value:
-					((state.isFailed = false),
-					(state.isUploaded = false),
-					(state.isUploading = false),
-					(state.failError = new AxiosError()),
-					(state.successResponse = cleanResponse as AxiosResponse)),
 			};
 			break;
-		case E_CreateNewAirlineReducerActions.AddAirline:
+		case E_CreateNewAirlineReducerActionTypes.AddAirline:
 			axios({
 				method: "POST",
-				url: "",
+				url: "http://localhost:5000/api/v1/createAirline",
 				data: FormData,
 			})
 				.then((res: AxiosResponse) => {
-					actions = E_CreateNewAirlineReducerActions.AddSuccess;
+					actions.action = E_CreateNewAirlineReducerActionTypes.AddSuccess;
+					console.log("File sent");
 					state.successResponse = res;
 				})
 				.catch((err: AxiosError) => {
-					actions = E_CreateNewAirlineReducerActions.AddFail;
+					actions.action = E_CreateNewAirlineReducerActionTypes.AddFail;
+					console.log("File send error");
 					state.failError = err;
 				});
 
@@ -57,7 +69,7 @@ const createNewAirlineReducer = (
 					(state.isUploading = true)),
 			};
 			break;
-		case E_CreateNewAirlineReducerActions.AddSuccess:
+		case E_CreateNewAirlineReducerActionTypes.AddSuccess:
 			return {
 				...state,
 				value:
@@ -66,7 +78,7 @@ const createNewAirlineReducer = (
 					(state.isUploading = false)),
 			};
 			break;
-		case E_CreateNewAirlineReducerActions.AddFail:
+		case E_CreateNewAirlineReducerActionTypes.AddFail:
 			return {
 				...state,
 				value:
