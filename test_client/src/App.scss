@@ -1,0 +1,40 @@
+* {
+	font-family: "Nunito Sans", sans-serif;
+}
+
+.App {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	.controlPanel {
+		display: flex;
+		flex-direction: row;
+		gap: 5px;
+
+		button {
+			width: 100px;
+		}
+	}
+	.inputs {
+		display: flex;
+		flex-direction: column;
+		row-gap: 2px;
+		.row {
+			height: 25px;
+			width: 400px;
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			gap: 15px;
+			input {
+				flex: 2;
+			}
+			h4 {
+				flex: 1;
+			}
+		}
+	}
+	.statusMessage {
+		height: 50px;
+	}
+}

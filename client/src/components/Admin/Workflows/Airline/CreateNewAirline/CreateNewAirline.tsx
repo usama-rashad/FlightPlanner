@@ -1,16 +1,14 @@
 import "./CreateNewAirline.scss";
 import UploadAnimation from "./../../../../../assets/Animations/UploadAnimation.json";
 import React, {useReducer, useRef, useState} from "react";
-import Lottie from "lottie-react";
+import axios from "axios";
+import Lottie, {useLottie} from "lottie-react";
 
-// Reducers
-import {
-	createNewAirlineReducer,
-	createAirlineReducerInitialState,
-	I_CreateNewAirlineReducerActions,
-	E_CreateNewAirlineReducerActionTypes,
-} from "./../../../../../reducers/airline/createNewAirlineReducer";
-
+// Types
+type T_Data = {
+	airlineName: string;
+	airlineHub: string;
+};
 // Icons
 import CircularProgress from "@mui/material/CircularProgress";
 
@@ -18,22 +16,24 @@ import CircularProgress from "@mui/material/CircularProgress";
 import {Box, Button, FormLabel, Input} from "@mui/material";
 
 function CreateNewAirline() {
-	// Create airline reducer
-	const [state, dispatch] = useReducer(
-		createNewAirlineReducer,
-		createAirlineReducerInitialState
-	);
 	//File ref
-	const iconSelectorRef =
-		useRef<HTMLInputElement>() as React.MutableRefObject<HTMLInputElement>;
-	const iconFileRef =
-		useRef<HTMLInputElement>() as React.MutableRefObject<HTMLInputElement>;
+	const iconSelectorRef = useRef<HTMLInputElement>() as React.MutableRefObject<HTMLInputElement>;
+	const iconFileRef = useRef<HTMLInputElement>() as React.MutableRefObject<HTMLInputElement>;
+	// Use Lottie for animation
+	const options = {
+		animationData: UploadAnimation,
+		loop: false,
+		autoplay: false,
+	};
+	const {play, stop, goToAndStop, playSegments} = useLottie(options);
 	// Input fields
 	const [airlineName, setAirlineName] = useState("");
 	const [airlineHub, setAirlineHub] = useState("");
 	const [airlineIcon, setAirlineIcon] = useState("");
 	// Status
-	const [uploadFlag, setUploadFlag] = useState(false);
+	const [uploadingFlag, setUploadingFlag] = useState(false);
+	const [uploadErrorFlag, setUploadErrorFlag] = useState(false);
+	const [uploadedFlag, setUploadedFlag] = useState(false);
 
 	// Button actions
 	const iconSelectAction = () => {
@@ -43,24 +43,65 @@ function CreateNewAirline() {
 
 	// When the file is selected, update the name in the text field.
 	const iconFileSelectedAction = () => {
-		if (iconSelectorRef.current.files)
-			setAirlineIcon(iconSelectorRef.current.files[0].name);
+		if (iconSelectorRef.current.files) setAirlineIcon(iconSelectorRef.current.files[0].name);
 	};
 
-	const createNewAirlineAction = (e: any) => {
+	// Action to send the form data
+	const sendFormTextData = async (data: T_Data) => {
+		await axios({
+			method: "POST",
+			data: data,
+			headers: {"content-type": "x-www-form-urlencoded"},
+			url: "http://localhost:5000/api/v1/createAirline/data",
+		})
+			.catch((err) => {
+				setUploadErrorFlag(true);
+				setUploadingFlag(false);
+				// Stop the animation
+				goToAndStop(0, true);
+			})
+			.then((response) => {
+				setUploadingFlag(false);
+				setUploadErrorFlag(false);
+				setUploadedFlag(true);
+				playSegments([250, 360], true);
+			});
+	};
+
+	// Action to send the multipart file data
+	const sendFormMultiPartData = async (data: FormData) => {
+		await axios({
+			method: "POST",
+			data: data,
+			headers: {"content-type": "multipart/form-data"},
+			url: "http://localhost:5000/api/v1/createAirline/file",
+		})
+			.catch((err) => {
+				setUploadErrorFlag(true);
+				setUploadingFlag(false);
+				// Stop the animation
+				goToAndStop(0, true);
+			})
+			.then((response) => {
+				setUploadingFlag(false);
+				setUploadErrorFlag(false);
+				setUploadedFlag(true);
+				playSegments([250, 360], true);
+			});
+	};
+	const createNewAirlineAction = async (e: any) => {
 		e.preventDefault();
 		// Create the new airline by inserting the data into the table
 		if (iconSelectorRef.current.files) {
-			console.log("New airline creation in progress");
-			setUploadFlag(true);
+			setUploadingFlag(true);
+			setUploadedFlag(false);
+			playSegments([0, 180]);
+			console.log("Uploading");
+
 			let formData = new FormData();
 			formData.append("airlineName", airlineName);
 			formData.append("airlineHub", airlineHub);
-			formData.append("airlineIcon", iconSelectorRef.current.files[0]);
-			dispatch({
-				action: E_CreateNewAirlineReducerActionTypes.AddAirline,
-				payload: formData,
-			});
+			sendFormTextData({airlineHub: airlineHub, airlineName: airlineName});
 		}
 	};
 
@@ -96,40 +137,19 @@ function CreateNewAirline() {
 						</div>
 						<div className="field">
 							<FormLabel className="label">Airline Icon</FormLabel>
-							<Input
-								ref={iconFileRef}
-								disabled={true}
-								className="input"
-								type="text"
-								placeholder=""
-								value={airlineIcon}
-							/>
-							<Button
-								className="button"
-								variant="contained"
-								onClick={iconSelectAction}
-							>
+							<Input ref={iconFileRef} disabled={true} className="input" type="text" placeholder="" value={airlineIcon} />
+							<Button className="button" variant="contained" onClick={iconSelectAction}>
 								Select
 							</Button>
 						</div>
 					</div>
 
-					<input
-						type="file"
-						className="hiddenFileInput"
-						ref={iconSelectorRef}
-						onChange={iconFileSelectedAction}
-						accept=".ico,.jpg,.png"
-					/>
+					<input type="file" className="hiddenFileInput" ref={iconSelectorRef} onChange={iconFileSelectedAction} accept=".ico,.jpg,.png" />
 					<Box sx={{m: 1, position: "relative"}}>
-						<Button
-							variant="contained"
-							disabled={uploadFlag}
-							onClick={createNewAirlineAction}
-						>
+						<Button variant="contained" disabled={uploadingFlag} onClick={createNewAirlineAction}>
 							Create
 						</Button>
-						{uploadFlag && (
+						{uploadingFlag && (
 							<CircularProgress
 								size={24}
 								sx={{
@@ -142,14 +162,7 @@ function CreateNewAirline() {
 							/>
 						)}
 					</Box>
-					<Lottie
-						className="uploadAnimation"
-						animationData={UploadAnimation}
-						loop={true}
-					/>
-					<span>{`Current state : ${JSON.stringify(
-						state.successResponse
-					)}`}</span>
+					{uploadingFlag && <Lottie className="uploadAnimation" animationData={UploadAnimation} loop={false} />}
 				</div>
 			</div>
 		</div>

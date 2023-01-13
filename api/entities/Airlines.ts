@@ -1,19 +1,16 @@
 import {Entity, PrimaryGeneratedColumn, Column} from "typeorm";
 
 @Entity()
-export class Userauth {
+export class Airlines {
 	@PrimaryGeneratedColumn({type: "int"})
 	id: number;
 
 	@Column({type: "varchar", width: 200})
-	name: string;
+	airlineName: string;
 
 	@Column({type: "varchar", width: 200})
-	email: string;
+	airlineHub: string;
 
-	@Column({type: "varchar", width: 45})
-	username: string;
-
-	@Column({type: "varchar", width: 200})
-	password: string;
+	@Column({type: "varchar", width: 1000})
+	airlineIcon: string;
 }

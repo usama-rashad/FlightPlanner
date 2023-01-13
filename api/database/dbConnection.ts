@@ -1,5 +1,6 @@
 import {DataSource} from "typeorm";
-import {userauth} from "./../entities/User";
+import {Userauth} from "./../entities/User";
+import {Airlines} from "../entities/Airlines";
 
 export const mySqlDb = new DataSource({
 	type: "mysql",
@@ -8,9 +9,10 @@ export const mySqlDb = new DataSource({
 	host: "localhost",
 	database: "data",
 	port: 3307,
-	entities: [userauth],
+	entities: [Userauth, Airlines],
 	logging: false,
 	insecureAuth: false,
+	synchronize: true,
 });
 
 mySqlDb

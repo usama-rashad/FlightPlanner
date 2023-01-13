@@ -6,7 +6,12 @@ export const multerStorage = diskStorage({
 	},
 	filename(req, file, callback) {
 		callback(null, file.originalname);
-		console.log("File recieved. Name : " + file.originalname);
+		{
+			let mimeType = file.mimetype.split("/")[0];
+			if (mimeType !== "image") {
+				console.log("Please upload a picture with *.jpg/*.ico/*.bmp ");
+			}
+		}
 	},
 });
 

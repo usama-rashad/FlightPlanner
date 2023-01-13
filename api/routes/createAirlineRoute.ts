@@ -1,15 +1,14 @@
 const express = require("express");
 const mw = require("./../multer/multer");
-const createAirlineRoute = express.Router();
+const createAirlineDataRoute = express.Router();
+const createAirlineFileRoute = express.Router();
 
 import {Request, Response} from "express";
 
 // Import controller
-import {createAirlineController} from "../controllers/createAirlineController";
+import {createAirlineDataController, createAirlineFileController} from "../controllers/createAirlineController";
 
-createAirlineRoute.post(
-	"/createAirline",
-	createAirlineController
-);
+createAirlineDataRoute.post("/createAirline/data", createAirlineDataController);
+createAirlineFileRoute.post("/createAirline/file", createAirlineFileController);
 
-export default createAirlineRoute;
+export {createAirlineDataRoute, createAirlineFileRoute};
