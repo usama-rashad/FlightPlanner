@@ -43,7 +43,6 @@ export const createAirlineDataController = async (req: Request, res: Response, n
 // Recieve the icon data from the client
 export const createAirlineFileController = async (req: Request, res: Response, next: NextFunction) => {
 	upload(req, res, (err) => {
-		console.log("File : " + JSON.stringify(req.file));
 		if (err) {
 			return res.status(200).json({message: "Multer error. Code : " + err});
 		}

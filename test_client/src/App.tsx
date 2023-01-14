@@ -1,12 +1,15 @@
 import React, {useRef, useState} from "react";
 import axios from "axios";
 import "./App.scss";
+import AirlineViewer from "./components/AirlineViewer/AirlineViewer";
 
 function App() {
 	const [airlineName, setAirlineName] = useState("123");
 	const [airlineHub, setAirlineHub] = useState("123");
 	const [airlineIcon, setAirlineIcon] = useState("");
 	const [statusMessage, setStatusMessage] = useState("");
+	const [progressPct, setProgressPct] = useState<string>("0");
+	const [uploadProgressFlag, setUploadProgressFlag] = useState(false);
 
 	const iconFileRef = useRef<HTMLInputElement>(null) as React.MutableRefObject<HTMLInputElement>;
 
@@ -30,17 +33,39 @@ function App() {
 
 		// Form
 		if (iconFileRef.current.files) {
+			setUploadProgressFlag(true);
 			let formData = new FormData();
 			formData.append("airlineIcon", iconFileRef?.current.files[0]);
 			console.log("Formdata : " + JSON.stringify(formData));
-			const options = {method: "POST", url: "http://localhost:5000/api/v1/createAirline/file", data: formData, headers: {"Content-Type": "multipart/form-data"}};
+			const options = {
+				method: "POST",
+				url: "http://localhost:5000/api/v1/createAirline/file",
+				data: formData,
+				headers: {"Content-Type": "multipart/form-data"},
+				onUploadProgress(progressEvent: any) {
+					if (progressEvent) {
+						// Calculate the upload progress
+						if (progressEvent.progress) {
+							let progress: number = progressEvent.progress * 100.0;
+							setProgressPct(progress.toFixed(1));
+							if (progress >= 100.0) {
+								setTimeout(() => {
+									setUploadProgressFlag(false);
+								}, 2000);
+							}
+						}
+					}
+				},
+			};
 			await axios(options)
 				.then((response) => {
 					setStatusMessage(response.data.message);
+					setUploadProgressFlag(false);
 					console.log("Success");
 				})
 				.catch((err) => {
 					setStatusMessage("Server error. Error details : " + JSON.stringify(err.response.data));
+					setUploadProgressFlag(false);
 					console.log("Failure");
 				});
 		}
@@ -100,6 +125,14 @@ function App() {
 			</div>
 			<div className="statusMessage">
 				<h4>{statusMessage}</h4>
+			</div>
+			{uploadProgressFlag && (
+				<div className="progressStatus">
+					<h4>Upload progress {progressPct} %</h4>
+				</div>
+			)}
+			<div className="airlineViewer">
+				<AirlineViewer />
 			</div>
 		</div>
 	);

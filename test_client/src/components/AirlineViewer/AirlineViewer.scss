@@ -1,0 +1,17 @@
+.airlineViewer {
+	width: 100%;
+
+	.data {
+		display: flex;
+		flex-direction: column;
+		.dataRow {
+			display: flex;
+			flex-direction: row;
+			gap: 10px;
+			height: 4rem;
+			h4 {
+				width: 200px;
+			}
+		}
+	}
+}

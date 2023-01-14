@@ -19,11 +19,13 @@ app.use(cors());
 // Express routes
 import {createAirlineDataRoute, createAirlineFileRoute} from "./routes/createAirlineRoute";
 import {serverTestRoute, serverTimeRoute} from "./routes/serverTestRoute";
+import {viewAirlinesRoute} from "./routes/viewAirlineRoute";
 
 app.use("/", serverTestRoute);
 app.use("/", serverTimeRoute);
 app.use("/api/v1", createAirlineDataRoute);
 app.use("/api/v1", createAirlineFileRoute);
+app.use("/api/v1", viewAirlinesRoute);
 
 app.listen(process.env.API_PORT, () => {
 	console.log("Listening on port " + process.env.API_PORT + "...");
