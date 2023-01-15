@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import "./AirlineViewer.scss";
 
 // Interfaces
-interface IAirlineInfo {
+export interface IAirlineInfo {
 	id: number;
 	airlineName: string;
 	airlineHub: string;
@@ -11,9 +11,11 @@ interface IAirlineInfo {
 
 // Imports
 import axios from "axios";
+import DataRowViewer from "../DataRowViewer/DataRowViewer";
 
 function AirlineViewer() {
 	const [airlineData, setAirlineData] = useState<IAirlineInfo[]>();
+	const [selectedRow, setSelectedRow] = useState<number>(0);
 	// Airline data store
 	const readAirline = async () => {
 		let dataRead: IAirlineInfo[];
@@ -32,19 +34,45 @@ function AirlineViewer() {
 				console.log("Failed to read some data. Error code :  " + error);
 			});
 	};
+
+	// Action for row select
+	const dataRowSelected = (id: number) => {
+		console.log(`Row number ${id} is selected.`);
+		setSelectedRow(id);
+	};
+
 	return (
 		<div className="airlineViewer">
 			<h3>Browse Airlines</h3>
 			<button onClick={readAirline}>Read airlines</button>
 			<div className="data">
+				<div className="dataTitle">
+					<div className="id">
+						<h4>ID</h4>
+					</div>
+					<div className="airlineName">
+						<h4>Airline Name</h4>
+					</div>
+					<div className="airlineHub">
+						<h4>Airline Hub</h4>
+					</div>
+					<div className="airlineIcon">
+						<h4>Airline Icon</h4>
+					</div>
+				</div>
+
 				{airlineData?.map((airline) => {
 					return (
-						<div className="dataRow">
-							<h4>{airline.id}</h4>
-							<h4>{airline.airlineName}</h4>
-							<h4>{airline.airlineHub}</h4>
-							<h4>{airline.airlineIcon}</h4>
-						</div>
+						<DataRowViewer
+							key={airline.id}
+							id={airline.id}
+							airlineName={airline.airlineName}
+							airlineHub={airline.airlineHub}
+							airlineIcon={airline.airlineIcon}
+							isTitle={false}
+							isClicked={dataRowSelected}
+							isSelected={airline.id === selectedRow}
+						/>
 					);
 				})}
 			</div>

@@ -36,7 +36,7 @@ function App() {
 			setUploadProgressFlag(true);
 			let formData = new FormData();
 			formData.append("airlineIcon", iconFileRef?.current.files[0]);
-			console.log("Formdata : " + JSON.stringify(formData));
+			formData.append("airlineName", airlineName);
 			const options = {
 				method: "POST",
 				url: "http://localhost:5000/api/v1/createAirline/file",
@@ -61,12 +61,10 @@ function App() {
 				.then((response) => {
 					setStatusMessage(response.data.message);
 					setUploadProgressFlag(false);
-					console.log("Success");
 				})
 				.catch((err) => {
 					setStatusMessage("Server error. Error details : " + JSON.stringify(err.response.data));
 					setUploadProgressFlag(false);
-					console.log("Failure");
 				});
 		}
 	};

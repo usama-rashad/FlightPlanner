@@ -42,9 +42,40 @@ export const createAirlineDataController = async (req: Request, res: Response, n
 
 // Recieve the icon data from the client
 export const createAirlineFileController = async (req: Request, res: Response, next: NextFunction) => {
+	let iconFileName: string = "";
+	var body: string = "";
 	upload(req, res, (err) => {
 		if (err) {
 			return res.status(200).json({message: "Multer error. Code : " + err});
 		}
+		// Get the file name from the upload
+		iconFileName = req.file?.filename as string;
+		body = req.body;
+		// Get the airline name from the form data
+		let name = req.body.airlineName;
+		// Update the file name in the table.
+		let airlineTable = mySqlDb.getRepository(Airlines);
+
+		airlineTable
+			.findBy({airlineName: name})
+			.then((data) => {
+				if (data.length > 1) return res.status(200).json({message: "More than one airline with that name found", airlineName: name});
+				else if ((data.length = 1)) {
+					// Update the icon name of the airline
+					data[0].airlineIcon = iconFileName;
+					// Update the table
+					airlineTable
+						.save(data)
+						.then((response) => {
+							return res.status(200).json({message: "Airline icon updated successfully"});
+						})
+						.catch((error) => {
+							return res.status(200).json({message: "Error while updating the icon"});
+						});
+				}
+			})
+			.catch((error) => {
+				return res.status(200).json({message: "Internal error while updaing icon file"});
+			});
 	});
 };

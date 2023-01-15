@@ -37,4 +37,10 @@
 	.statusMessage {
 		height: 50px;
 	}
+
+	.airlineViewer {
+		height: 500px;
+		overflow: hidden;
+		overflow-y: auto;
+	}
 }
