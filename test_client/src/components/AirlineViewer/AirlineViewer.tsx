@@ -1,4 +1,16 @@
 import React, {useState} from "react";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
+import ButtonGroup from "@mui/material/ButtonGroup";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import DeleteForeverOutlinedIcon from "@mui/icons-material/DeleteForeverOutlined";
+import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import "./AirlineViewer.scss";
 
 // Interfaces
@@ -11,7 +23,21 @@ export interface IAirlineInfo {
 
 // Imports
 import axios from "axios";
-import DataRowViewer from "../DataRowViewer/DataRowViewer";
+import {flexbox} from "@mui/system";
+
+const deleteIconStyles = {
+	color: "red",
+	cursor: "pointer",
+	opacity: 0.2,
+	"&:hover": {opacity: 1.0},
+};
+
+const editIconStyles = {
+	color: "darkslateblue",
+	cursor: "pointer",
+	opacity: 0.2,
+	"&:hover": {opacity: 1.0},
+};
 
 function AirlineViewer() {
 	const [airlineData, setAirlineData] = useState<IAirlineInfo[]>();
@@ -27,17 +53,14 @@ function AirlineViewer() {
 			.then((data) => {
 				dataRead = data.data as IAirlineInfo[];
 				setAirlineData(dataRead);
-				console.log("Read some data ");
 			})
 			.catch((error) => {
 				setAirlineData([]);
-				console.log("Failed to read some data. Error code :  " + error);
 			});
 	};
 
 	// Action for row select
 	const dataRowSelected = (id: number) => {
-		console.log(`Row number ${id} is selected.`);
 		setSelectedRow(id);
 	};
 
@@ -45,37 +68,66 @@ function AirlineViewer() {
 		<div className="airlineViewer">
 			<h3>Browse Airlines</h3>
 			<button onClick={readAirline}>Read airlines</button>
-			<div className="data">
-				<div className="dataTitle">
-					<div className="id">
-						<h4>ID</h4>
-					</div>
-					<div className="airlineName">
-						<h4>Airline Name</h4>
-					</div>
-					<div className="airlineHub">
-						<h4>Airline Hub</h4>
-					</div>
-					<div className="airlineIcon">
-						<h4>Airline Icon</h4>
-					</div>
-				</div>
-
-				{airlineData?.map((airline) => {
-					return (
-						<DataRowViewer
-							key={airline.id}
-							id={airline.id}
-							airlineName={airline.airlineName}
-							airlineHub={airline.airlineHub}
-							airlineIcon={airline.airlineIcon}
-							isTitle={false}
-							isClicked={dataRowSelected}
-							isSelected={airline.id === selectedRow}
-						/>
-					);
-				})}
-			</div>
+			<TableContainer component={Paper} sx={{maxwidth: 650}}>
+				<Table size="small">
+					<TableHead>
+						<TableRow>
+							<TableCell sx={{fontWeight: 600, width: 10}}>ID</TableCell>
+							<TableCell sx={{fontWeight: 600, width: 100}}>Airline Name</TableCell>
+							<TableCell sx={{fontWeight: 600, width: 100}}>Airline Hub</TableCell>
+							<TableCell sx={{fontWeight: 600, width: 100}}>Airline Icon</TableCell>
+						</TableRow>
+					</TableHead>
+					<TableBody>
+						{airlineData?.map((airline) => {
+							return (
+								<TableRow key={airline.id} sx={{}}>
+									<TableCell>
+										<div className="cell">
+											<div className="left">
+												<Typography>{airline.id}</Typography>
+											</div>
+											<div className="right">
+												<DeleteForeverOutlinedIcon sx={deleteIconStyles} />
+											</div>
+										</div>
+									</TableCell>
+									<TableCell>
+										<div className="cell">
+											<div className="left">
+												<Typography>{airline.airlineName}</Typography>
+											</div>
+											<div className="right">
+												<EditOutlinedIcon sx={editIconStyles} />
+											</div>
+										</div>
+									</TableCell>
+									<TableCell>
+										<div className="cell">
+											<div className="left">
+												<Typography>{airline.airlineHub}</Typography>
+											</div>
+											<div className="right">
+												<EditOutlinedIcon sx={editIconStyles} />
+											</div>
+										</div>
+									</TableCell>
+									<TableCell>
+										<div className="cell">
+											<div className="left">
+												<Typography>{airline.airlineIcon}</Typography>
+											</div>
+											<div className="right">
+												<EditOutlinedIcon sx={editIconStyles} />
+											</div>
+										</div>
+									</TableCell>
+								</TableRow>
+							);
+						})}
+					</TableBody>
+				</Table>
+			</TableContainer>
 		</div>
 	);
 }
