@@ -59,10 +59,11 @@ function LabelWithEdit(props: ILabelWithEdit) {
   }, [title]);
 
   return (
-    <div
-      className={`labelWithEdit ${labelStyles.editStyle} ${labelStyles.errorStyle}`}
-    >
-      <Box className="box" sx={{ width: "350px", height: "45px" }}>
+    <div className={`labelWithEdit`}>
+      <Box
+        className="box"
+        sx={{ display: "flex", width: "300px", height: "45px" }}
+      >
         <div className="left">
           {!editMode && (
             <Typography className="label" variant="h5">

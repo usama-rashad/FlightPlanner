@@ -1,21 +1,18 @@
 .airlineViewer {
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-	gap: 5px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 
-	button {
-		width: 100px;
-	}
+  button {
+    width: 100px;
+  }
 
-	.cell {
-		display: flex;
-		flex-direction: row;
-		align-items: center;
-		justify-content: space-between;
-
-		.right {
-			align-items: center;
-		}
-	}
+  .cell {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: 50px;
+  }
 }

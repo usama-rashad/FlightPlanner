@@ -88,47 +88,22 @@ function AirlineViewer() {
           <TableBody>
             {airlineData?.map((airline) => {
               return (
-                <TableRow key={airline.id} sx={{}}>
+                <TableRow key={airline.id}>
                   <TableCell>
                     <div className="cell">
-                      <div className="left">
-                        <Typography>{airline.id}</Typography>
-                      </div>
-                      <div className="right">
-                        <DeleteForeverOutlinedIcon sx={deleteIconStyles} />
-                      </div>
+                      <Typography>{airline.id}</Typography>
                     </div>
                   </TableCell>
                   <TableCell>
                     <div className="cell">
-                      <LabelWithEdit label={airline.airlineName} />
-                      <div className="left">
-                        <Typography>{airline.airlineName}</Typography>
-                      </div>
-                      <div className="right">
-                        <EditOutlinedIcon sx={editIconStyles} />
-                      </div>
+                      
                     </div>
                   </TableCell>
                   <TableCell>
-                    <div className="cell">
-                      <div className="left">
-                        <Typography>{airline.airlineHub}</Typography>
-                      </div>
-                      <div className="right">
-                        <EditOutlinedIcon sx={editIconStyles} />
-                      </div>
-                    </div>
+                    <div className="cell"></div>
                   </TableCell>
                   <TableCell>
-                    <div className="cell">
-                      <div className="left">
-                        <Typography>{airline.airlineIcon}</Typography>
-                      </div>
-                      <div className="right">
-                        <EditOutlinedIcon sx={editIconStyles} />
-                      </div>
-                    </div>
+                    <div className="cell"></div>
                   </TableCell>
                 </TableRow>
               );
