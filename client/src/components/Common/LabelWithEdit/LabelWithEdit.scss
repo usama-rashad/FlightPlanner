@@ -1,0 +1,31 @@
+.labelWithEdit {
+	border-radius: 5px;
+	background-color: lightgoldenrodyellow;
+	border: 1px solid goldenrod;
+
+	&.edit {
+		background-color: white;
+	}
+
+	&.error {
+		background-color: rgb(255, 215, 215);
+		border: 1px solid red;
+	}
+
+	.box {
+		padding-left: 15px;
+		padding-right: 5px;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	.label {
+		color: goldenrod;
+
+		&.error {
+			color: red;
+		}
+	}
+}
