@@ -1,18 +1,97 @@
+@mixin centerTableCell {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+}
+
+@mixin leftTableCell {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: left;
+}
+
+@mixin setTitleFont {
+	color: white;
+	font-size: 1rem;
+	font-weight: 600;
+}
+
+@mixin setDataFont {
+	color: black;
+	font-size: 1rem;
+	font-weight: 600;
+}
+
+@mixin setRowHover {
+	:hover {
+		background-color: rgba(152, 152, 255, 0.315);
+	}
+}
+
 .airlineViewer {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
 
-  button {
-    width: 100px;
-  }
+	button {
+		width: 100px;
+	}
 
-  .cell {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    height: 50px;
-  }
+	.tableHead,
+	.tableBody {
+		.tableTitle {
+			display: flex;
+			flex-direction: row;
+			background-color: rgb(37, 37, 184);
+
+			.cell1 {
+				flex: 1;
+				color: black;
+				font-weight: 600;
+				@include centerTableCell;
+				span {
+					@include setTitleFont;
+				}
+			}
+			.cell2,
+			.cell3,
+			.cell4 {
+				flex: 5;
+				@include centerTableCell;
+
+				span {
+					@include setTitleFont;
+				}
+			}
+		}
+		.tableRow {
+			display: flex;
+			flex-direction: row;
+			background-color: white;
+			height: 40px;
+
+			.cell1 {
+				flex: 1;
+				color: black;
+				font-weight: 600;
+				@include leftTableCell;
+				span {
+					@include setDataFont;
+				}
+			}
+			.cell2,
+			.cell3,
+			.cell4 {
+				flex: 5;
+				@include leftTableCell;
+
+				span {
+					@include setDataFont;
+				}
+			}
+		}
+	}
 }

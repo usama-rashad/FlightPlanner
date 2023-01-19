@@ -1,108 +1,94 @@
 import "./LabelWithEdit.scss";
+import React, {useEffect, useState, KeyboardEvent, useRef, MutableRefObject, useReducer} from "react";
+import {TReducerState, EReducerActions, stateReducer} from "./stateReducer";
 
-import React, { useEffect, useState } from "react";
-import Validator from "validator";
-import Typography from "@mui/material/Typography";
-import Box from "@mui/material/Box";
-import IconButton from "@mui/material/IconButton";
-import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
-import DoneOutlineOutlinedIcon from "@mui/icons-material/DoneOutlineOutlined";
+// Third part imports
 import TextField from "@mui/material/TextField";
+import Typography from "@mui/material/Typography";
 
-type LabelStyles = {
-  editStyle: string;
-  errorStyle: string;
-};
+// Animations
+import CircularProgress from "@mui/material/CircularProgress";
+
+// Icons
+import DoneIcon from "@mui/icons-material/DoneOutlineOutlined";
+import EditIcon from "@mui/icons-material/EditOutlined";
+import IconButton from "@mui/material/IconButton";
 
 interface ILabelWithEdit {
-  label: string;
+	label: string;
+	updateLabel: (final: string) => void;
 }
 
+const initialState: TReducerState = {
+	isApplying: false,
+	isEditing: false,
+	isError: false,
+};
+
 function LabelWithEdit(props: ILabelWithEdit) {
-  const [title, setTitle] = useState("");
-  const [editMode, setEditMode] = useState(false);
-  const [valid, setValid] = useState(false);
-  const [labelStyles, setLabelStyles] = useState<LabelStyles>({
-    editStyle: "",
-    errorStyle: "error",
-  });
+	const [labelState, dispatch] = useReducer(stateReducer, initialState);
+	const [label, setLabel] = useState<string>("");
+	const [editMode, setEditMode] = useState<boolean>(false);
+	const [isUpdating, setIsUpdating] = useState<boolean>(false);
 
-  const editAction = () => {
-    setEditMode(!editMode);
-    console.log(editMode);
-  };
+	const testPromise = new Promise<void>((res, rej) => {
+		setTimeout(() => {
+			res();
+		}, 5000);
+	});
 
-  const updateTitle = (e: any) => {
-    setTitle(e.target.value);
-    props.label = title;
-  };
+	const handleTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+		setLabel(e.target.value);
+	};
 
-  const applyChanges = (e: any) => {
-    if (e.code === "Enter") {
-      setEditMode(false);
-      e.preventDefault();
-    }
-  };
+	const handleEditMode = () => {
+		dispatch(EReducerActions.EDIT);
+		testPromise.then(() => {
+			dispatch(EReducerActions.NO_ERROR);
+		});
+		setEditMode(true);
+	};
 
-  // Register and de-register events
-  useEffect(() => {
-    document.addEventListener("keydown", applyChanges);
-    return () => {
-      document.removeEventListener("keydown", applyChanges);
-    };
-  }, []);
+	const handleDoneEdit = () => {
+		dispatch(EReducerActions.APPLY);
+		props.updateLabel(label);
+		setEditMode(false);
+	};
 
-  // Validate input
-  useEffect(() => {
-    let isValid = Validator.isAlpha(title);
-    setValid(isValid);
-  }, [title]);
-
-  return (
-    <div className={`labelWithEdit`}>
-      <Box
-        className="box"
-        sx={{ display: "flex", width: "300px", height: "45px" }}
-      >
-        <div className="left">
-          {!editMode && (
-            <Typography className="label" variant="h5">
-              {title}
-            </Typography>
-          )}
-          {editMode && (
-            <TextField
-              size="small"
-              variant="standard"
-              value={title}
-              onSubmit={(e) => {
-                applyChanges(e);
-              }}
-              onChange={(e) => {
-                updateTitle(e);
-              }}
-            />
-          )}
-        </div>
-        <div className="right">
-          {editMode && (
-            <IconButton onClick={editAction}>
-              <DoneOutlineOutlinedIcon
-                sx={{ color: "green", cursor: "pointer" }}
-              />
-            </IconButton>
-          )}
-          {!editMode && (
-            <IconButton onClick={editAction}>
-              <EditOutlinedIcon
-                sx={{ color: "darkgoldenrod", cursor: "pointer" }}
-              />
-            </IconButton>
-          )}
-        </div>
-      </Box>
-    </div>
-  );
+	return (
+		<div className="labelWithEdit">
+			<div className="left">
+				{!editMode ? (
+					<Typography variant="h6" className="label">
+						{label}
+					</Typography>
+				) : null}
+				{editMode ? (
+					<TextField
+						variant="standard"
+						size="small"
+						value={label}
+						onChange={(e) => {
+							handleTextChange(e as React.ChangeEvent<HTMLInputElement>);
+						}}
+					/>
+				) : null}
+			</div>
+			<div className="right">
+				{editMode ? (
+					<IconButton onClick={handleDoneEdit}>
+						<DoneIcon className="doneIcon" />
+					</IconButton>
+				) : null}
+				{!editMode ? (
+					<IconButton onClick={handleEditMode}>
+						<EditIcon className="editIcon" />
+					</IconButton>
+				) : null}
+				{labelState.isEditing ? <CircularProgress size={"30px"} /> : null}
+			</div>
+		</div>
+	);
 }
 
 export default LabelWithEdit;
