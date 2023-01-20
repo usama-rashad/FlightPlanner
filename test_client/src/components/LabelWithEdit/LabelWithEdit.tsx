@@ -16,7 +16,9 @@ import IconButton from "@mui/material/IconButton";
 
 interface ILabelWithEdit {
 	label: string;
-	updateLabel: (final: string) => void;
+	status: TReducerState;
+	updateExternalLabel: (final: string) => void /* External update function*/;
+	updateMethod: (flag: boolean, label: string) => Promise<void>;
 }
 
 const initialState: TReducerState = {
@@ -28,14 +30,6 @@ const initialState: TReducerState = {
 function LabelWithEdit(props: ILabelWithEdit) {
 	const [labelState, dispatch] = useReducer(stateReducer, initialState);
 	const [label, setLabel] = useState<string>("");
-	const [editMode, setEditMode] = useState<boolean>(false);
-	const [isUpdating, setIsUpdating] = useState<boolean>(false);
-
-	const testPromise = new Promise<void>((res, rej) => {
-		setTimeout(() => {
-			res();
-		}, 5000);
-	});
 
 	const handleTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setLabel(e.target.value);
@@ -43,27 +37,37 @@ function LabelWithEdit(props: ILabelWithEdit) {
 
 	const handleEditMode = () => {
 		dispatch(EReducerActions.EDIT);
-		testPromise.then(() => {
-			dispatch(EReducerActions.NO_ERROR);
-		});
-		setEditMode(true);
 	};
 
 	const handleDoneEdit = () => {
 		dispatch(EReducerActions.APPLY);
-		props.updateLabel(label);
-		setEditMode(false);
+		props.updateExternalLabel(label);
+		updateData();
+	};
+
+	const updateData = () => {
+		console.log("Applying new data...");
+		props
+			.updateMethod(true, label) // True to test a pass of data
+			.then(() => {
+				console.log("Successfully applied new data...");
+				dispatch(EReducerActions.NO_ERROR);
+			})
+			.catch(() => {
+				console.log("Failed to apply new data...");
+				dispatch(EReducerActions.ERROR);
+			});
 	};
 
 	return (
 		<div className="labelWithEdit">
 			<div className="left">
-				{!editMode ? (
+				{!labelState.isEditing ? (
 					<Typography variant="h6" className="label">
 						{label}
 					</Typography>
 				) : null}
-				{editMode ? (
+				{labelState.isEditing ? (
 					<TextField
 						variant="standard"
 						size="small"
@@ -75,17 +79,17 @@ function LabelWithEdit(props: ILabelWithEdit) {
 				) : null}
 			</div>
 			<div className="right">
-				{editMode ? (
+				{!labelState.isEditing ? (
 					<IconButton onClick={handleDoneEdit}>
 						<DoneIcon className="doneIcon" />
 					</IconButton>
 				) : null}
-				{!editMode ? (
+				{!labelState.isApplying ? (
 					<IconButton onClick={handleEditMode}>
 						<EditIcon className="editIcon" />
 					</IconButton>
 				) : null}
-				{labelState.isEditing ? <CircularProgress size={"30px"} /> : null}
+				{labelState.isApplying ? <CircularProgress size={"30px"} /> : null}
 			</div>
 		</div>
 	);

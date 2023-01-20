@@ -20,9 +20,11 @@ app.use(cors());
 import {createAirlineDataRoute, createAirlineFileRoute} from "./routes/createAirlineRoute";
 import {serverTestRoute, serverTimeRoute} from "./routes/serverTestRoute";
 import {viewAirlinesRoute} from "./routes/viewAirlineRoute";
+import {sampleDataEndpointRoute} from "./routes/sampleDataEndPointRoute";
 
 app.use("/", serverTestRoute);
 app.use("/", serverTimeRoute);
+app.use("/", sampleDataEndpointRoute);
 app.use("/api/v1", createAirlineDataRoute);
 app.use("/api/v1", createAirlineFileRoute);
 app.use("/api/v1", viewAirlinesRoute);

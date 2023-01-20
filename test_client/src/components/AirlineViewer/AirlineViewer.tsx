@@ -69,7 +69,9 @@ function AirlineViewer() {
 	return (
 		<div className="airlineViewer">
 			<h3>Browse Airlines</h3>
-			<button onClick={readAirline}>Read airlines</button>
+			<Button onClick={readAirline} variant="contained">
+				Read airlines
+			</Button>
 			<TableContainer component={Paper} sx={{maxwidth: 650}}>
 				<Table>
 					<TableHead className="tableHead">

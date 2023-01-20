@@ -3,6 +3,7 @@ import axios from "axios";
 import "./App.scss";
 import AirlineViewer from "./components/AirlineViewer/AirlineViewer";
 import LabelWithEdit from "./components/LabelWithEdit/LabelWithEdit";
+import {TReducerState} from "./components/LabelWithEdit/stateReducer";
 
 function App() {
 	const [airlineName, setAirlineName] = useState("123");
@@ -14,6 +15,9 @@ function App() {
 	const [testLabel, setTestLabel] = useState("");
 
 	const iconFileRef = useRef<HTMLInputElement>(null) as React.MutableRefObject<HTMLInputElement>;
+
+	// Status of labelWithEdit
+	let labelEditStatus: TReducerState = {isApplying: false, isEditing: false, isError: false};
 
 	// Actions
 	const sendData = async () => {
@@ -79,7 +83,7 @@ function App() {
 				});
 		}
 	};
-	const testServer = async () => {
+	const serverTest = async () => {
 		const options = {method: "get", url: "http://localhost:5000/"};
 		await axios(options)
 			.then((response) => {
@@ -91,13 +95,38 @@ function App() {
 			});
 	};
 
+	// Dummy promise to immitate data updating after 3 seconds
+	const dataUpdateMethod = (flag: boolean): Promise<void> => {
+		let dataUpdatePromise = new Promise<void>((res, rej) => {
+			setTimeout(() => {
+				if (flag) res();
+				else rej();
+			}, 3000);
+		});
+		return dataUpdatePromise;
+	};
+
+	// Function to write sample data to the server
+	const updateDataEndpoint = (flag: boolean , label:string): Promise<void> => {
+		let message = {data: label, acceptFlag: flag};
+		let axiosPromise = axios
+			.post("http://localhost:5000/editName", message)
+			.then((response) => {
+				console.log("Data has been updated successfully. Server message : " + JSON.stringify(response.data.message));
+			})
+			.catch((error) => {
+				console.log("Data update has failed. Server message : " + JSON.stringify(error.data.message));
+			});
+		return axiosPromise;
+	};
+
 	return (
 		<div className="App">
 			<h2>Test client for Axios</h2>
 			<div className="controlPanel">
 				<button onClick={sendData}>Send data</button>
 				<button onClick={sendFile}>Send file</button>
-				<button onClick={testServer}>Test Server</button>
+				<button onClick={serverTest}>Test Server</button>
 			</div>
 			<div className="inputs">
 				<div className="row">
@@ -138,13 +167,15 @@ function App() {
 			<div className="labelTest">
 				<LabelWithEdit
 					label={testLabel}
-					updateLabel={(label) => {
+					status={labelEditStatus}
+					updateMethod={updateDataEndpoint}
+					updateExternalLabel={(label) => {
 						setTestLabel(label);
 					}}
 				/>
 				<span>{testLabel}</span>
 			</div>
-			{uploadProgressFlag && (
+			{labelEditStatus.isApplying && (
 				<div className="progressStatus">
 					<h4>Upload progress {progressPct} %</h4>
 				</div>
