@@ -5,9 +5,10 @@ export type TReducerState = {
 };
 
 // Reducer goes through these states in the following order :
-// 1) Edit setting
-// 2) Apply new setting
-// 3) Error if setting is not applicable
+// 1) 	IDLE 	MODE	=> Nothing is happening.  	Inputs available are : Edit button to start the editing process.
+// 2) 	EDIT 	MODE 	=> Awaits user input.  		Inputs available are : Cancel editing and accecpt changes. i.e. Two buttons
+// 3.1) APPLY 	MODE 	=> Sends modification request to the server. Cancel input is available.
+// 3.2) CANCEL 	MODE 	=> Cancels the server request.
 
 export enum EReducerActions {
 	APPLY,

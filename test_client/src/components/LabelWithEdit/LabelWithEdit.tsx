@@ -12,6 +12,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 // Icons
 import DoneIcon from "@mui/icons-material/DoneOutlineOutlined";
 import EditIcon from "@mui/icons-material/EditOutlined";
+import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 import IconButton from "@mui/material/IconButton";
 
 interface ILabelWithEdit {
@@ -44,6 +45,8 @@ function LabelWithEdit(props: ILabelWithEdit) {
 		props.updateExternalLabel(label);
 		updateData();
 	};
+
+	const handleCancelEdit = () => {};
 
 	const updateData = () => {
 		console.log("Applying new data...");
@@ -87,6 +90,11 @@ function LabelWithEdit(props: ILabelWithEdit) {
 				{!labelState.isApplying ? (
 					<IconButton onClick={handleEditMode}>
 						<EditIcon className="editIcon" />
+					</IconButton>
+				) : null}
+				{labelState.isApplying ? (
+					<IconButton onClick={handleCancelEdit}>
+						<CancelOutlinedIcon className="cancelEditIcon" />
 					</IconButton>
 				) : null}
 				{labelState.isApplying ? <CircularProgress size={"30px"} /> : null}
