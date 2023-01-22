@@ -28,6 +28,7 @@ const initialState: TReducerState = {
   isEditing: false,
   isCanceling: false,
   isError: false,
+  isNoError: false,
 };
 
 function LabelWithEdit(props: ILabelWithEdit) {
@@ -50,6 +51,10 @@ function LabelWithEdit(props: ILabelWithEdit) {
 
   const handleCancelEdit = () => {
     dispatch(EReducerActions.CANCEL);
+    returnToIdle();
+  };
+
+  const returnToIdle = () => {
     setTimeout(() => {
       dispatch(EReducerActions.IDLE);
     }, 10);
@@ -62,6 +67,7 @@ function LabelWithEdit(props: ILabelWithEdit) {
       .then(() => {
         console.log("Successfully applied new data...");
         dispatch(EReducerActions.NO_ERROR);
+        returnToIdle();
       })
       .catch(() => {
         console.log("Failed to apply new data...");
@@ -104,7 +110,7 @@ function LabelWithEdit(props: ILabelWithEdit) {
             </IconButton>
           </>
         ) : null}
-        {labelState.isIdling || labelState.isError ? (
+        {labelState.isIdling ? (
           <IconButton onClick={handleEditMode}>
             <EditIcon className="editIcon" />
           </IconButton>

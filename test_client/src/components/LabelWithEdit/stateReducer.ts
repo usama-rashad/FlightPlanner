@@ -3,7 +3,8 @@ export type TReducerState = {
   isApplying: boolean;
   isEditing: boolean;
   isCanceling: boolean;
-  isError: boolean; // No error state is opposite
+  isError: boolean;
+  isNoError: boolean;
 };
 
 // Reducer goes through these states in the following order :
@@ -32,6 +33,7 @@ export const stateReducer = (state: TReducerState, action: EReducerActions): TRe
         isEditing: false,
         isCanceling: false,
         isError: false,
+        isNoError: false,
       };
     }
     case EReducerActions.APPLY: {
@@ -42,6 +44,7 @@ export const stateReducer = (state: TReducerState, action: EReducerActions): TRe
         isEditing: false,
         isCanceling: false,
         isError: false,
+        isNoError: false,
       };
     }
     case EReducerActions.EDIT: {
@@ -53,6 +56,7 @@ export const stateReducer = (state: TReducerState, action: EReducerActions): TRe
         isEditing: true,
         isCanceling: false,
         isError: false,
+        isNoError: false,
       };
     }
     case EReducerActions.CANCEL: {
@@ -63,6 +67,19 @@ export const stateReducer = (state: TReducerState, action: EReducerActions): TRe
         isEditing: false,
         isCanceling: true,
         isError: false,
+        isNoError: false,
+      };
+    }
+
+    case EReducerActions.ERROR: {
+      return {
+        ...state,
+        isIdling: false,
+        isApplying: false,
+        isEditing: false,
+        isCanceling: false,
+        isError: true,
+        isNoError: false,
       };
     }
 
@@ -73,7 +90,8 @@ export const stateReducer = (state: TReducerState, action: EReducerActions): TRe
         isApplying: false,
         isEditing: false,
         isCanceling: false,
-        isError: true,
+        isError: false,
+        isNoError: true,
       };
     }
 
@@ -85,6 +103,7 @@ export const stateReducer = (state: TReducerState, action: EReducerActions): TRe
         isEditing: false,
         isCanceling: false,
         isError: false,
+        isNoError: false,
       };
   }
 };
