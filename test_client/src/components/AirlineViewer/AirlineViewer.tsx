@@ -52,11 +52,11 @@ function AirlineViewer() {
 			method: "get",
 		};
 		await axios(options)
-			.then((data) => {
+			.then(data => {
 				dataRead = data.data as IAirlineInfo[];
 				setAirlineData(dataRead);
 			})
-			.catch((error) => {
+			.catch(error => {
 				setAirlineData([]);
 			});
 	};
@@ -65,6 +65,9 @@ function AirlineViewer() {
 	const dataRowSelected = (id: number) => {
 		setSelectedRow(id);
 	};
+
+	// Action to write data
+	const handleWriteData = (index: number) => {};
 
 	return (
 		<div className="airlineViewer">
@@ -91,14 +94,15 @@ function AirlineViewer() {
 						</TableRow>
 					</TableHead>
 					<TableBody className="tableBody">
-						{airlineData?.map((airline) => {
+						{airlineData?.map((airline, index) => {
 							return (
 								<TableRow className="tableRow">
 									<TableCell className="cell1">
-										<span>{airline.id}</span>
+										<span>{index + 1}</span>
 									</TableCell>
 									<TableCell className="cell2">
-										<span>{airline.airlineName}</span>
+										{/* <LabelWithEdit label={airline.airlineName} updateExternalLabel={(data)=>{}} updateMethod={} key={index + 1} /> */}
+										{/* <span>{}</span> */}
 									</TableCell>
 									<TableCell className="cell3">
 										<span>{airline.airlineHub}</span>

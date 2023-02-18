@@ -17,7 +17,7 @@ function App() {
 	const iconFileRef = useRef<HTMLInputElement>(null) as React.MutableRefObject<HTMLInputElement>;
 
 	// Status of labelWithEdit
-	let labelEditStatus: TReducerState = {isApplying: false, isEditing: false, isError: false};
+	let labelEditStatus: TReducerState = {isApplying: false, isEditing: false, isError: false, isCanceling: false, isIdling: false, isNoError: false};
 
 	// Actions
 	const sendData = async () => {
@@ -35,10 +35,10 @@ function App() {
 			headers: {"Content-Type": "application/json"},
 		};
 		await axios(options)
-			.then((response) => {
+			.then(response => {
 				setStatusMessage(response.data.message);
 			})
-			.catch((err) => {
+			.catch(err => {
 				setStatusMessage("Server error. Error details : " + JSON.stringify(err.response.data));
 			});
 	};
@@ -73,11 +73,11 @@ function App() {
 				},
 			};
 			await axios(options)
-				.then((response) => {
+				.then(response => {
 					setStatusMessage(response.data.message);
 					setUploadProgressFlag(false);
 				})
-				.catch((err) => {
+				.catch(err => {
 					setStatusMessage("Server error. Error details : " + JSON.stringify(err.response.data));
 					setUploadProgressFlag(false);
 				});
@@ -86,11 +86,11 @@ function App() {
 	const serverTest = async () => {
 		const options = {method: "get", url: "http://localhost:5000/"};
 		await axios(options)
-			.then((response) => {
+			.then(response => {
 				let message: string = "Server response:" + JSON.stringify(response.data.message) + "," + "counter:" + response.data.counter;
 				setStatusMessage(message);
 			})
-			.catch((err) => {
+			.catch(err => {
 				setStatusMessage("Error while testing server. Error details : " + err);
 			});
 	};
@@ -107,14 +107,14 @@ function App() {
 	};
 
 	// Function to write sample data to the server
-	const updateDataEndpoint = (flag: boolean , label:string): Promise<void> => {
+	const updateDataEndpoint = (flag: boolean, label: string): Promise<void> => {
 		let message = {data: label, acceptFlag: flag};
 		let axiosPromise = axios
 			.post("http://localhost:5000/editName", message)
-			.then((response) => {
+			.then(response => {
 				console.log("Data has been updated successfully. Server message : " + JSON.stringify(response.data.message));
 			})
-			.catch((error) => {
+			.catch(error => {
 				console.log("Data update has failed. Server message : " + JSON.stringify(error.data.message));
 			});
 		return axiosPromise;
@@ -134,7 +134,7 @@ function App() {
 					<input
 						type="text"
 						value={airlineName}
-						onChange={(e) => {
+						onChange={e => {
 							setAirlineName(e.target.value);
 						}}
 					/>
@@ -144,7 +144,7 @@ function App() {
 					<input
 						type="text"
 						value={airlineHub}
-						onChange={(e) => {
+						onChange={e => {
 							setAirlineHub(e.target.value);
 						}}
 					/>
@@ -155,7 +155,7 @@ function App() {
 						type="file"
 						ref={iconFileRef}
 						value={airlineIcon}
-						onChange={(e) => {
+						onChange={e => {
 							setAirlineIcon(e.target.value);
 						}}
 					/>
@@ -169,7 +169,7 @@ function App() {
 					label={testLabel}
 					status={labelEditStatus}
 					updateMethod={updateDataEndpoint}
-					updateExternalLabel={(label) => {
+					updateExternalLabel={label => {
 						setTestLabel(label);
 					}}
 				/>
