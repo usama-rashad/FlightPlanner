@@ -1,14 +1,24 @@
 import axios from "axios";
 import "./App.css";
-import LabelWithEdit, {E_LabelType} from "./../Components/LabelWithEdit/LabelWithEdit";
+import EditableLabel, {E_DataType} from "../Components/EditableLabel/EditableLabel";
 import {useState} from "react";
 
-function App() {
-	const [counter, setCounter] = useState(0);
+import EditableRow from "./../Components/EditableRow/EditableRow";
 
+function App() {
 	return (
 		<div className="App">
-			<LabelWithEdit setterEndpoint={"http://localhost:5000/setName"} getterEndpoint={"http://localhost:5000/getName"} type={E_LabelType.E_STRING} key={1} />
+			<EditableRow
+				rowID={1}
+				setterPrefix={"http://localhost:5000/api/v1/set"}
+				getterPrefix={"http://localhost:5000/api/v1/get"}
+				dataPoints={[
+					{datapointName: "username", dataType: E_DataType.E_STRING},
+					{datapointName: "firstname", dataType: E_DataType.E_STRING},
+					{datapointName: "lastname", dataType: E_DataType.E_STRING},
+					{datapointName: "userage", dataType: E_DataType.E_STRING},
+				]}
+			/>
 		</div>
 	);
 }

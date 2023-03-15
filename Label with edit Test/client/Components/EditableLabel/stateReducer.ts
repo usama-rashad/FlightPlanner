@@ -48,7 +48,6 @@ export const stateReducer = (state: TReducerState, action: EReducerActions): TRe
 			};
 		}
 		case EReducerActions.EDIT: {
-			console.log("Edit mode");
 			return {
 				...state,
 				isIdling: false,

@@ -1,4 +1,4 @@
-import "./LabelWithEdit.scss";
+import "./EditableLabel.scss";
 import React, {useEffect, useState, KeyboardEvent, useRef, MutableRefObject, useReducer} from "react";
 import {TReducerState, EReducerActions, stateReducer} from "./stateReducer";
 
@@ -16,12 +16,19 @@ import EditIcon from "@mui/icons-material/EditOutlined";
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 import IconButton from "@mui/material/IconButton";
 
-export enum E_LabelType {
+export enum E_DataType {
 	E_STRING,
 	E_NUMBER,
 }
-interface ILabelWithEdit {
-	type: E_LabelType;
+
+export type T_DataTemplate = {
+	datapointName: string;
+	dataType: E_DataType;
+};
+
+interface IEditableLabel {
+	rowID: number;
+	template: T_DataTemplate;
 	setterEndpoint: string;
 	getterEndpoint: string;
 }
@@ -35,12 +42,12 @@ const initialState: TReducerState = {
 	isNoError: false,
 };
 
-function LabelWithEdit(props: ILabelWithEdit) {
+function EditableLabel(props: IEditableLabel) {
 	const [labelState, dispatch] = useReducer(stateReducer, initialState);
-	const [prevLabel, setPrevLabel] = useState<any>("");
-	const [newLabel, setNewLabel] = useState<any>("");
+	const [prevLabel, setPrevLabel] = useState<string>("");
+	const [newLabel, setNewLabel] = useState<string>("");
 
-	const handleTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setNewLabel(e.target.value);
 	};
 
@@ -49,7 +56,6 @@ function LabelWithEdit(props: ILabelWithEdit) {
 	};
 
 	const handleDoneEdit = () => {
-		console.log("Entered : " + newLabel);
 		updateData();
 	};
 
@@ -66,41 +72,53 @@ function LabelWithEdit(props: ILabelWithEdit) {
 	};
 
 	const updateData = () => {
-		let p = axios.post(props.setterEndpoint, {data: newLabel});
-		p.then(() => {
-			dispatch(EReducerActions.IDLE);
-			setPrevLabel(newLabel);
-		}).catch(() => {
-			dispatch(EReducerActions.ERROR);
-			setPrevLabel(newLabel);
-		});
+		let endpointName = props.setterEndpoint + "/" + props.rowID + "/" + props.template.datapointName;
+		let dname = props.template.datapointName;
+
+		axios
+			.post(endpointName, {
+				//  + props.template.datapointName
+				[dname]: newLabel,
+			})
+			.then(response => {
+				dispatch(EReducerActions.IDLE);
+				setPrevLabel(newLabel);
+			})
+			.catch(res => {
+				setNewLabel(prevLabel);
+				dispatch(EReducerActions.ERROR);
+			});
 	};
 
 	// Use effect to reset the component into IDLE mode
 	useEffect(() => {
-		dispatch(EReducerActions.IDLE);
-		let p = axios.get(props.getterEndpoint);
+		let endpointName = props.getterEndpoint + "/" + props.template.datapointName;
+		let p = axios.get(endpointName);
 		p.then(result => {
-			setNewLabel(result.data.username);
-			setPrevLabel(result.data.username);
+			setNewLabel(result.data.value);
+			setPrevLabel(result.data.value);
+		}).catch(response => {
+			console.log("Failed to get defaults : " + response);
 		});
+		dispatch(EReducerActions.IDLE);
 	}, []);
 
 	return (
-		<div className="labelWithEdit">
+		<div className="labelMain">
 			<div className="left">
 				{!labelState.isEditing ? (
-					<Typography variant="h6" className="label">
+					<Typography variant="h6" className={`label ${labelState.isError ? "error" : ""}`}>
 						{newLabel}
 					</Typography>
 				) : null}
 				{labelState.isEditing ? (
 					<TextField
+						className="textField"
 						variant="standard"
 						size="small"
 						value={newLabel}
 						onChange={e => {
-							handleTextChange(e as React.ChangeEvent<HTMLInputElement>);
+							handleChange(e as React.ChangeEvent<HTMLInputElement>);
 						}}
 					/>
 				) : null}
@@ -121,7 +139,6 @@ function LabelWithEdit(props: ILabelWithEdit) {
 						<EditIcon className="editIcon" />
 					</IconButton>
 				) : null}
-
 				{labelState.isApplying ? (
 					<>
 						<CircularProgress size={"30px"} />
@@ -132,4 +149,4 @@ function LabelWithEdit(props: ILabelWithEdit) {
 	);
 }
 
-export default LabelWithEdit;
+export default EditableLabel;

@@ -23,9 +23,7 @@ export interface IAirlineInfo {
 
 // Imports
 import axios from "axios";
-import {flexbox} from "@mui/system";
-import LabelWithEdit from "../LabelWithEdit/LabelWithEdit";
-import {IconButton} from "@mui/material";
+import EditableLabel, {E_DataType} from "../EditableLabel/EditableLabel";
 
 const deleteIconStyles = {
 	color: "red",
@@ -101,11 +99,26 @@ function AirlineViewer() {
 										<span>{index + 1}</span>
 									</TableCell>
 									<TableCell className="cell2">
-										{/* <LabelWithEdit label={airline.airlineName} updateExternalLabel={(data)=>{}} updateMethod={} key={index + 1} /> */}
-										{/* <span>{}</span> */}
+										<EditableLabel
+											rowID={index + 1}
+											template={{
+												datapointName: "airlineName",
+												dataType: E_DataType.E_STRING,
+											}}
+											setterEndpoint={"http://localhost:5000/api/v1/set"}
+											getterEndpoint={"http://localhost:5000/api/v1/get"}
+										/>
 									</TableCell>
 									<TableCell className="cell3">
-										<span>{airline.airlineHub}</span>
+										<EditableLabel
+											rowID={index + 1}
+											template={{
+												datapointName: "airlineHub",
+												dataType: E_DataType.E_STRING,
+											}}
+											setterEndpoint={"http://localhost:5000/api/v1/set"}
+											getterEndpoint={"http://localhost:5000/api/v1/get"}
+										/>
 									</TableCell>
 									<TableCell className="cell4">
 										<span>{airline.airlineIcon}</span>

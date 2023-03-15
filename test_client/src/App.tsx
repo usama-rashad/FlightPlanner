@@ -2,8 +2,7 @@ import React, {useRef, useState} from "react";
 import axios from "axios";
 import "./App.scss";
 import AirlineViewer from "./components/AirlineViewer/AirlineViewer";
-import LabelWithEdit from "./components/LabelWithEdit/LabelWithEdit";
-import {TReducerState} from "./components/LabelWithEdit/stateReducer";
+import EditableLabel from "./components/EditableLabel/EditableLabel";
 
 function App() {
 	const [airlineName, setAirlineName] = useState("123");
@@ -15,9 +14,6 @@ function App() {
 	const [testLabel, setTestLabel] = useState("");
 
 	const iconFileRef = useRef<HTMLInputElement>(null) as React.MutableRefObject<HTMLInputElement>;
-
-	// Status of labelWithEdit
-	let labelEditStatus: TReducerState = {isApplying: false, isEditing: false, isError: false, isCanceling: false, isIdling: false, isNoError: false};
 
 	// Actions
 	const sendData = async () => {
@@ -87,7 +83,8 @@ function App() {
 		const options = {method: "get", url: "http://localhost:5000/"};
 		await axios(options)
 			.then(response => {
-				let message: string = "Server response:" + JSON.stringify(response.data.message) + "," + "counter:" + response.data.counter;
+				let message: string =
+					"Server response:" + JSON.stringify(response.data.message) + "," + "counter:" + response.data.counter;
 				setStatusMessage(message);
 			})
 			.catch(err => {
@@ -164,22 +161,6 @@ function App() {
 			<div className="statusMessage">
 				<h4>{statusMessage}</h4>
 			</div>
-			<div className="labelTest">
-				<LabelWithEdit
-					label={testLabel}
-					status={labelEditStatus}
-					updateMethod={updateDataEndpoint}
-					updateExternalLabel={label => {
-						setTestLabel(label);
-					}}
-				/>
-				<span>{testLabel}</span>
-			</div>
-			{labelEditStatus.isApplying && (
-				<div className="progressStatus">
-					<h4>Upload progress {progressPct} %</h4>
-				</div>
-			)}
 			<div className="airlineViewer">
 				<AirlineViewer />
 			</div>
