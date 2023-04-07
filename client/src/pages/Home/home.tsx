@@ -16,18 +16,9 @@ function home() {
       </div>
       <div className="advertContainer">
         <div className="advertisements">
-          <AdvertCard
-            desc={holidayDestiationData[0].desc}
-            img={holidayDestiationData[0].img}
-          />
-          <AdvertCard
-            desc={holidayDestiationData[1].desc}
-            img={holidayDestiationData[1].img}
-          />
-          <AdvertCard
-            desc={holidayDestiationData[2].desc}
-            img={holidayDestiationData[2].img}
-          />
+          <AdvertCard desc={holidayDestiationData[0].desc} img={holidayDestiationData[0].img} />
+          <AdvertCard desc={holidayDestiationData[1].desc} img={holidayDestiationData[1].img} />
+          <AdvertCard desc={holidayDestiationData[2].desc} img={holidayDestiationData[2].img} />
         </div>
       </div>
     </div>

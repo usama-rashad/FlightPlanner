@@ -20,6 +20,8 @@ import AdminPage from "./pages/Admin/AdminPage";
 
 // Components
 import Navbar from "./components/Common/Navbar/Navbar";
+import { Provider } from "react-redux";
+import { store } from "./reduxStore";
 
 const appRouter = createBrowserRouter([
   {
@@ -84,8 +86,10 @@ const appRouter = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <ThemeProvider theme={mainTheme}>
-      <RouterProvider router={appRouter} />
-    </ThemeProvider>
+    <Provider store={store}>
+      <ThemeProvider theme={mainTheme}>
+        <RouterProvider router={appRouter} />
+      </ThemeProvider>
+    </Provider>
   </React.StrictMode>
 );
