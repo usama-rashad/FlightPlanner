@@ -1,12 +1,13 @@
 import { useReducer } from "react";
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 
 interface IRegisterState {
-  registerSuccess: false;
-  registerFail: false;
+  state: number;
+  text: string;
   errorMessage: string;
+  buttonColor: string;
 }
 
 export enum ERegisterTypes {
@@ -28,23 +29,46 @@ export interface IRegisterAction {
   payload: TRegisterPayload;
 }
 
-export const registerInitState: IRegisterState = { registerFail: false, registerSuccess: false, errorMessage: "" };
+export const registerInitState: IRegisterState = { state: 0, text: "Register", errorMessage: "", buttonColor: "default" };
 
 export const registerThunk = createAsyncThunk("registerThunk", async (payload: TRegisterPayload) => {
-  let p = await axios.post("http://127.0.0.1:5000/api/v1/createNewUser", payload);
-  return p.data;
+  const axios_response = await axios.post("http://127.0.0.1:5000/api/v1/createNewUser", payload).catch((err: AxiosError) => {
+    err.response?.data;
+  });
+  return axios_response;
 });
 
 export const registerSlice = createSlice({
   name: "register",
   initialState: registerInitState,
-  reducers: {},
+  reducers: {
+    reset(state) {
+      state.state = 0;
+      state.text = "Register";
+      state.buttonColor = "default";
+    },
+  },
   extraReducers: (builder) => {
-    builder.addCase(registerThunk.pending, (state, action) => {}),
-      builder.addCase(registerThunk.fulfilled, (state, action) => {}),
-      builder.addCase(registerThunk.rejected, (state, action) => {});
+    builder.addCase(registerThunk.pending, (state, action) => {
+      state.state = 1;
+      state.text = "Wait";
+      state.buttonColor = "default";
+      state.errorMessage = "";
+    }),
+      builder.addCase(registerThunk.fulfilled, (state, action) => {
+        state.state = 2;
+        state.text = "Done";
+        state.buttonColor = "green";
+      }),
+      builder.addCase(registerThunk.rejected, (state, action) => {
+        state.state = 3;
+        state.text = "Error";
+        state.buttonColor = "red";
+        state.errorMessage = action.error.message as string;
+      });
   },
 });
 
+export const { reset } = registerSlice.actions;
 export default registerSlice.reducer;
 export const regReducer = registerSlice.reducer;

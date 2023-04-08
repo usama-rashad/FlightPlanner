@@ -17,8 +17,8 @@ import blue from "@mui/material/colors/blue";
 import RegisterBackground from "../../assets/Backgrounds/Register Background.jpg";
 
 // Reducers
-import { IRegisterAction, TRegisterPayload, ERegisterTypes, registerInitState, registerThunk } from "./registerReducer";
-import { AppDispatch } from "./../../reduxStore";
+import { IRegisterAction, TRegisterPayload, ERegisterTypes, registerInitState, registerThunk, reset } from "./registerReducer";
+import { AppDispatch, RootState } from "./../../reduxStore";
 
 // MUI
 import CircularProgress from "@mui/material/CircularProgress";
@@ -31,6 +31,7 @@ import CountryIcon from "@mui/icons-material/Language";
 import VisibilityIconOn from "@mui/icons-material/Visibility";
 import VisibilityIconOff from "@mui/icons-material/VisibilityOff";
 import IconButton from "@mui/material/IconButton";
+import { useSelector } from "react-redux";
 
 function register() {
   // States
@@ -39,6 +40,7 @@ function register() {
   const [password2, setPassword2] = useState<string>("");
   const [showPass1, setShowPass1] = useState(false);
   const [showPass2, setShowPass2] = useState(false);
+  const [passwordsNotMatch, setPasswordsNotMatch] = useState(false);
   const [email, setEmail] = useState<string>("");
   const [city, setCity] = useState<string>("");
   const [country, setCountry] = useState<string>("");
@@ -46,12 +48,12 @@ function register() {
 
   // Reducers
   const dispatcher = AppDispatch();
+  const registerStatus = useSelector((state: RootState) => state);
 
   // Hooks
   const naviagte = useNavigate();
 
   // Effects
-
   useEffect(() => {
     setUserName("usamakr");
     setPassword1("123");
@@ -61,29 +63,57 @@ function register() {
     setCountry("Pakistan");
   }, []);
 
+  // Reset button state after an error occurs
+  useEffect(() => {
+    if (registerStatus.register.state == 3) {
+      setTimeout(() => {
+        dispatcher(reset());
+      }, 2000);
+    }
+  }, [registerStatus.register.state]);
+
+  // Return to login page after 1 second of receiving a position confirmation
+  useEffect(() => {
+    if (registerStatus.register.state == 2) {
+      setTimeout(() => {
+        dispatcher(reset());
+        naviagte("/login");
+      }, 1000);
+    }
+  }, [registerStatus.register.state]);
+
+  // Check password matching
+  useEffect(() => {
+    validatePasswords();
+  }, [password1, password2]);
+
   // Actions
   const userNameAction = (e: string) => {
-    setUserName(e);
+    setUserName((prev) => e);
   };
 
   const password1Action = (e: string) => {
-    setPassword1(e);
+    setPassword1((prev) => e);
   };
 
   const password2Action = (e: string) => {
-    setPassword2(e);
+    setPassword2((prev) => e);
+  };
+
+  const validatePasswords = () => {
+    setPasswordsNotMatch((prev) => (prev = password1 !== password2));
   };
 
   const emailAction = (e: string) => {
-    setEmail(e);
+    setEmail((prev) => e);
   };
 
   const cityAction = (e: string) => {
-    setCity(e);
+    setCity((prev) => e);
   };
 
   const countryAction = (e: string) => {
-    setCountry(e);
+    setCountry((prev) => e);
   };
 
   const togglePass1 = () => {
@@ -141,6 +171,8 @@ function register() {
           size="small"
           type={showPass1 ? "text" : "password"}
           label="Password"
+          error={passwordsNotMatch}
+          helperText={passwordsNotMatch && "Passwords do not match"}
           hidden={true}
           value={password1}
           onChange={(e) => {
@@ -164,6 +196,8 @@ function register() {
           size="small"
           type={showPass2 ? "text" : "password"}
           label="Re-Enter password"
+          error={passwordsNotMatch}
+          helperText={passwordsNotMatch && "Passwords do not match"}
           value={password2}
           onChange={(e) => {
             password2Action(e.target.value);
@@ -236,11 +270,11 @@ function register() {
 
         <Button
           variant="contained"
-          disabled={registering}
-          sx={{ backgroundColor: true ? "green" : "default" }}
+          disabled={registerStatus.register.state === 1}
+          sx={{ backgroundColor: registerStatus.register.buttonColor }}
           onClick={registerAction}
           endIcon={
-            registering && (
+            registerStatus.register.state === 1 && (
               <CircularProgress
                 size={18}
                 sx={{
@@ -250,10 +284,10 @@ function register() {
             )
           }
         >
-          {registering ? "Wait..." : "Register"}
+          {registerStatus.register.text}
         </Button>
         <div className="optionsContainer">
-          {true ? <span className="message">No error</span> : null}
+          {registerStatus.register.state == 3 ? <span className="message">{registerStatus.register.errorMessage}</span> : null}
           <Link to="/login" className="link">
             <span className="reigsterTitle">Already a member? Login here</span>
           </Link>

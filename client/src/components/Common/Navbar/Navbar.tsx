@@ -27,32 +27,23 @@ function Navbar(props: INavbar) {
       {/* LEFT SIDE */}
       <div className="left">
         <Link to="/" className="link">
-          <span className={`title ${props.isAdmin ? "admin" : ""}`}>
-            {`Trip Planner`}
-          </span>
+          <span className={`title ${props.isAdmin ? "admin" : ""}`}>{`Trip Planner`}</span>
         </Link>
       </div>
 
       {/* MIDDLE */}
 
-      <div className="middle">
-        {props.isAdmin && <span className="subTitle">Administrator mode</span>}
-      </div>
+      <div className="middle">{props.isAdmin && <span className="subTitle">Administrator mode</span>}</div>
 
       {/* RIGHT SIDE */}
       <div className="right">
         <div className="navbarButtons">
           <Link to="/login" className="link">
-            <Button
-              variant="contained"
-              size="large"
-              onClick={loginAction}
-              endIcon={<LoginIcon />}
-            >
+            <Button variant="contained" size="small" onClick={loginAction} endIcon={<LoginIcon />}>
               Login
             </Button>
           </Link>
-          <Button variant="contained" size="large" endIcon={<HelpIcon />}>
+          <Button variant="contained" size="small" endIcon={<HelpIcon />}>
             Help
           </Button>
         </div>
