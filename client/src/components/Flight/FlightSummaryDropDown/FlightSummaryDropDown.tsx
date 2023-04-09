@@ -3,7 +3,7 @@ import "./FlightSummaryDropDown.scss";
 import React, { useState, useEffect } from "react";
 
 // Datatypes
-import { ITravelData } from "../../components/FlightSearchResultCard/Datatypes";
+import { ITravelData } from "../FlightSearchResultCard/Datatypes";
 
 // Components
 import InboundCard from "../FlightSearchResultCard/InboundCard";
@@ -36,21 +36,14 @@ function FlightSummaryDropDown(props: IFlightSummaryProps) {
     <div className="flightSummaryDropDown">
       <div className="summary">
         <div className="card">
-          <FlightDirectionCard
-            travelData={props.travelData}
-            isOutbound={props.isOutbound}
-          />
+          <FlightDirectionCard travelData={props.travelData} isOutbound={props.isOutbound} />
         </div>
         <div className="navArrow" onClick={clickAction}>
           <ArrowForwardIosIcon className={animation} />
         </div>
       </div>
       <div className="details">
-        <FlightDetailsCard
-          expand={expand}
-          flightData={props}
-          isOutbound={props.isOutbound}
-        />
+        <FlightDetailsCard expand={expand} flightData={props} isOutbound={props.isOutbound} />
       </div>
     </div>
   );

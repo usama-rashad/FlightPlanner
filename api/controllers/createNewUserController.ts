@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response, response } from "express";
 import { AuthError } from "firebase/auth";
+import { FirestoreError } from "firebase/firestore";
 import { addUserData, createNewUser, fireStoreAuth } from "../database/firebase";
 
 let retryCount = 0;
@@ -16,6 +17,9 @@ async function createNewUserController(req: Request, res: Response, next: NextFu
   // Status flags
   let userSignupOK = false;
   let userDataAdditionOK = false;
+  // Error messages
+  let signupErrorMessage: string = "";
+  let createUserEntryErrorMessage: string = "";
 
   // Compare passwords
   if (password1 !== password2) {
@@ -27,7 +31,9 @@ async function createNewUserController(req: Request, res: Response, next: NextFu
     .then((result) => {
       userSignupOK = true;
     })
-    .catch((error: AuthError) => {});
+    .catch((error: AuthError) => {
+      signupErrorMessage = error.message;
+    });
 
   // Enter the user data into the firestore
   await addUserData({
@@ -35,15 +41,21 @@ async function createNewUserController(req: Request, res: Response, next: NextFu
     email: email,
     city: city,
     country: country,
-  }).then((response) => {
-    userDataAdditionOK = true;
-  });
-
-  if (userDataAdditionOK && userSignupOK) {
-    return res.status(400).json({ message: "New user created", serverError: "No error", error: 0 });
-  } else {
-    return res.status(400).json({ message: "New user could not be created.", error: 1 });
-  }
+  })
+    .then((response) => {
+      userDataAdditionOK = true;
+      console.log("New user creation success.");
+      return res.status(400).json({ message: "New user created", error: 0 });
+    })
+    .catch((error: FirestoreError) => {
+      createUserEntryErrorMessage = error.message;
+      return res.status(400).json({
+        message: "New user could not be created.",
+        serverError1: signupErrorMessage,
+        serverError2: createUserEntryErrorMessage,
+        error: 1,
+      });
+    });
 }
 
 export { createNewUserController, monitorRetries };

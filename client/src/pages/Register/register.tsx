@@ -56,8 +56,8 @@ function register() {
   // Effects
   useEffect(() => {
     setUserName("usamakr");
-    setPassword1("123");
-    setPassword2("123");
+    setPassword1("123456");
+    setPassword2("123456");
     setEmail("usamakr@gmail.com");
     setCity("Lahore");
     setCountry("Pakistan");
@@ -77,7 +77,7 @@ function register() {
     if (registerStatus.register.state == 2) {
       setTimeout(() => {
         dispatcher(reset());
-        naviagte("/login");
+        // naviagte("/login");
       }, 1000);
     }
   }, [registerStatus.register.state]);
