@@ -23,36 +23,24 @@ async function createNewUserController(req: Request, res: Response, next: NextFu
 
   // Compare passwords
   if (password1 !== password2) {
-    return res.status(400).json("Passwords do not match.");
+    return res.status(400).json({ message: "Passwords do not match.", error: 1 });
   }
 
   // Call firebase function to create a new user
   await createNewUser(email, password1)
-    .then((result) => {
-      userSignupOK = true;
+    .then(async (result) => {
+      return await addUserData({ username: username, email: email, city: city, country: country });
     })
-    .catch((error: AuthError) => {
-      signupErrorMessage = error.message;
-    });
-
-  // Enter the user data into the firestore
-  await addUserData({
-    username: username,
-    email: email,
-    city: city,
-    country: country,
-  })
-    .then((response) => {
-      userDataAdditionOK = true;
+    .then(() => {
       console.log("New user creation success.");
       return res.status(400).json({ message: "New user created", error: 0 });
     })
-    .catch((error: FirestoreError) => {
-      createUserEntryErrorMessage = error.message;
+    .catch((error: AuthError) => {
+      signupErrorMessage = error.message;
+      console.log("signupErrorMessage : " + signupErrorMessage);
       return res.status(400).json({
         message: "New user could not be created.",
         serverError1: signupErrorMessage,
-        serverError2: createUserEntryErrorMessage,
         error: 1,
       });
     });
