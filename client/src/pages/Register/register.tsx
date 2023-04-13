@@ -1,5 +1,5 @@
 // Packages
-import React, { useEffect, useReducer, useState } from "react";
+import React, { useEffect, useReducer, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -46,6 +46,9 @@ function register() {
   const [country, setCountry] = useState<string>("");
   const [registering, setRegistering] = useState(false);
 
+  // Refs
+  const usernameRef = useRef<HTMLInputElement>();
+
   // Reducers
   const dispatcher = AppDispatch();
   const registerStatus = useSelector((state: RootState) => state);
@@ -86,6 +89,13 @@ function register() {
   useEffect(() => {
     validatePasswords();
   }, [password1, password2]);
+
+  // Check if username exists
+  useEffect(() => {
+    usernameRef?.current?.addEventListener("onFocusOut", () => {
+      console.log("Lost focus from username field.");
+    });
+  }, [userName]);
 
   // Actions
   const userNameAction = (e: string) => {
