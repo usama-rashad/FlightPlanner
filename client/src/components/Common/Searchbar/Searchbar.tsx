@@ -57,7 +57,7 @@ function Searchbar() {
         <div className="searchBarContainer">
           <div className="searchOptions">
             <label>Return</label>
-            <input type="radio" name="flightType" />
+            <input type="radio" name="flightType" checked />
             <label>One way</label>
             <input type="radio" name="flightType" />
             <label>Multi-city</label>

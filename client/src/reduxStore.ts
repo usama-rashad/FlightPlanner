@@ -6,6 +6,7 @@ export const store = configureStore({
   reducer: {
     register: registerReducer,
   },
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

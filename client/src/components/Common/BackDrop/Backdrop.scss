@@ -1,25 +1,39 @@
-$clipHeight: 60%;
+$clipHeight: 100%;
 $notchHeight: calc($clipHeight + 0%);
 
 .backdrop {
-	background-color: #c4d4e4;
-	display: flex;
-	flex-direction: column;
-	height: calc(
-		100vh - 60px - 4px
-	); // Minus the height of the navbar and its top and bottom borders
-	img {
-		height: 100%;
-		width: 100vw;
-		object-fit: cover;
-		clip-path: polygon(
-			0 0,
-			100% 0%,
-			100% $clipHeight,
-			54% $clipHeight,
-			50% $notchHeight,
-			45.7% $clipHeight,
-			0% $clipHeight
-		);
-	}
+  width: 100%;
+  background-color: #c4d4e4;
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 60px - 4px); // Minus the height of the navbar and its top and bottom borders
+  position: relative;
+  .image {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    clip-path: polygon(0 0, 100% 0%, 100% $clipHeight, 54% $clipHeight, 50% $notchHeight, 45.7% $clipHeight, 0% $clipHeight);
+  }
+
+  .advertContainer {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    height: 40%;
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+    justify-items: flex-start;
+
+    .advertisements {
+      flex: 1;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      gap: 5px;
+    }
+  }
 }

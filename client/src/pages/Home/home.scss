@@ -32,20 +32,4 @@ body {
     right: 0px;
     margin: auto;
   }
-
-  .advertContainer {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    .advertisements {
-      width: 90%;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      grid-column-end: 10px;
-      column-gap: 15px;
-      position: absolute;
-      top: calc(100% - $cardHeight - 10px);
-    }
-  }
 }
