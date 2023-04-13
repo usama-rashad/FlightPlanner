@@ -160,7 +160,6 @@ function register() {
       <div className="rightSide">
         <span className="title">Register</span>
         <TextField
-          ref={usernameRef}
           className="input"
           size="small"
           type="outlined"
