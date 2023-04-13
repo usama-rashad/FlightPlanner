@@ -1,5 +1,5 @@
 import { useReducer } from "react";
-import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, PayloadAction, unwrapResult } from "@reduxjs/toolkit";
 
 import axios, { AxiosError, AxiosResponse } from "axios";
 
@@ -39,8 +39,13 @@ export type TAxiosPost = {
 export const registerInitState: IRegisterState = { state: 0, text: "Register", errorMessage: "", buttonColor: "default" };
 
 export const registerThunk = createAsyncThunk("registerThunk", async (payload: TRegisterPayload, { rejectWithValue }) => {
-  const registerResponse = await axios.post("http://127.0.0.1:5000/api/v1/createNewUser", payload);
-  return registerResponse;
+  try {
+    const registerResponse = await axios.post("http://127.0.0.1:5000/api/v1/createNewUser", payload);
+    return registerResponse;
+  } catch (e) {
+    console.log("Try catch error" + e);
+    rejectWithValue(e);
+  }
 });
 
 export const registerSlice = createSlice({

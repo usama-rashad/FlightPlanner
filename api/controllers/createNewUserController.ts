@@ -4,6 +4,7 @@ import { FirestoreError } from "firebase/firestore";
 import { addUserData, createNewUser, fireStoreAuth } from "../database/firebase";
 import { getTimeStamp } from "../utils/Utils";
 import { FirebaseError } from "firebase/app";
+import { error } from "console";
 
 let retryCount = 0;
 
@@ -39,10 +40,9 @@ async function createUser(data: IUserLoginData): Promise<IRegisterResponse> {
           city: data.city,
           country: data.country,
         });
-        res({ message: "New user has been created.", error: 0 });
       })
       .catch((error: FirebaseError) => {
-        rej({ message: "New user could not be created.", serverMessage1: error.message, error: 1 });
+        rej({ message: "New user could not be created.", error: 1, serverError: error });
       });
   });
   return p;
@@ -63,12 +63,10 @@ async function createNewUserController(req: Request, res: Response, next: NextFu
 
   createUser({ ...req.body })
     .then(() => {
-      console.log("New user created. -- " + getTimeStamp());
       return res.status(200).json({ message: "New user has been created.", error: 0 });
     })
-    .catch((error) => {
-      console.log("New user could not be created. -- " + getTimeStamp()) + error;
-      return res.status(400).json({ message: "New user could not be created.", serverMessage1: error, error: 0 });
+    .catch((serverError) => {
+      return res.status(400).json({ message: "New user could not be created.", serverError: serverError, error: 1 });
     });
 }
 
