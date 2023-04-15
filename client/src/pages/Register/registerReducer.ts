@@ -38,13 +38,12 @@ export type TAxiosPost = {
 
 export const registerInitState: IRegisterState = { state: 0, text: "Register", errorMessage: "", buttonColor: "default" };
 
-export const registerThunk = createAsyncThunk("registerThunk", async (payload: TRegisterPayload, { rejectWithValue }) => {
+export const registerThunk = createAsyncThunk("registerThunk", async (payload: TRegisterPayload, { rejectWithValue, fulfillWithValue }) => {
   try {
     const registerResponse = await axios.post("http://127.0.0.1:5000/api/v1/createNewUser", payload);
-    return registerResponse;
+    return fulfillWithValue(registerResponse.data);
   } catch (e) {
-    console.log("Try catch error" + e);
-    rejectWithValue(e);
+    return rejectWithValue(e);
   }
 });
 
@@ -69,6 +68,7 @@ export const registerSlice = createSlice({
         state.state = 2;
         state.text = "Done";
         state.buttonColor = "green";
+        state.errorMessage = "";
       }),
       builder.addCase(registerThunk.rejected, (state, action) => {
         state.state = 3;
