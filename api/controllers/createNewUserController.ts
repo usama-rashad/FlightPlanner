@@ -1,9 +1,10 @@
 import { NextFunction, Request, Response, response } from "express";
 import { AuthError } from "firebase/auth";
-import { FirestoreError, doc, setDoc } from "firebase/firestore";
+import { FirestoreError } from "firebase/firestore";
 import { addUserData, createNewUser, fireStoreAuth } from "../database/firebase";
 import { getTimeStamp } from "../utils/Utils";
 import { FirebaseError } from "firebase/app";
+import { error } from "console";
 
 let retryCount = 0;
 
@@ -28,32 +29,23 @@ function monitorRetries(req: Request, res: Response, next: NextFunction) {
   setTimeout(() => (retryCount = 0), 3000);
   next();
 }
-// Double await i.e. inside function and while calling the function ?????? Check in the morning...
+
 async function createUser(data: IUserLoginData): Promise<IRegisterResponse> {
   let p = new Promise<IRegisterResponse>(async (res, rej) => {
-    console.log(`Username ${data.email} , Password ${data.password1}`);
-    await createNewUser(data.email, data.password1).then(async () => {
-      return await addUserData({
-        username: data.username,
-        email: data.email,
-        city: data.city,
-        country: data.country,
-      }).catch((error: FirebaseError) => {
+    await createNewUser(data.email, data.password1)
+      .then(async () => {
+        return await addUserData({
+          username: data.username,
+          email: data.email,
+          city: data.city,
+          country: data.country,
+        });
+      })
+      .catch((error: FirebaseError) => {
         rej({ message: "New user could not be created.", error: 1, serverError: error });
       });
-    });
   });
   return p;
-}
-
-async function enterNewUserData(data: IUserLoginData) {
-  await setDoc(doc(fireStoreAuth, "users"), { ...data })
-    .then((response) => {
-      console.log(response);
-    })
-    .catch((error: FirestoreError) => {
-      console.log(error);
-    });
 }
 
 async function createNewUserController(req: Request, res: Response, next: NextFunction) {
@@ -69,16 +61,13 @@ async function createNewUserController(req: Request, res: Response, next: NextFu
     return res.status(400).json({ message: "Passwords do not match ", error: 1 });
   }
 
-  try {
-    await createUser({ ...req.body });
-    console.log("User email added...");
-    await enterNewUserData({ ...req.body });
-    console.log("User data added...");
-    return res.status(200).json({ message: "New user has been created.", error: 0 });
-  } catch (serverError) {
-    console.log("Error " + JSON.stringify(serverError));
-    return res.status(400).json({ message: "New user could not be created.", serverError: serverError, error: 1 });
-  }
+  createUser({ ...req.body })
+    .then(() => {
+      return res.status(200).json({ message: "New user has been created.", error: 0 });
+    })
+    .catch((serverError) => {
+      return res.status(400).json({ message: "New user could not be created.", serverError: serverError, error: 1 });
+    });
 }
 
 export { createNewUserController, monitorRetries };
