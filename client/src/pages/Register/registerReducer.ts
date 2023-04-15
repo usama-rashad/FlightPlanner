@@ -29,6 +29,10 @@ export interface IRegisterAction {
   payload: TRegisterPayload;
 }
 
+export interface ServerErrorResponse {
+  serverError: { error: boolean; serverError: { code: string } };
+}
+
 export type TAxiosPost = {
   message: string;
   serverError1: string;
@@ -74,7 +78,11 @@ export const registerSlice = createSlice({
         state.state = 3;
         state.text = "Error";
         state.buttonColor = "red";
+
         console.log(action);
+        // Keep type cast simple
+        let typedAction = action.payload as AxiosError<ServerErrorResponse>;
+        state.errorMessage = typedAction.response!.data.serverError.serverError.code;
       });
   },
 });
