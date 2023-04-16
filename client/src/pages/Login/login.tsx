@@ -1,5 +1,5 @@
 // Packages
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { AppDispatch, RootState } from "./../../reduxStore";
 
@@ -47,12 +47,18 @@ function login() {
   };
 
   const loginAction = () => {
-    dispatch(loginThunk({ username: userName, password: password }));
+    dispatch(loginThunk({ username: userName, password: password, rememberMeFlag: rememberFlag }));
   };
 
   const checkBoxAction = (event: React.ChangeEvent<HTMLInputElement>) => {
     setRememberFlag(event.target.checked);
   };
+
+  // Effects
+  useEffect(() => {
+    setUserName("ayeshaaslamatd@gmail.com");
+    setPassword("123456789");
+  }, []);
 
   return (
     <div className="login">
@@ -123,6 +129,8 @@ function login() {
         </Button>
         {loginErrorFlag ? <span className="loginError">User name and/or password incorrect</span> : <div />}
         <div className="optionsContainer">
+          {loginStatus.login.errorMessage === "" ? null : <span className="errorMessage">{loginStatus.login.errorMessage}</span>}
+          {loginStatus.login.stateValue === 2 ? <span className="successMessage">{loginStatus.login.currentState} </span> : null}
           <Link to="/register" className="link">
             <span className="registerTitle">Not a member? Register here</span>
           </Link>

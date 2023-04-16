@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 
 export interface ILoginState {
   loginSuccess: boolean;
@@ -9,9 +9,14 @@ export interface ILoginState {
   stateValue?: number;
 }
 
+export interface ILoginErrorResponse {
+  message: { code: string };
+}
+
 export interface ILoginPayload {
   username: string;
   password: string;
+  rememberMeFlag: boolean;
 }
 
 const loginInitialState: ILoginState = { loginSuccess: false, loginFail: false, errorMessage: "" };
@@ -33,14 +38,18 @@ const loginSlice = createSlice({
     builder.addCase(loginThunk.pending, (state, action) => {
       state.currentState = "Logging in...";
       state.stateValue = 0;
+      state.errorMessage = "";
     });
     builder.addCase(loginThunk.fulfilled, (state, action) => {
-      state.currentState = "Login successfull.";
+      state.currentState = "Login successful. Redirecting...";
       state.stateValue = 2;
+      state.errorMessage = "";
     });
     builder.addCase(loginThunk.rejected, (state, action) => {
       state.currentState = "Login failed.";
       state.stateValue = 3;
+      let typedPayload = action.payload as AxiosError<ILoginErrorResponse>;
+      state.errorMessage = typedPayload.response?.data.message.code as string;
     });
   },
 });

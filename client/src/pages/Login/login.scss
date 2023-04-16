@@ -60,6 +60,16 @@ $size: 80%;
       align-items: center;
       justify-content: flex-end;
 
+      .errorMessage {
+        color: red;
+        font-weight: bold;
+      }
+
+      .successMessage {
+        color: green;
+        font-weight: bold;
+      }
+
       .link {
         padding: 20px;
         .registerTitle {
