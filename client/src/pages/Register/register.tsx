@@ -80,7 +80,7 @@ function register() {
     if (registerStatus.register.state == 2) {
       setTimeout(() => {
         dispatcher(reset());
-        // naviagte("/login");
+        naviagte("/login");
       }, 1000);
     }
   }, [registerStatus.register.state]);
@@ -280,7 +280,7 @@ function register() {
 
         <Button
           variant="contained"
-          disabled={registerStatus.register.state === 1}
+          disabled={registerStatus.register.state === 1 || passwordsNotMatch}
           sx={{ backgroundColor: registerStatus.register.buttonColor }}
           onClick={registerAction}
           endIcon={

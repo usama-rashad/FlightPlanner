@@ -1,9 +1,8 @@
 import { NextFunction, Request, Response, response } from "express";
-import { AuthError } from "firebase/auth";
-import { FirestoreError, doc, setDoc } from "firebase/firestore";
-import { addUserData, createNewUser, fireStoreAuth } from "../database/firebase";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { addDoc, collection } from "firebase/firestore";
 import { getTimeStamp } from "../utils/Utils";
-import { FirebaseError } from "firebase/app";
+import { fireStoreAuth, firebaseAuth } from "../database/firebase";
 
 let retryCount = 0;
 
@@ -28,40 +27,17 @@ function monitorRetries(req: Request, res: Response, next: NextFunction) {
   setTimeout(() => (retryCount = 0), 3000);
   next();
 }
-// Double await i.e. inside function and while calling the function ?????? Check in the morning...
-async function createUser(data: IUserLoginData): Promise<IRegisterResponse> {
-  let p = new Promise<IRegisterResponse>(async (res, rej) => {
-    console.log(`Username ${data.email} , Password ${data.password1}`);
-    await createNewUser(data.email, data.password1).then(async () => {
-      return await addUserData({
-        username: data.username,
-        email: data.email,
-        city: data.city,
-        country: data.country,
-      }).catch((error: FirebaseError) => {
-        rej({ message: "New user could not be created.", error: 1, serverError: error });
-      });
-    });
-  });
-  return p;
+
+function removeSecretData(data: any) {
+  let { password1, password2, ...rest } = data;
+  return rest;
 }
 
-async function enterNewUserData(data: IUserLoginData) {
-  await setDoc(doc(fireStoreAuth, "users"), { ...data })
-    .then((response) => {
-      console.log(response);
-    })
-    .catch((error: FirestoreError) => {
-      console.log(error);
-    });
-}
+// Double await i.e. inside function and while calling the function ?????? Check in the morning...
 
 async function createNewUserController(req: Request, res: Response, next: NextFunction) {
   // Extract username and passwords
   let { username, password1, password2, email, city, country } = req.body;
-  // Error messages
-  let signupErrorMessage: string = "";
-  let createUserEntryErrorMessage: string = "";
 
   // Compare passwords
   if (password1 !== password2) {
@@ -70,13 +46,13 @@ async function createNewUserController(req: Request, res: Response, next: NextFu
   }
 
   try {
-    await createUser({ ...req.body });
-    console.log("User email added...");
-    await enterNewUserData({ ...req.body });
-    console.log("User data added...");
+    console.log(`Email : ${email} , Password : ${password1}`);
+    await createUserWithEmailAndPassword(firebaseAuth, email, password1);
+    console.log("Adding user data");
+    await addDoc(collection(fireStoreAuth, "users", ""), removeSecretData(req.body));
+    console.log("Added user data");
     return res.status(200).json({ message: "New user has been created.", error: 0 });
   } catch (serverError) {
-    console.log("Error " + JSON.stringify(serverError));
     return res.status(400).json({ message: "New user could not be created.", serverError: serverError, error: 1 });
   }
 }
