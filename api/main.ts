@@ -22,6 +22,7 @@ import { serverTestRoute, serverTimeRoute } from "./routes/serverTestRoute";
 import { viewAirlinesRoute } from "./routes/viewAirlineRoute";
 import { sampleDataEndpointRoute } from "./routes/sampleDataEndPointRoute";
 import { createNewUserRoute } from "./routes/createNewUserRoute";
+import { loginUserRoute } from "./routes/loginUserRoute";
 
 app.use("/", serverTestRoute);
 app.use("/", serverTimeRoute);
@@ -30,6 +31,7 @@ app.use("/api/v1", createAirlineDataRoute);
 app.use("/api/v1", createAirlineFileRoute);
 app.use("/api/v1", viewAirlinesRoute);
 app.use("/api/v1", createNewUserRoute);
+app.use("/api/v1", loginUserRoute);
 
 app.listen(process.env.API_PORT, () => {
   console.log("Listening on port " + process.env.API_PORT + "...");

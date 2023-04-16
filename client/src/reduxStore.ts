@@ -1,10 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
-import registerReducer from "./pages/Register/registerReducer";
 import { useDispatch } from "react-redux";
+
+// Reducers
+import registerReducer from "./pages/Register/registerReducer";
+import loginReducer from "./pages/Login/loginReducer";
 
 export const store = configureStore({
   reducer: {
     register: registerReducer,
+    login: loginReducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware({ serializableCheck: false }),
 });
