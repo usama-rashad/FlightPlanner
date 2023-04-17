@@ -19,11 +19,13 @@ import CircularProgress from "@mui/material/CircularProgress";
 
 // Images
 import LoginBackground from "../../assets/Backgrounds/Login Background.jpg";
-import { Link } from "react-router-dom";
-import { loginThunk } from "./loginReducer";
+import { Link, useNavigate } from "react-router-dom";
+import { loginThunk, reset } from "./loginReducer";
 import IconButton from "@mui/material/IconButton";
 
 function login() {
+  // Hooks
+  const naviagte = useNavigate();
   const [userName, setUserName] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [showPass, setShowPass] = useState(false);
@@ -31,7 +33,7 @@ function login() {
   const [rememberFlag, setRememberFlag] = useState<boolean>(false);
 
   // Login Reducer
-  const loginStatus = useSelector((state: RootState) => state);
+  const loginStatus = useSelector((state: RootState) => state.login);
   const dispatch = AppDispatch();
 
   const userNameAction = (e: string) => {
@@ -59,6 +61,20 @@ function login() {
     setUserName("ayeshaaslamatd@gmail.com");
     setPassword("123456789");
   }, []);
+
+  // Reroute useEffect
+  useEffect(() => {
+    let timeoutID: any;
+    if (loginStatus.loginSuccess) {
+      timeoutID = setTimeout(() => {
+        dispatch(reset()); // Reset the login state so that login does not trigger automatically
+        naviagte("/admin");
+      }, 2000);
+    }
+    return () => {
+      clearTimeout(timeoutID);
+    };
+  }, [loginStatus.loginSuccess]);
 
   return (
     <div className="login">
@@ -115,7 +131,7 @@ function login() {
           variant="contained"
           onClick={loginAction}
           endIcon={
-            loginStatus.login.stateValue === 1 && (
+            loginStatus.stateValue === 1 && (
               <CircularProgress
                 size={18}
                 sx={{
@@ -129,8 +145,8 @@ function login() {
         </Button>
         {loginErrorFlag ? <span className="loginError">User name and/or password incorrect</span> : <div />}
         <div className="optionsContainer">
-          {loginStatus.login.errorMessage === "" ? null : <span className="errorMessage">{loginStatus.login.errorMessage}</span>}
-          {loginStatus.login.stateValue === 2 ? <span className="successMessage">{loginStatus.login.currentState} </span> : null}
+          {loginStatus.stateValue === 3 ? <span className="errorMessage">{loginStatus.errorMessage}</span> : null}
+          {loginStatus.stateValue === 2 ? <span className="successMessage">{loginStatus.currentState} </span> : null}
           <Link to="/register" className="link">
             <span className="registerTitle">Not a member? Register here</span>
           </Link>

@@ -28,7 +28,9 @@ const appRouter = createBrowserRouter([
     path: "/",
     element: (
       <>
-        <Navbar />
+        <Provider store={store}>
+          <Navbar />
+        </Provider>
         <Home />
       </>
     ),
@@ -41,7 +43,9 @@ const appRouter = createBrowserRouter([
     path: "/admin",
     element: (
       <>
-        <Navbar isAdmin={true} />
+        <Provider store={store}>
+          <Navbar isAdmin={true} />
+        </Provider>
         <AdminPage />
       </>
     ),
@@ -50,7 +54,9 @@ const appRouter = createBrowserRouter([
     path: "/login",
     element: (
       <>
-        <Navbar />
+        <Provider store={store}>
+          <Navbar />
+        </Provider>
         <Login />
       </>
     ),
@@ -59,7 +65,9 @@ const appRouter = createBrowserRouter([
     path: "/register",
     element: (
       <>
-        <Navbar />
+        <Provider store={store}>
+          <Navbar />
+        </Provider>
         <Register />
       </>
     ),
@@ -68,7 +76,9 @@ const appRouter = createBrowserRouter([
     path: "/searchresults",
     element: (
       <>
-        <Navbar />
+        <Provider store={store}>
+          <Navbar />
+        </Provider>
         <SearchResults />
       </>
     ),
@@ -77,7 +87,9 @@ const appRouter = createBrowserRouter([
     path: "/checkout",
     element: (
       <>
-        <Navbar />
+        <Provider store={store}>
+          <Navbar />
+        </Provider>
         <Checkout />
       </>
     ),
