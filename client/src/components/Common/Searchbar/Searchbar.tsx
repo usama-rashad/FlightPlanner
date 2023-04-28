@@ -1,6 +1,6 @@
 import "./Searchbar.scss";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 // Packages
 import dayjs, { Dayjs } from "dayjs";
@@ -23,7 +23,7 @@ function Searchbar() {
   const [returnDate, setReturnDate] = useState<Dayjs | null>(null);
   const [departureCity, setDepartureCity] = useState<string>("");
   const [arrivalCity, setArrivalCity] = useState<string>("");
-
+  const [allianceCheckbox, setAllianceCheckbox] = useState<boolean>(false);
   const [searchEnabled, setSearchEnabled] = useState<boolean>(false);
 
   const setDepartureDateAction = (value: Dayjs | null) => {
@@ -39,6 +39,14 @@ function Searchbar() {
     }
     console.log(value);
   };
+
+  const allianceChangeEvent = (state: boolean) => {
+    setAllianceCheckbox((prev) => (prev = state));
+  };
+
+  useEffect(() => {
+    console.log(allianceCheckbox);
+  }, [allianceCheckbox]);
 
   const searchRequest = () => {
     axios
@@ -57,7 +65,7 @@ function Searchbar() {
         <div className="searchBarContainer">
           <div className="searchOptions">
             <label>Return</label>
-            <input type="radio" name="flightType" checked />
+            <input type="radio" name="flightType" defaultChecked />
             <label>One way</label>
             <input type="radio" name="flightType" />
             <label>Multi-city</label>
@@ -108,7 +116,7 @@ function Searchbar() {
               <label>
                 Include Star Alliance <StarAlliance className="icon" /> airlines
               </label>
-              <Checkbox color="primary" />
+              <Checkbox color="secondary" onChange={(e) => allianceChangeEvent(e.target.checked)} />
             </div>
             <Button variant="contained" size="small" className="searchButton" onClick={searchRequest}>
               Search

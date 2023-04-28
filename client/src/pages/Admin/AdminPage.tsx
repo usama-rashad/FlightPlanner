@@ -23,10 +23,6 @@ enum EMode {
 function AdminPage() {
   const [mode, setMode] = useState<EMode>(EMode.NONE);
 
-  useEffect(() => {
-    console.log("Type changed to " + mode);
-  }, [mode]);
-
   return (
     <div className="adminPage">
       <div className="top">
