@@ -106,9 +106,8 @@ function CreateNewAirline() {
       formData.append("airlineName", airlineName);
       formData.append("airlineHub", airlineHub);
       formData.append("airlineIcon", airlineIcon);
-      sendFormTextData({ airlineHub: airlineHub, airlineName: airlineName }).then(async () => {
-        sendFormMultiPartData(formData);
-      });
+      await sendFormTextData({ airlineHub: airlineHub, airlineName: airlineName });
+      await sendFormMultiPartData(formData);
     }
   };
 

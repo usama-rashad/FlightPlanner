@@ -17,7 +17,7 @@ app.use(bodyparser.urlencoded({ extended: true }));
 app.use(cors());
 
 // Express routes
-import { createAirlineDataRoute, createAirlineFileRoute } from "./routes/createAirlineRoute";
+import { createAirlineRoute } from "./routes/createAirlineRoute";
 import { serverTestRoute, serverTimeRoute } from "./routes/serverTestRoute";
 import { viewAirlinesRoute } from "./routes/viewAirlineRoute";
 import { sampleDataEndpointRoute } from "./routes/sampleDataEndPointRoute";
@@ -28,8 +28,7 @@ import { logoutUserRoute } from "./routes/logoutUserRoute";
 app.use("/", serverTestRoute);
 app.use("/", serverTimeRoute);
 app.use("/", sampleDataEndpointRoute);
-app.use("/api/v1", createAirlineDataRoute);
-app.use("/api/v1", createAirlineFileRoute);
+app.use("/api/v1", createAirlineRoute);
 app.use("/api/v1", viewAirlinesRoute);
 app.use("/api/v1", createNewUserRoute);
 app.use("/api/v1", loginUserRoute);
